@@ -1,0 +1,31 @@
+{
+    "id": 546542,
+    "name": "Faire du sport",
+    "date": "Sun Feb 01 1998 00:00:00 GMT+0000 (GMT)",
+    "active": true,
+    "if": [
+        {
+            "id": 5421,
+            "options": {
+                "lat": 54.44,
+                "lng": 60.25 
+            }
+        },
+        {
+            "id": 5541,
+            "options": {}
+        }
+    ],
+    "then": [
+        {
+            "id": 52,
+            "options": {
+                "message": "N'oublie pas de faire ton sport"
+            }
+        },
+        {
+            "id": 121,
+            "options": {}
+        }
+    ]
+}
