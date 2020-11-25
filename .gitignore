@@ -1,0 +1,13 @@
+SICAC/node_modules/**/*
+SICAC/.expo/*
+SICAC/npm-debug.*
+SICAC/*.jks
+SICAC/*.p8
+SICAC/*.p12
+SICAC/*.key
+SICAC/*.mobileprovision
+SICAC/*.orig.*
+SICAC/web-build/
+
+# macOS
+.DS_Store
