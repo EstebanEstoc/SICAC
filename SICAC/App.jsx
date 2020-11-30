@@ -5,7 +5,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import GoogleAuth from "./components/auth/GoogleAuth";
+import ScenarioList from "./components/ScenarioList/ScenarioList";
 
 const HomeScreen = () => {
   return (
@@ -22,8 +22,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="GoogleAuth" component={GoogleAuth} />
+        <Stack.Screen name="ScenarioList" component={ScenarioList} />
       </Stack.Navigator>
     </NavigationContainer>
   );
