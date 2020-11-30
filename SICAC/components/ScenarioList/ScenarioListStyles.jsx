@@ -8,6 +8,10 @@ const styles = StyleSheet.create({
   cardContainer: {
     flexGrow: 1,
   },
+  scrollView: {
+    flexShrink: 1,
+    marginTop: 40,
+  },
   card: {
     flexGrow: 1,
     marginTop: 50,
@@ -18,7 +22,6 @@ const styles = StyleSheet.create({
     fontSize: 38,
     fontWeight: '900',
     textTransform: 'uppercase',
-    letterSpacing: -2,
     color: '#000',
     alignItems: 'center',
     justifyContent: 'center'
@@ -63,6 +66,38 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontWeight: "bold",
     alignSelf: "center",
+  },
+  newScenarioButton: {
+    alignSelf: 'stretch',
+    margin: 10,
+    shadowOffset: {
+      width: 2,
+      height: 5,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 10,
+    elevation: 8,
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    shadowColor: "#00BAC5",
+    borderColor: "#00BAC5",
+    borderWidth: 2,
+    backgroundColor: "#fff"
+  },
+  newScenarioButtonText: {
+    textAlign: 'center',
+    width: '100%',
+    textTransform: 'uppercase',
+    fontSize: 25,
+    color: "#00BAC5",
+    fontWeight: "bold",
+    alignSelf: "center",
+  },
+  floatingButton: {
+    flexGrow: 1,
+    justifyContent: 'flex-end',
+    marginBottom: 0
   }
 });
 
