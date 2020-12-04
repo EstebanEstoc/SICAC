@@ -5,16 +5,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import ScenarioList from "./components/ScenarioList/ScenarioList";
-
-const HomeScreen = () => {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-};
+import Actions from "./components/Actions/Actions";
 
 const Stack = createStackNavigator();
 
@@ -22,7 +13,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="ScenarioList" component={ScenarioList} />
+        <Stack.Screen name="New scenario" component={Actions} />
       </Stack.Navigator>
     </NavigationContainer>
   );
