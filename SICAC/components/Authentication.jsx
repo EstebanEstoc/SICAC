@@ -1,20 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { View, StyleSheet } from "react-native";
+import React, { useEffect } from "react";
 import { GoogleSigninButton } from "react-native-google-signin";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   signIn,
   signOut,
   signInSilently,
   GoogleConfigure,
 } from "../services/authentication/providers/GoogleSignIn";
-import { toggleAuth } from "../Reducer/Authentication/authenticationSlice";
+import { View, StyleSheet } from "react-native";
+import { toggleAuthTrue } from "../Reducer/Authentication/authenticationSlice";
+
+import { signInGoogle } from "../Reducer/Authentication/userSlice";
 
 const Authentication = (props) => {
   const dispatch = useDispatch();
-
-  const isAuth = useSelector((state) => state.authentication);
-  console.log(isAuth);
 
   useEffect(() => {
     GoogleConfigure();
@@ -22,15 +21,11 @@ const Authentication = (props) => {
 
   const _signIn = async () => {
     try {
-      const userInfo = await signIn();
-      dispatch(toggleAuth());
+      dispatch(toggleAuthTrue());
+      dispatch(signInGoogle());
     } catch (error) {
       console.log(error.message);
     }
-  };
-
-  const _signOut = async () => {
-    const isLoggedIn = await signOut();
   };
 
   return (

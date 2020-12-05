@@ -17,6 +17,8 @@ target 'SICAC' do
   use_flipper!
   pod 'RNGoogleSignin', :path => '../node_modules/react-native-google-signin'
 
+  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
+
   post_install do |installer|
     flipper_post_install(installer)
   end

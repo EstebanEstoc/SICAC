@@ -19,7 +19,7 @@ const register = (authData, provider) => {
     case 'GoogleSignIn':
       try {
         GoogleSignInRegister(authData)
-        return false
+        return true
       } catch (e) {
         console.log(e)
         return false
@@ -39,9 +39,13 @@ const GoogleAPIRegister = authData => {
 }
 
 const GoogleSignInRegister = authData => {
-  throw new Error(
-    'Google Sign currently not implemented. Expo app issue fired on implementation'
-  )
+  const userFile = editJsonFile(`${__dirname}/../../data/user.json`)
+  userFile.set('idToken', authData.idToken)
+  userFile.set('serverAuthCode', authData.serverAuthCode)
+  userFile.set('id', authData.user.id)
+  userFile.set('name', authData.user.name)
+  userFile.set('email', authData.user.email)
+  userFile.save()
 }
 
 export default register

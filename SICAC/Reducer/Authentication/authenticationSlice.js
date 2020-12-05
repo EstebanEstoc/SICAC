@@ -1,14 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const authenticationSlice = createSlice({
-  name: 'isAuth',
+  name: 'authentication',
   initialState: false,
   reducers: {
-    toggleAuth: state => !state
+    toggleAuthTrue: state => true,
+    toggleAuthFalse: state => false
   }
 })
 
-export const { toggleAuth } = authenticationSlice.actions
+export const { toggleAuthFalse, toggleAuthTrue } = authenticationSlice.actions
 
-export const authSelector = state => state.isAuth
 export default authenticationSlice.reducer

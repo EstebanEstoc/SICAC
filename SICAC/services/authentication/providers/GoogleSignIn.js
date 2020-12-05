@@ -38,7 +38,7 @@ export const signIn = async () => {
 export const signInSilently = async () => {
   try {
     const userInfo = await GoogleSignin.signInSilently()
-    return true
+    return userInfo
   } catch (error) {
     if (error.code === statusCodes.SIGN_IN_REQUIRED) {
       return false
