@@ -1,16 +1,11 @@
 import React, { useEffect } from "react";
 import { GoogleSigninButton } from "react-native-google-signin";
 import { useDispatch } from "react-redux";
-import {
-  signIn,
-  signOut,
-  signInSilently,
-  GoogleConfigure,
-} from "../services/authentication/providers/GoogleSignIn";
-import { View, StyleSheet } from "react-native";
-import { toggleAuthTrue } from "../Reducer/Authentication/authenticationSlice";
+import { View, StyleSheet, Alert } from "react-native";
 
-import { signInGoogle } from "../Reducer/Authentication/userSlice";
+import { GoogleConfigure } from "../services/authentication/providers/GoogleSignIn";
+import { toggleAuthTrue } from "../Reducer/Authentication/authenticationSlice";
+import { signInGoogleAPI } from "../Reducer/Authentication/userSlice";
 
 const Authentication = (props) => {
   const dispatch = useDispatch();
@@ -20,12 +15,9 @@ const Authentication = (props) => {
   }, []);
 
   const _signIn = async () => {
-    try {
-      dispatch(toggleAuthTrue());
-      dispatch(signInGoogle());
-    } catch (error) {
-      console.log(error.message);
-    }
+    dispatch(signInGoogleAPI())
+      .then(() => dispatch(toggleAuthTrue()))
+      .catch((error) => Alert.alert(error.message));
   };
 
   return (

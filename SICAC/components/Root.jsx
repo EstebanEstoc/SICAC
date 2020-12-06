@@ -1,18 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import Authentication from "./Authentication";
 import { View, Text, StyleSheet, Button } from "react-native";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
+import Authentication from "./Authentication";
+import { signOut } from "../services/authentication/providers/GoogleSignIn";
 import { toggleAuthFalse } from "../Reducer/Authentication/authenticationSlice";
 import { clearUserInfo } from "../Reducer/Authentication/userSlice";
+import { GoogleConfigure } from "../services/authentication/providers/GoogleSignIn";
 
 const Stack = createStackNavigator();
 
 const HomeScreen = () => {
   const userInfo = useSelector((state) => state.user);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    GoogleConfigure();
+  }, []);
 
   const _signOut = async () => {
     await signOut();
@@ -22,7 +29,7 @@ const HomeScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text>Welcome {userInfo.name}</Text>
+      <Text>Welcome {userInfo && userInfo.user && userInfo.user.name}</Text>
       <StatusBar style="auto" />
       <Button onPress={_signOut} title="Sign Out"></Button>
     </View>
