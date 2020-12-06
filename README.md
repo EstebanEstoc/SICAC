@@ -19,6 +19,8 @@ yarn install
 
 ### Démarer le projet
 
+!!! Démarer la machine virtuel !!!
+
 ```
 yarn android
 ```
