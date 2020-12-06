@@ -19,7 +19,7 @@ yarn install
 
 ### Démarer le projet
 
-!!! Démarer la machine virtuel !!!
+!!! Démarer l'émulateur avant !!!
 
 ```
 yarn android
