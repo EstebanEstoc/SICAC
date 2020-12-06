@@ -4,16 +4,24 @@
 
 ### Installer Expo
 
-`npm install -g expo-cli`
+```
+npm install -g react-native-cli
+```
 ### Installer les dépendances
 
-`cd SICAC`
+```
+cd SICAC
+```
 
-`npm install`
+```
+yarn install
+```
 
 ### Démarer le projet
 
-`npm start`
+```
+yarn android
+```
 
 
 
