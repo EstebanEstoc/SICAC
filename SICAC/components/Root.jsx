@@ -12,6 +12,8 @@ import { clearUserInfo } from "../Reducer/Authentication/userSlice";
 import { GoogleConfigure } from "../services/authentication/providers/GoogleSignIn";
 
 import SunriseSunsetAPI from "./SunriseSunsetAPI";
+import ScenarioList from "./ScenarioList/ScenarioList";
+
 
 const Stack = createStackNavigator();
 
@@ -36,6 +38,8 @@ const HomeScreen = ({ navigation }) => {
       <Button onPress={_signOut} title="Sign Out"></Button>
       <Button title="API sunrise/sunset infos"
         onPress={() => navigation.navigate('SunriseSunsetAPI')}/>
+      <Button title="Scenario List"
+        onPress={() => navigation.navigate('ScenarioList')}/>
     </View>
   );
 };
@@ -52,6 +56,7 @@ const Root = () => {
           <Stack.Screen name="Authentication" component={Authentication} />
         )}
         <Stack.Screen name="SunriseSunsetAPI" component={SunriseSunsetAPI} />
+        <Stack.Screen name="ScenarioList" component={ScenarioList} />
       </Stack.Navigator>
     </NavigationContainer>
   );
