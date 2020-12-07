@@ -4,7 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { useSelector } from "react-redux";
 
 import Authentication from "./Authentication/Authentication";
-import HomeScreen from "./HomeScreen";
+import HomeScreen from "../helpers/HomeScreen";
 import CreateScenarioLayer from "./CreateScenario/CreateScenarioLayer";
 
 import SunriseSunsetAPI from "../helpers/SunriseSunsetAPI";

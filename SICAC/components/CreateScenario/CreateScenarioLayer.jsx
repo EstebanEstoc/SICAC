@@ -1,6 +1,6 @@
 import React from "react";
 import Carousel from "react-native-snap-carousel";
-import HomeScreen from "../HomeScreen";
+import HomeScreen from "../../helpers/HomeScreen";
 
 const MyCarousel = () => {
   const _renderItem = ({ item, index }) => {
