@@ -11,10 +11,9 @@ import { toggleAuthFalse } from "../Reducer/Authentication/authenticationSlice";
 import { clearUserInfo } from "../Reducer/Authentication/userSlice";
 import { GoogleConfigure } from "../services/authentication/providers/GoogleSignIn";
 
-import SunriseSunsetAPI from "./SunriseSunsetAPI";
+import SunriseSunsetAPI from "../helpers/SunriseSunsetAPI";
 import ScenarioList from "./ScenarioList/ScenarioList";
 import Actions from "./Actions/Actions";
-
 
 const Stack = createStackNavigator();
 
