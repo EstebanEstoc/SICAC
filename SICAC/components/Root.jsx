@@ -11,9 +11,8 @@ import { toggleAuthFalse } from "../Reducer/Authentication/authenticationSlice";
 import { clearUserInfo } from "../Reducer/Authentication/userSlice";
 import { GoogleConfigure } from "../services/authentication/providers/GoogleSignIn";
 
-import SunriseSunsetAPI from "./SunriseSunsetAPI";
+import SunriseSunsetAPI from "../helpers/SunriseSunsetAPI";
 import ScenarioList from "./ScenarioList/ScenarioList";
-
 
 const Stack = createStackNavigator();
 
@@ -36,10 +35,14 @@ const HomeScreen = ({ navigation }) => {
       <Text>Welcome {userInfo && userInfo.user && userInfo.user.name}</Text>
       <StatusBar style="auto" />
       <Button onPress={_signOut} title="Sign Out"></Button>
-      <Button title="API sunrise/sunset infos"
-        onPress={() => navigation.navigate('SunriseSunsetAPI')}/>
-      <Button title="Scenario List"
-        onPress={() => navigation.navigate('ScenarioList')}/>
+      <Button
+        title="API sunrise/sunset infos"
+        onPress={() => navigation.navigate("SunriseSunsetAPI")}
+      />
+      <Button
+        title="Scenario List"
+        onPress={() => navigation.navigate("ScenarioList")}
+      />
     </View>
   );
 };
