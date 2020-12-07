@@ -4,19 +4,6 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./Store/store";
 
-<<<<<<< HEAD
-import Actions from "./components/Actions/Actions";
-
-const Stack = createStackNavigator();
-
-const App = () => {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="New scenario" component={Actions} />
-      </Stack.Navigator>
-    </NavigationContainer>
-=======
 import Root from "./components/Root";
 
 const App = () => {
@@ -26,7 +13,6 @@ const App = () => {
         <Root></Root>
       </PersistGate>
     </Provider>
->>>>>>> main
   );
 };
 
