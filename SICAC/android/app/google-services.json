@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "418441773673",
+    "project_id": "sicac-3ecf9",
+    "storage_bucket": "sicac-3ecf9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:418441773673:android:f03ed3efd85064a62c58f8",
+        "android_client_info": {
+          "package_name": "com.enseirb.sicac"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "418441773673-dihkm38882tum2qo22pudnhrqp7rbhic.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.enseirb.sicac",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "418441773673-8fuj39av1tro7vpd07jvdo87ihahtiib.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALochPn5wFpWJs9HY0j-CPOcwrNQTpNlw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "418441773673-8fuj39av1tro7vpd07jvdo87ihahtiib.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
