@@ -41,6 +41,8 @@ const HomeScreen = ({ navigation }) => {
         onPress={() => navigation.navigate('SunriseSunsetAPI')}/>
       <Button title="Scenario List"
         onPress={() => navigation.navigate('ScenarioList')}/>
+      <Button title="New scenario"
+        onPress={() => navigation.navigate('New scenario')}/>
     </View>
   );
 };
