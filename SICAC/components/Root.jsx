@@ -13,6 +13,7 @@ import { GoogleConfigure } from "../services/authentication/providers/GoogleSign
 
 import SunriseSunsetAPI from "../helpers/SunriseSunsetAPI";
 import ScenarioList from "./ScenarioList/ScenarioList";
+import Actions from "./Actions/Actions";
 
 const Stack = createStackNavigator();
 
@@ -35,14 +36,12 @@ const HomeScreen = ({ navigation }) => {
       <Text>Welcome {userInfo && userInfo.user && userInfo.user.name}</Text>
       <StatusBar style="auto" />
       <Button onPress={_signOut} title="Sign Out"></Button>
-      <Button
-        title="API sunrise/sunset infos"
-        onPress={() => navigation.navigate("SunriseSunsetAPI")}
-      />
-      <Button
-        title="Scenario List"
-        onPress={() => navigation.navigate("ScenarioList")}
-      />
+      <Button title="API sunrise/sunset infos"
+        onPress={() => navigation.navigate('SunriseSunsetAPI')}/>
+      <Button title="Scenario List"
+        onPress={() => navigation.navigate('ScenarioList')}/>
+      <Button title="New scenario"
+        onPress={() => navigation.navigate('New scenario')}/>
     </View>
   );
 };
@@ -60,6 +59,7 @@ const Root = () => {
         )}
         <Stack.Screen name="SunriseSunsetAPI" component={SunriseSunsetAPI} />
         <Stack.Screen name="ScenarioList" component={ScenarioList} />
+        <Stack.Screen name="New scenario" component={Actions} />
       </Stack.Navigator>
     </NavigationContainer>
   );
