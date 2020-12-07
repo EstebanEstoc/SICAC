@@ -7,9 +7,8 @@ import Authentication from "./Authentication/Authentication";
 import HomeScreen from "./HomeScreen";
 import CreateScenarioLayer from "./CreateScenario/CreateScenarioLayer";
 
-import SunriseSunsetAPI from "./SunriseSunsetAPI";
+import SunriseSunsetAPI from "../helpers/SunriseSunsetAPI";
 import ScenarioList from "./ScenarioList/ScenarioList";
-
 
 const Stack = createStackNavigator();
 
