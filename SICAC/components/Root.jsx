@@ -13,6 +13,7 @@ import { GoogleConfigure } from "../services/authentication/providers/GoogleSign
 
 import SunriseSunsetAPI from "../helpers/SunriseSunsetAPI";
 import ScenarioList from "./ScenarioList/ScenarioList";
+import ConditionType from "./ConditionType";
 
 const Stack = createStackNavigator();
 
@@ -43,6 +44,10 @@ const HomeScreen = ({ navigation }) => {
         title="Scenario List"
         onPress={() => navigation.navigate("ScenarioList")}
       />
+      <Button
+        title="Condition Type"
+        onPress={() => navigation.navigate("ConditionType")}
+      />
     </View>
   );
 };
@@ -60,6 +65,7 @@ const Root = () => {
         )}
         <Stack.Screen name="SunriseSunsetAPI" component={SunriseSunsetAPI} />
         <Stack.Screen name="ScenarioList" component={ScenarioList} />
+        <Stack.Screen name="ConditionType" component={ConditionType} />
       </Stack.Navigator>
     </NavigationContainer>
   );
