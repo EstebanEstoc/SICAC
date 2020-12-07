@@ -13,6 +13,7 @@ import { GoogleConfigure } from "../services/authentication/providers/GoogleSign
 
 import SunriseSunsetAPI from "../helpers/SunriseSunsetAPI";
 import ScenarioList from "./ScenarioList/ScenarioList";
+import ConditionType from "./ConditionType";
 import Actions from "./Actions/Actions";
 
 const Stack = createStackNavigator();
@@ -36,12 +37,16 @@ const HomeScreen = ({ navigation }) => {
       <Text>Welcome {userInfo && userInfo.user && userInfo.user.name}</Text>
       <StatusBar style="auto" />
       <Button onPress={_signOut} title="Sign Out"></Button>
+
       <Button title="API sunrise/sunset infos"
-        onPress={() => navigation.navigate('SunriseSunsetAPI')}/>
+        onPress={() => navigation.navigate('SunriseSunsetAPI')} />
       <Button title="Scenario List"
-        onPress={() => navigation.navigate('ScenarioList')}/>
+        onPress={() => navigation.navigate('ScenarioList')} />
+      <Button title="Condition Type"
+        onPress={() => navigation.navigate("ConditionType")}
+      />
       <Button title="New scenario"
-        onPress={() => navigation.navigate('New scenario')}/>
+        onPress={() => navigation.navigate('New scenario')} />
     </View>
   );
 };
@@ -55,13 +60,14 @@ const Root = () => {
         {isAuth ? (
           <Stack.Screen name="Home" component={HomeScreen} />
         ) : (
-          <Stack.Screen name="Authentication" component={Authentication} />
-        )}
+            <Stack.Screen name="Authentication" component={Authentication} />
+          )}
         <Stack.Screen name="SunriseSunsetAPI" component={SunriseSunsetAPI} />
         <Stack.Screen name="ScenarioList" component={ScenarioList} />
+        <Stack.Screen name="ConditionType" component={ConditionType} />
         <Stack.Screen name="New scenario" component={Actions} />
       </Stack.Navigator>
-    </NavigationContainer>
+    </NavigationContainer >
   );
 };
 
