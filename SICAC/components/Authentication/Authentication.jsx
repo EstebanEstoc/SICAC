@@ -3,9 +3,9 @@ import { GoogleSigninButton } from "react-native-google-signin";
 import { useDispatch } from "react-redux";
 import { View, StyleSheet, Alert } from "react-native";
 
-import { GoogleConfigure } from "../services/authentication/providers/GoogleSignIn";
-import { toggleAuthTrue } from "../Reducer/Authentication/authenticationSlice";
-import { signInGoogleAPI } from "../Reducer/Authentication/userSlice";
+import { GoogleConfigure } from "../../services/authentication/providers/GoogleSignIn";
+import { toggleAuthTrue } from "../../Reducer/Authentication/authenticationSlice";
+import { signInGoogleAPI } from "../../Reducer/Authentication/userSlice";
 
 const Authentication = (props) => {
   const dispatch = useDispatch();

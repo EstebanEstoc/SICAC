@@ -8,6 +8,7 @@ SICAC/*.key
 SICAC/*.mobileprovision
 SICAC/*.orig.*
 SICAC/web-build/
+SICAC/coverage
 
 # macOS
 .DS_Store
