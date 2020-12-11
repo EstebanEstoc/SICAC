@@ -9,6 +9,8 @@ import CreateScenario from "./CreateScenario/CreateScenarioTabs";
 
 import SunriseSunsetAPI from "../helpers/SunriseSunsetAPI";
 import ScenarioList from "./ScenarioList/ScenarioList";
+import ConditionType from "./ConditionType";
+import Actions from "./Actions/Actions";
 
 const Stack = createStackNavigator();
 
@@ -21,12 +23,14 @@ const Root = () => {
         {isAuth ? (
           <Stack.Screen name="Home" component={CreateScenario} />
         ) : (
-          <Stack.Screen name="Authentication" component={Authentication} />
-        )}
+            <Stack.Screen name="Authentication" component={Authentication} />
+          )}
         <Stack.Screen name="SunriseSunsetAPI" component={SunriseSunsetAPI} />
         <Stack.Screen name="ScenarioList" component={ScenarioList} />
+        <Stack.Screen name="ConditionType" component={ConditionType} />
+        <Stack.Screen name="New scenario" component={Actions} />
       </Stack.Navigator>
-    </NavigationContainer>
+    </NavigationContainer >
   );
 };
 
