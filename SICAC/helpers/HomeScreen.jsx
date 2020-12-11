@@ -7,6 +7,7 @@ import { signOut } from "../services/authentication/providers/GoogleSignIn";
 import { toggleAuthFalse } from "../Reducer/Authentication/authenticationSlice";
 import { clearUserInfo } from "../Reducer/Authentication/userSlice";
 import { GoogleConfigure } from "../services/authentication/providers/GoogleSignIn";
+import styles from "./styles";
 
 const HomeScreen = () => {
   const userInfo = useSelector((state) => state.user);
@@ -30,14 +31,5 @@ const HomeScreen = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
 
 export default HomeScreen;
