@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Text, View, TouchableOpacity, ScrollView } from 'react-native';
-import data from './ScenarioListData';
+import data from 'helpers/ScenarioListData';
 import styles from './ScenarioListStyles'
 import { Transition, Transitioning } from 'react-native-reanimated';
 import Icon from 'react-native-vector-icons/FontAwesome';
