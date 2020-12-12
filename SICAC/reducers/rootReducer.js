@@ -1,6 +1,6 @@
 import { combineReducers } from '@reduxjs/toolkit'
-import authentication from './Authentication/authenticationSlice'
-import user from './Authentication/userSlice'
+import authentication from './authentication/authenticationSlice'
+import user from './authentication/userSlice'
 
 export default combineReducers({
   authentication,

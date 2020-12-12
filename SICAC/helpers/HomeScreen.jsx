@@ -4,8 +4,8 @@ import { View, Text, StyleSheet, Button } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 
 import { signOut } from "../services/authentication/providers/GoogleSignIn";
-import { toggleAuthFalse } from "../Reducer/Authentication/authenticationSlice";
-import { clearUserInfo } from "../Reducer/Authentication/userSlice";
+import { toggleAuthFalse } from "../reducers/authentication/authenticationSlice";
+import { clearUserInfo } from "../reducers/authentication/userSlice";
 import { GoogleConfigure } from "../services/authentication/providers/GoogleSignIn";
 import styles from "./styles";
 

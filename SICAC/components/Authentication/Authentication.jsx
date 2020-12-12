@@ -4,8 +4,8 @@ import { useDispatch } from "react-redux";
 import { View, StyleSheet, Alert } from "react-native";
 
 import { GoogleConfigure } from "../../services/authentication/providers/GoogleSignIn";
-import { toggleAuthTrue } from "../../Reducer/Authentication/authenticationSlice";
-import { signInGoogleAPI } from "../../Reducer/Authentication/userSlice";
+import { toggleAuthTrue } from "../../reducers/authentication/authenticationSlice";
+import { signInGoogleAPI } from "../../reducers/authentication/userSlice";
 
 const Authentication = (props) => {
   const dispatch = useDispatch();
