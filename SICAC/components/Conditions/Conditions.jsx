@@ -78,7 +78,7 @@ export default function Conditions({ navigation }) {
               color={mainColor}
             />
             <Text style={styles.addButtonText}>
-              Add an action
+              Add a condition
             </Text>
           </TouchableOpacity>
         </View>
