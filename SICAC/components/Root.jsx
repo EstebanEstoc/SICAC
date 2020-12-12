@@ -11,6 +11,7 @@ import SunriseSunsetAPI from "../helpers/SunriseSunsetAPI";
 import ScenarioList from "./ScenarioList/ScenarioList";
 import ConditionType from "./ConditionType";
 import Actions from "./Actions/Actions";
+import Conditions from "./Conditions/Conditions";
 
 const Stack = createStackNavigator();
 
@@ -29,6 +30,7 @@ const Root = () => {
         <Stack.Screen name="ScenarioList" component={ScenarioList} />
         <Stack.Screen name="ConditionType" component={ConditionType} />
         <Stack.Screen name="New scenario" component={Actions} />
+        <Stack.Screen name="Conditions" component={Conditions} />
       </Stack.Navigator>
     </NavigationContainer >
   );

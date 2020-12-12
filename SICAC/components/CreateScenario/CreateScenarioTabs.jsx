@@ -3,8 +3,8 @@ import { StyleSheet } from "react-native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
 import Resume from "../../helpers/Resume";
-import Actions from "../../helpers/Actions";
-import Conditions from "../../helpers/Conditions";
+import Actions from "../Actions/Actions";
+import Conditions from "../Conditions/Conditions";
 
 const Tab = createMaterialTopTabNavigator();
 
