@@ -22,7 +22,7 @@ const convertAPITimeToDatetime = (timeAPI) => {
   let partOfDay = timeAPI.split(' ')[1];
 
   if (partOfDay === "PM") {
-    hours = parseInt(hours,10);
+    hours = parseInt(hours, 10);
     hours = hours + 12;
   }
 
@@ -36,18 +36,18 @@ const convertAPITimeToDatetime = (timeAPI) => {
 
 export const getTodaySunrise = () => {
   return getInformationFromSunriseSunsetAPI()
-  .then((json) => {
-    let sunriseInDatetime = convertAPITimeToDatetime(json.sunrise);
-    console.log("Sunrise : " + sunriseInDatetime); // Only to debug during demo
-    return sunriseInDatetime;
-  });
+    .then((json) => {
+      let sunriseInDatetime = convertAPITimeToDatetime(json.sunrise);
+      console.log("Sunrise : " + sunriseInDatetime); // Only to debug during demo
+      return sunriseInDatetime;
+    });
 };
 
 export const getTodaySunset = () => {
   return getInformationFromSunriseSunsetAPI()
-  .then((json) => {
-    let sunsetInDatetime = convertAPITimeToDatetime(json.sunset);
-    console.log("Sunset : " + sunsetInDatetime); // Only to debug during demo
-    return sunsetInDatetime;
-  });
+    .then((json) => {
+      let sunsetInDatetime = convertAPITimeToDatetime(json.sunset);
+      console.log("Sunset : " + sunsetInDatetime); // Only to debug during demo
+      return sunsetInDatetime;
+    });
 };
