@@ -1,3 +1,4 @@
+import { current } from "@reduxjs/toolkit";
 import { getTodaySunrise, getTodaySunset } from "./sunriseSunsetAPI/providers/SunriseSunset";
 
 export const isItDaytime = async () => {
@@ -18,7 +19,7 @@ export const isItNighttime = async () => {
     let sunsetTime = await getTodaySunset();
     let currentTime = new Date();
 
-    if (currentTime >= sunsetTime) {
+    if (currentTime >= sunsetTime || currentTime < sunriseTime) {
         console.log("Is it night time ? : yes"); // Only to debug during demo
         return true;
     }
