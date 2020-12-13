@@ -14,7 +14,8 @@ import { GoogleConfigure } from "../services/authentication/providers/GoogleSign
 import SunriseSunsetAPI from "../helpers/SunriseSunsetAPI";
 import ScenarioList from "./ScenarioList/ScenarioList";
 import ConditionType from "./ConditionType";
-import Actions from "./Actions/Actions";
+import Actions from "./NewScenario/Actions/Actions";
+import Summary from "./NewScenario/Summary/Summary";
 
 const Stack = createStackNavigator();
 
@@ -43,10 +44,11 @@ const HomeScreen = ({ navigation }) => {
       <Button title="Scenario List"
         onPress={() => navigation.navigate('ScenarioList')} />
       <Button title="Condition Type"
-        onPress={() => navigation.navigate("ConditionType")}
-      />
-      <Button title="New scenario"
-        onPress={() => navigation.navigate('New scenario')} />
+        onPress={() => navigation.navigate("ConditionType")} />
+      <Button title="New scenario - Actions"
+        onPress={() => navigation.navigate('New scenario - Actions')} />
+      <Button title="New scenario - Summary"
+        onPress={() => navigation.navigate('New scenario - Summary')} />
     </View>
   );
 };
@@ -65,7 +67,8 @@ const Root = () => {
         <Stack.Screen name="SunriseSunsetAPI" component={SunriseSunsetAPI} />
         <Stack.Screen name="ScenarioList" component={ScenarioList} />
         <Stack.Screen name="ConditionType" component={ConditionType} />
-        <Stack.Screen name="New scenario" component={Actions} />
+        <Stack.Screen name="New scenario - Actions" component={Actions} />
+        <Stack.Screen name="New scenario - Summary" component={Summary} />
       </Stack.Navigator>
     </NavigationContainer >
   );
