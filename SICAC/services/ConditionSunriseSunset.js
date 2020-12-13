@@ -1,4 +1,3 @@
-import { current } from "@reduxjs/toolkit";
 import { getTodaySunrise, getTodaySunset } from "./sunriseSunsetAPI/providers/SunriseSunset";
 
 export const isItDaytime = async () => {
