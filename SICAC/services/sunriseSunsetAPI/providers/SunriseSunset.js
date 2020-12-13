@@ -13,15 +13,41 @@ const getInformationFromSunriseSunsetAPI = async () => {
   }
 };
 
-export const getTodayUTCSunrise = async () => {
-  let json = await getInformationFromSunriseSunsetAPI();
-  console.log("Sunrise : " + json.sunrise); // Only to debug during demo
-  return json.sunrise;
+// Convert the time returned by the API (in format hh:mm:ss ?M) to a datetime
+const convertAPITimeToDatetime = (timeAPI) => {
+  let datetime = new Date();
+  let hours = timeAPI.split(' ')[0].split(':')[0];
+  let minutes = timeAPI.split(' ')[0].split(':')[1];
+  let seconds = timeAPI.split(' ')[0].split(':')[2];
+  let partOfDay = timeAPI.split(' ')[1];
+
+  if (partOfDay === "PM") {
+    hours = parseInt(hours,10);
+    hours = hours + 12;
+  }
+
+  datetime.setUTCHours(hours);
+  datetime.setUTCMinutes(minutes);
+  datetime.setUTCSeconds(seconds);
+
+  return datetime;
+}
+
+
+export const getTodaySunrise = () => {
+  return getInformationFromSunriseSunsetAPI()
+  .then((json) => {
+    let sunriseInDatetime = convertAPITimeToDatetime(json.sunrise);
+    console.log("Sunrise : " + sunriseInDatetime); // Only to debug during demo
+    return sunriseInDatetime;
+  });
 };
 
-export const getTodayUTCSunset = async () => {
-  let json = await getInformationFromSunriseSunsetAPI();
-  console.log("Sunset : " + json.sunset); // Only to debug during demo
-  return json.sunset;
+export const getTodaySunset = () => {
+  return getInformationFromSunriseSunsetAPI()
+  .then((json) => {
+    let sunsetInDatetime = convertAPITimeToDatetime(json.sunset);
+    console.log("Sunset : " + sunsetInDatetime); // Only to debug during demo
+    return sunsetInDatetime;
+  });
 };
-
