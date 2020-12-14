@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`authentication Reducer toggleAuthFalse must set the auth field to false 1`] = `false`;
+
+exports[`authentication Reducer toggleAuthTrue must set the auth field to true 1`] = `true`;
