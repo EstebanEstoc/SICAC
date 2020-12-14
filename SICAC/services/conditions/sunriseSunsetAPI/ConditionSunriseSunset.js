@@ -1,4 +1,4 @@
-import { getTodaySunrise, getTodaySunset } from "./sunriseSunsetAPI/providers/SunriseSunset";
+import { getTodaySunrise, getTodaySunset } from "./providers/SunriseSunset";
 
 export const isItDaytime = async () => {
     let sunriseTime = await getTodaySunrise();

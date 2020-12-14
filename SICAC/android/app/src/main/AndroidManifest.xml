@@ -29,6 +29,11 @@
     android:allowBackup="true"
     android:theme="@style/AppTheme"
   >
+    <meta-data android:name="expo.modules.notifications.large_notification_icon" android:resource="@drawable/exemple" />
+    <meta-data android:name="expo.modules.notifications.default_notification_icon" android:resource="@drawable/exemple" />
+    
+
+    
     <meta-data android:name="expo.modules.updates.EXPO_UPDATE_URL" android:value="https://exp.host/@estebanestoc/SICAC"/>
     <meta-data android:name="expo.modules.updates.EXPO_SDK_VERSION" android:value="39.0.0"/>
     <meta-data android:name="expo.modules.updates.ENABLED" android:value="true"/>

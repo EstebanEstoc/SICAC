@@ -5,6 +5,11 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "notification": {
+      "androidMode" : "default",
+      "icon": "./assets/favicon.png",
+      "color": "#a649f2"
+    },
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -25,6 +30,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
+      "useNextNotificationsApi": true,
+      "icon": "./assets/favicon.png",
       "package": "com.enseirb.sicac"
     },
     "web": {
