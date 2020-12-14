@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`createScenario Reducer addAction must push an action in the then field 1`] = `
+Object {
+  "if": Array [],
+  "name": "",
+  "then": Array [
+    Object {
+      "id": 33,
+      "options": Object {
+        "lat": -123,
+        "lng": 13,
+      },
+    },
+  ],
+}
+`;
+
+exports[`createScenario Reducer addCondition must push an condition in the if field 1`] = `
+Object {
+  "if": Array [
+    Object {
+      "id": 35,
+      "options": Object {
+        "lat": -123,
+        "lng": 13,
+      },
+    },
+  ],
+  "name": "",
+  "then": Array [],
+}
+`;
+
+exports[`createScenario Reducer addName must add name to the name field 1`] = `
+Object {
+  "if": Array [],
+  "name": "toto's scenario",
+  "then": Array [],
+}
+`;
+
+exports[`createScenario Reducer clear must reset to initialState 1`] = `
+Object {
+  "if": Array [],
+  "name": "",
+  "then": Array [],
+}
+`;
