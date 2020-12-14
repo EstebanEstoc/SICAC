@@ -2,8 +2,8 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
-import Resume from "../../helpers/Resume";
-import Actions from "../Actions/Actions";
+import Resume from "../NewScenario/Summary/Summary";
+import Actions from "../NewScenario/Actions/Actions";
 import Conditions from "../Conditions/Conditions";
 
 const Tab = createMaterialTopTabNavigator();
