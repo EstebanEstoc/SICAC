@@ -1,4 +1,3 @@
-
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -14,9 +13,7 @@ import ConditionType from "./ConditionType";
 import Actions from "./NewScenario/Actions/Actions";
 import Conditions from "./NewScenario/Conditions/Conditions";
 import Summary from "./NewScenario/Summary/Summary";
-import Notifications from "../helpers/Notifications"
-
-
+import Notifications from "../helpers/Notifications";
 
 const Stack = createStackNavigator();
 
@@ -25,12 +22,12 @@ const Root = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator headerMode="none">
+      <Stack.Navigator screenOptions={styles.header}>
         {isAuth ? (
           <Stack.Screen name="Home" component={HomeScreen} />
         ) : (
-            <Stack.Screen name="Authentication" component={Authentication} />
-          )}
+          <Stack.Screen name="Authentication" component={Authentication} />
+        )}
         <Stack.Screen name="SunriseSunsetAPI" component={SunriseSunsetAPI} />
         <Stack.Screen name="ScenarioList" component={ScenarioList} />
         <Stack.Screen name="ConditionType" component={ConditionType} />
@@ -39,10 +36,21 @@ const Root = () => {
         <Stack.Screen name="New scenario - Summary" component={Summary} />
         <Stack.Screen name="Notifications" component={Notifications} />
         <Stack.Screen name="CreateScenario" component={CreateScenario} />
-
       </Stack.Navigator>
-    </NavigationContainer >
+    </NavigationContainer>
   );
+};
+
+const styles = {
+  header: {
+    headerStyle: {
+      backgroundColor: "#093E60",
+    },
+    headerTintColor: "#fff",
+    headerTitleStyle: {
+      fontWeight: "bold",
+    },
+  },
 };
 
 export default Root;
