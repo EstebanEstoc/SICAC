@@ -1,38 +1,24 @@
-import React, { Component } from 'react';
-import { View, Text } from 'react-native';
-import Geolocation from '@react-native-community/geolocation';
+import GetLocation from 'react-native-get-location'
 
-export default class GetLocation extends Component {
-  constructor(props) {
-    super(props);
+const getLocationAPI = async () => {
 
-    this.state = {
-      latitude: null,
-      longitude: null,
-      error: null,
-    };
+  try {
+    let res = await GetLocation.getCurrentPosition({
+    enableHighAccuracy: true,
+    timeout: 15000,
+    });
+  let json = await res;
+  return json;
+  }  catch (error) {
+    console.error(error);
   }
+}
 
-  componentDidMount() {
-    Geolocation.getCurrentPosition(
-      (position) => {
-        this.setState({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-          error: null,
-        });
-      },
-      (error) => this.setState({ error: error.message }),
-      { enableHighAccuracy: true, timeout: 10000, maximumAge: 1000 },
-    );
-  }
+export const getLocation = async () => {
 
-  render() {
-    return (
-      <View style={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Latitude: {this.state.latitude}</Text>
-        <Text>Longitude: {this.state.longitude}</Text>
-      </View>
-    );
-  }
+  let res = await getLocationAPI();
+  let latitude = res.latitude;
+  let longitude = res.longitude;
+  console.log("latitude = " + latitude + " longitude : " + longitude);
+  return [latitude, longitude];
 }
