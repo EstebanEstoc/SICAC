@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -16,14 +16,43 @@ import ScenarioList from "./ScenarioList/ScenarioList";
 import ConditionType from "./ConditionType";
 import Actions from "./Actions/Actions";
 
+import * as Notifications from 'expo-notifications'
+import * as Permissions from "expo-permissions"
+import Constants from 'expo-constants';
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+});
+
+
+
+
+
 const Stack = createStackNavigator();
 
 const HomeScreen = ({ navigation }) => {
+
+
   const userInfo = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
+
   useEffect(() => {
     GoogleConfigure();
+
+    // const askPermissions = async () => {
+    //   let result = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+
+    //   if (Constants.isDevice && result.status === 'granted') {
+    //     console.log('Notification permissions granted.')
+    //   }
+    // };
+    // askPermissions();
+
   }, []);
 
   const _signOut = async () => {
@@ -31,6 +60,21 @@ const HomeScreen = ({ navigation }) => {
     dispatch(toggleAuthFalse());
     dispatch(clearUserInfo());
   };
+
+
+  schedulePushNotification = async () => {
+    await Notifications.scheduleNotificationAsync({
+      content: {
+        title: "You've got mail! 📬",
+        body: 'Here is the notification body',
+        data: { data: 'goes here' },
+      },
+      trigger: null,
+    });
+  };
+
+
+
 
   return (
     <View style={styles.container}>
@@ -47,6 +91,13 @@ const HomeScreen = ({ navigation }) => {
       />
       <Button title="New scenario"
         onPress={() => navigation.navigate('New scenario')} />
+
+      <Button
+        title="Press to schedule a notification"
+        onPress={async () => {
+          await schedulePushNotification();
+        }}
+      />
     </View>
   );
 };
