@@ -3,25 +3,30 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 
 import { Button } from 'react-native-elements';
-
+import { conditions } from '../data/Conditions'
 
 
 
 const ConditionType = () => {
     return (
         <View style={styles.containerMain}>
-            <View style={styles.flexContainer}>
-                <Button title="Home" titleStyle={{ color: 'black' }} type="outline" icon={{ name: "home", size: 40 }} buttonStyle={styles.buttonStyle} />
-                <Button title="Location" titleStyle={{ color: 'black' }} type="outline" icon={{ name: "place", size: 40 }} buttonStyle={styles.buttonStyle} />
-            </View>
-            <View style={styles.flexContainer}>
-                <Button title="Calendar" titleStyle={{ color: 'black' }} type="outline" icon={{ name: "today", size: 40 }} buttonStyle={styles.buttonStyle} />
-                <Button title="Duration" titleStyle={{ color: 'black' }} type="outline" icon={{ name: "schedule", size: 40 }} buttonStyle={styles.buttonStyle} />
-            </View>
-            <View style={styles.flexContainer}>
-                <Button title="Bluetooth" titleStyle={{ color: 'black' }} type="outline" icon={{ name: "bluetooth", size: 40 }} buttonStyle={styles.buttonStyle} />
-                <Button title="Time" titleStyle={{ color: 'black' }} type="outline" icon={{ name: "flare", size: 40 }} buttonStyle={styles.buttonStyle} />
-            </View>
+                {
+                    
+                        conditions.map((item) => {
+                            return (
+                                <Button key={item.id} title={item.Title} titleStyle={{ color: 'black' }} type="outline" icon={{ name: item.IconName, size: 40 }} buttonStyle={styles.buttonStyle} />
+                            )
+                        }).reduce(function(r, element, index) {
+                            index % 2 === 0 && r.push([]);
+                            r[r.length - 1].push(element);
+                            return r;
+                        }, []).map((ViewContent) => {
+                            return(
+                                <View style={styles.flexContainer}>{ ViewContent }</View>
+                            )
+                        })
+                    
+                }
         </View >
     );
 };
