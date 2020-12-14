@@ -1,3 +1,4 @@
+
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -13,6 +14,10 @@ import ConditionType from "./ConditionType";
 import Actions from "./NewScenario/Actions/Actions";
 import Conditions from "./Conditions/Conditions";
 import Summary from "./NewScenario/Summary/Summary";
+import Notifications from "../helpers/Notifications"
+
+
+
 
 const Stack = createStackNavigator();
 
@@ -33,7 +38,11 @@ const Root = () => {
         <Stack.Screen name="New scenario - Actions" component={Actions} />
         <Stack.Screen name="New scenario - Summary" component={Summary} />
         <Stack.Screen name="Conditions" component={Conditions} />
+
+        <Stack.Screen name="Notifications" component={Notifications} />
+
         <Stack.Screen name="CreateScenario" component={CreateScenario} />
+
       </Stack.Navigator>
     </NavigationContainer >
   );
