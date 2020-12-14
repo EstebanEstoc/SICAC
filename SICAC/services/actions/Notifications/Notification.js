@@ -5,8 +5,8 @@ import Constants from 'expo-constants';
 
 
 
+export const schedulePushNotification = async () => {
 
-export const configureNotifications = () => {
     Notifications.setNotificationHandler({
         handleNotification: async () => ({
             shouldShowAlert: true,
@@ -14,9 +14,7 @@ export const configureNotifications = () => {
             shouldSetBadge: false,
         }),
     });
-}
 
-export const schedulePushNotification = async () => {
     await Notifications.scheduleNotificationAsync({
         content: {
             title: "You've got mail! 📬",
