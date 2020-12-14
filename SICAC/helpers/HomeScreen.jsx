@@ -9,7 +9,7 @@ import { clearUserInfo } from "../reducers/authentication/userSlice";
 import { GoogleConfigure } from "../services/authentication/providers/GoogleSignIn";
 import styles from "./styles";
 
-const HomeScreen = () => {
+const HomeScreen = ( { navigation } ) => {
   const userInfo = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
@@ -28,6 +28,12 @@ const HomeScreen = () => {
       <Text>Welcome {userInfo && userInfo.user && userInfo.user.name}</Text>
       <StatusBar style="auto" />
       <Button onPress={_signOut} title="Sign Out"></Button>
+      <Button title="API sunrise/sunset infos"
+        onPress={() => navigation.navigate('SunriseSunsetAPI')}/>
+      <Button title="Scenario List"
+        onPress={() => navigation.navigate('ScenarioList')}/>
+      <Button title="New scenario"
+        onPress={() => navigation.navigate('CreateScenario')}/>
     </View>
   );
 };

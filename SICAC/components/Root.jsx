@@ -28,7 +28,7 @@ const Root = () => {
     <NavigationContainer>
       <Stack.Navigator headerMode="none">
         {isAuth ? (
-          <Stack.Screen name="Home" component={CreateScenario} />
+          <Stack.Screen name="Home" component={HomeScreen} />
         ) : (
             <Stack.Screen name="Authentication" component={Authentication} />
           )}
@@ -38,7 +38,11 @@ const Root = () => {
         <Stack.Screen name="New scenario - Actions" component={Actions} />
         <Stack.Screen name="New scenario - Summary" component={Summary} />
         <Stack.Screen name="Conditions" component={Conditions} />
+
         <Stack.Screen name="Notifications" component={Notifications} />
+
+        <Stack.Screen name="CreateScenario" component={CreateScenario} />
+
       </Stack.Navigator>
     </NavigationContainer >
   );
