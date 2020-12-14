@@ -12,10 +12,9 @@ import SunriseSunsetAPI from "../helpers/SunriseSunsetAPI";
 import ScenarioList from "./ScenarioList/ScenarioList";
 import ConditionType from "./ConditionType";
 import Actions from "./NewScenario/Actions/Actions";
-import Conditions from "./Conditions/Conditions";
+import Conditions from "./NewScenario/Conditions/Conditions";
 import Summary from "./NewScenario/Summary/Summary";
 import Notifications from "../helpers/Notifications"
-
 
 
 
@@ -35,12 +34,10 @@ const Root = () => {
         <Stack.Screen name="SunriseSunsetAPI" component={SunriseSunsetAPI} />
         <Stack.Screen name="ScenarioList" component={ScenarioList} />
         <Stack.Screen name="ConditionType" component={ConditionType} />
+        <Stack.Screen name="New scenario - Conditions" component={Conditions} />
         <Stack.Screen name="New scenario - Actions" component={Actions} />
         <Stack.Screen name="New scenario - Summary" component={Summary} />
-        <Stack.Screen name="Conditions" component={Conditions} />
-
         <Stack.Screen name="Notifications" component={Notifications} />
-
         <Stack.Screen name="CreateScenario" component={CreateScenario} />
 
       </Stack.Navigator>

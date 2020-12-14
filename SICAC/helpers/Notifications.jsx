@@ -1,7 +1,8 @@
 
 import React from "react";
 import styles from "./styles";
-import {configureNotifications, schedulePushNotification, askPermissions} from "services/actions/Notifications/Notification"
+import { View, Button } from "react-native";
+import { schedulePushNotification } from "../services/actions/Notifications/Notification";
 
 
 const Notifications = () => {

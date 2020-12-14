@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
-import { View, Text, StyleSheet, Button } from "react-native";
+import { View, Text, Button } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 
 import { signOut } from "../services/authentication/providers/GoogleSignIn";
@@ -9,7 +9,7 @@ import { clearUserInfo } from "../reducers/authentication/userSlice";
 import { GoogleConfigure } from "../services/authentication/providers/GoogleSignIn";
 import styles from "./styles";
 
-const HomeScreen = ( { navigation } ) => {
+const HomeScreen = ({ navigation }) => {
   const userInfo = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
@@ -29,11 +29,13 @@ const HomeScreen = ( { navigation } ) => {
       <StatusBar style="auto" />
       <Button onPress={_signOut} title="Sign Out"></Button>
       <Button title="API sunrise/sunset infos"
-        onPress={() => navigation.navigate('SunriseSunsetAPI')}/>
+        onPress={() => navigation.navigate('SunriseSunsetAPI')} />
       <Button title="Scenario List"
-        onPress={() => navigation.navigate('ScenarioList')}/>
+        onPress={() => navigation.navigate('ScenarioList')} />
       <Button title="New scenario"
-        onPress={() => navigation.navigate('CreateScenario')}/>
+        onPress={() => navigation.navigate('CreateScenario')} />
+      <Button title="Notifications"
+        onPress={() => navigation.navigate('Notifications')} />
     </View>
   );
 };
