@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, StyleSheet, Button } from "react-native";
 
-import { getTodaySunrise, getTodaySunset } from "../services/sunriseSunsetAPI/providers/SunriseSunset";
-import { isItDaytime, isItNighttime } from "../services/ConditionSunriseSunset";
+import { getTodaySunrise, getTodaySunset } from "../services/conditions/sunriseSunsetAPI/providers/SunriseSunset";
+import { isItDaytime, isItNighttime } from "../services/conditions/sunriseSunsetAPI/ConditionSunriseSunset";
 
 const SunriseSunsetAPI = () => {
     return (
