@@ -70,6 +70,8 @@ export default function ScenarioList() {
   const scenarios = useSelector((state) => state.scenarios);
   const ref = React.useRef();
 
+  const headers = ['Enabled', 'Disabled'];
+
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollView}>
@@ -79,11 +81,11 @@ export default function ScenarioList() {
           style={styles.container}
         >
           <StatusBar hidden />
-          {scenarios &&
-            scenarios.map(({ category, subCategories }, index) => {
+          {scenarios && scenarios.scenarios &&
+            headers.map((title, index) => {
               return (
                 <TouchableOpacity
-                  key={category}
+                  key={title}
                   style={styles.cardContainer}
                   activeOpacity={0.9}
                 >
@@ -95,7 +97,7 @@ export default function ScenarioList() {
                         setCurrentIndex(index === currentIndex ? null : index);
                       }}
                     >
-                      {category}
+                      {title}
                     </Text>
                     <Text
                       style={styles.heading}
@@ -105,21 +107,23 @@ export default function ScenarioList() {
                       }}
                     >
                       {index === currentIndex ? (
-                        <Icon name="chevron-down" size={35} />
+                        <Icon name="chevron-down" size={styles.heading.fontSize} />
                       ) : (
-                        <Icon name="chevron-up" size={35} />
+                        <Icon name="chevron-up" size={styles.heading.fontSize} />
                       )}
                     </Text>
                     {index === currentIndex && (
                       <View style={styles.subCategoriesList}>
-                        {subCategories.map((subCategory) => (
-                          <ScenarioButton
-                            key={subCategory}
-                            name={subCategory}
-                            buttonStyles={getSubCategoriesListStyles(category)}
-                            textStyles={styles.subCategoriesListText}
-                          />
-                        ))}
+                        {scenarios.scenarios.map(({ id, name, active, conditions, actions }) =>
+                          {active && (
+                            <ScenarioButton
+                              key={id}
+                              name={name}
+                              buttonStyles={getSubCategoriesListStyles(headers[currentIndex])}
+                              textStyles={styles.subCategoriesListText}
+                            />
+                          )}
+                        )}
                       </View>
                     )}
                   </View>
@@ -131,7 +135,7 @@ export default function ScenarioList() {
 
       <View style={styles.floatingButton}>
         <ScenarioButton
-          icon={{ left: true, name: "plus", size: 25 }}
+          icon={{ left: true, name: "plus", size: styles.newScenarioButtonText.fontSize }}
           name="New scenario"
           buttonStyles={styles.newScenarioButton}
           textStyles={styles.newScenarioButtonText}
