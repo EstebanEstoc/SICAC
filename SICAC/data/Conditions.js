@@ -21,17 +21,28 @@ export const conditions = [
     },
     {
         id: 5,
-        Title: "Bluetooth",
-        IconName: "bluetooth"
-    },
-    {
-        id: 6,
         Title: "Time",
         IconName: "flare"
     },
     {
-        id: 7,
+        id: 6,
         Title: "Alert",
         IconName: "notifications"
+    },
+    {
+        id: 7,
+        Title: "Earphones (Bluetooth)",
+        IconName: "headset"
+    },
+    {
+        id: 8,
+        Title: "Speaker (Bluetooth)",
+        IconName: "speaker"
+    },
+    {
+        id: 9,
+        Title: "TV (Bluetooth)",
+        IconName: "tv"
     }
+    
 ]
