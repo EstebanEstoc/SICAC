@@ -28,8 +28,8 @@ export default function Actions() {
       >
         <Title text="Select your action(s)" />
         <View style={styles.itemList}>
-          {scenario.then &&
-            scenario.then.map((scenario, index) => {
+          {scenario.actions &&
+            scenario.actions.map((scenario, index) => {
               return (
                 <Card key={index} containerStyle={styles.card}>
                   <Text style={styles.cardText}>{scenario.name}</Text>

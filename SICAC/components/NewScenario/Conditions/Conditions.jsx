@@ -28,8 +28,8 @@ export default function Conditions({ navigation }) {
       >
         <Title text="Select your condition(s)" />
         <View style={styles.itemList}>
-          {scenario.if &&
-            scenario.if.map((scenario, index) => {
+          {scenario.conditions &&
+            scenario.conditions.map((scenario, index) => {
               return (
                 <Card key={index} containerStyle={styles.card}>
                   <Text style={styles.cardText}>{scenario.name}</Text>

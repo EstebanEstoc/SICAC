@@ -42,8 +42,8 @@ export default function Summary() {
 
         <View style={styles.scenario}>
           <View style={styles.itemList}>
-            {scenario.if &&
-              scenario.if.map((scenario, index) => {
+            {scenario.conditions &&
+              scenario.conditions.map((scenario, index) => {
                 return (
                   <Card
                     key={index}
@@ -61,8 +61,8 @@ export default function Summary() {
             type="font-awesome-5"
           />
           <View style={styles.itemList}>
-            {scenario.then &&
-              scenario.then.map((scenario, index) => {
+            {scenario.actions &&
+              scenario.actions.map((scenario, index) => {
                 return (
                   <Card
                     key={index}
