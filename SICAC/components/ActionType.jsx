@@ -1,18 +1,18 @@
+
 import React from "react";
 import { StyleSheet, View } from "react-native";
 
-
 import { Button } from 'react-native-elements';
-import { conditions } from '../data/Conditions'
+import { actions } from '../data/Actions'
 
 
 
-const ConditionType = () => {
+const ActionType = () => {
     return (
         <View style={styles.containerMain}>
             {
 
-                conditions.map((item) => {
+                actions.map((item) => {
                     return (
                         <Button key={item.id} title={item.Title} titleStyle={{ color: 'black' }} type="outline" icon={{ name: item.IconName, size: 40 }} buttonStyle={styles.buttonStyle} />
                     )
@@ -30,6 +30,7 @@ const ConditionType = () => {
         </View >
     );
 };
+
 
 const styles = StyleSheet.create({
     container: {
@@ -62,6 +63,8 @@ const styles = StyleSheet.create({
         borderRadius: 20,
     }
 
+
+
 });
 
-export default ConditionType;
+export default ActionType;
