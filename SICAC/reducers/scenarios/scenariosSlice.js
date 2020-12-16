@@ -25,8 +25,8 @@ const scenariosSlice = createSlice({
      * @param {String} action.type
      * @param {Object} action.payload
      * @param {String} action.payload.name
-     * @param {Object[]} action.payload.if
-     * @param {Object[]} action.payload.then
+     * @param {Object[]} action.payload.conditions
+     * @param {Object[]} action.payload.actions
      */
     addScenario: (state, action) => {
       state.lastId++
@@ -78,8 +78,8 @@ const scenariosSlice = createSlice({
      * @param {Number} action.payload.id Id of the scenario
      * @param {Object} action.payload.values
      * @param {String} action.payload.values.name
-     * @param {Object[]} action.payload.values.if
-     * @param {Object[]} action.payload.values.then
+     * @param {Object[]} action.payload.values.conditions
+     * @param {Object[]} action.payload.values.actions
      */
     modifyScenario: (state, action) =>
       editScenario(action.payload.values, action.payload.id, state)

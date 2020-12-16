@@ -1,6 +1,6 @@
-
 import React from "react";
 import { StyleSheet, View } from "react-native";
+
 
 import { Button } from 'react-native-elements';
 import { conditions } from '../data/Conditions'
@@ -30,7 +30,6 @@ const ConditionType = () => {
         </View >
     );
 };
-
 
 const styles = StyleSheet.create({
     container: {
@@ -62,8 +61,6 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         borderRadius: 20,
     }
-
-
 
 });
 

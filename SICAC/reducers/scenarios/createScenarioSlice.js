@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = { name: '', if: [], then: [] }
+const initialState = { name: '', conditions: [], actions: [] }
 
 const createScenarioSlice = createSlice({
   name: 'inCreationScenario',
@@ -13,7 +13,7 @@ const createScenarioSlice = createSlice({
      * @param {Object[]} action.payload
      */
     addAction: (state, action) => {
-      state.then.push(action.payload)
+      state.actions.push(action.payload)
     },
 
     /**
@@ -23,7 +23,7 @@ const createScenarioSlice = createSlice({
      * @param {Object[]} action.payload
      */
     addCondition: (state, action) => {
-      state.if.push(action.payload)
+      state.conditions.push(action.payload)
     },
     clear: state => initialState,
 

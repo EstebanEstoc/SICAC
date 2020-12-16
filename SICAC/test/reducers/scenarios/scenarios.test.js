@@ -10,7 +10,7 @@ import scenariosReducer, {
 
 const dummy_scenario = {
   name: 'Mon scenario fun',
-  if: [
+  conditions: [
     {
       id: 34,
       options: {}
@@ -22,7 +22,7 @@ const dummy_scenario = {
       }
     }
   ],
-  then: [
+  actions: [
     {
       id: 45,
       options: {}
