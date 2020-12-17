@@ -33,7 +33,7 @@ const MailAction = ({ navigation }) => {
             <View style={styles.inputsContainer}>
               <EmailChip
                 emails={emails}
-                onChange={(emails) => setemails(emails)}
+                onChange={(inputs) => setemails(inputs)}
                 placeholder={"Enter receiver emails..."}
                 chipContainerStyle={styles.chipContainer}
                 chipTextStyle={styles.chipText}
