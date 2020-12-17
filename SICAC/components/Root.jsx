@@ -14,6 +14,7 @@ import Actions from "./NewScenario/Actions/Actions";
 import Conditions from "./NewScenario/Conditions/Conditions";
 import Summary from "./NewScenario/Summary/Summary";
 import Notifications from "../helpers/Notifications";
+import MailAction from "./Actions/MailAction";
 
 const Stack = createStackNavigator();
 
@@ -29,6 +30,11 @@ const Root = () => {
           <Stack.Screen name="Authentication" component={Authentication} />
         )}
         <Stack.Screen name="SunriseSunsetAPI" component={SunriseSunsetAPI} />
+        <Stack.Screen
+          name="MailAction"
+          options={styles.headerMailAction}
+          component={MailAction}
+        />
         <Stack.Screen name="ScenarioList" component={ScenarioList} />
         <Stack.Screen name="ConditionType" component={ConditionType} />
         <Stack.Screen name="New scenario - Conditions" component={Conditions} />
@@ -45,6 +51,16 @@ const styles = {
   header: {
     headerStyle: {
       backgroundColor: "#093E60",
+    },
+    headerTintColor: "#fff",
+    headerTitleStyle: {
+      fontWeight: "bold",
+    },
+  },
+  headerMailAction: {
+    headerStyle: {
+      backgroundColor: "#4F465A",
+      elevation: 0,
     },
     headerTintColor: "#fff",
     headerTitleStyle: {
