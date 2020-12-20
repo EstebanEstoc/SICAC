@@ -6,8 +6,8 @@ import {
   StyleSheet,
   TextInput,
 } from "react-native";
-import EmailChip from "react-native-email-chip";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import EmailChipInput from "@arelstone/react-native-email-chip";
 
 const MailAction = ({ navigation }) => {
   const [emails, setemails] = useState([]);
@@ -31,14 +31,13 @@ const MailAction = ({ navigation }) => {
           <View style={styles.prefixContainer}>
             <Text style={styles.prefix}>To:</Text>
             <View style={styles.inputsContainer}>
-              <EmailChip
-                emails={emails}
-                onChange={(inputs) => setemails(inputs)}
-                placeholder={"Enter receiver emails..."}
-                chipContainerStyle={styles.chipContainer}
-                chipTextStyle={styles.chipText}
-                invalidChipContainerStyle={styles.invalidChip}
-                textInputStyles={styles.emailInput}
+              <EmailChipInput
+                entries={emails}
+                onSubmit={(emails) => setemails(emails)}
+                containerStyle={styles.emailContainer}
+                placeholder="Type an email address"
+                inputStyle={styles.emailInput}
+                placeholderTextColor="#7C7F80"
               />
             </View>
           </View>
@@ -89,21 +88,17 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     opacity: 1,
   },
-  chipContainer: {
-    backgroundColor: "#33353A",
-  },
-  chipText: { color: "#E8E7E5", fontWeight: "bold", fontSize: 13 },
   form: {
     paddingTop: 20,
     paddingBottom: 20,
     width: "95%",
   },
-  invalidChip: { backgroundColor: "#F64644" },
-  emailInput: {
-    color: "black",
-    fontSize: 18,
-    width: "100%",
+  emailContainer: {
+    backgroundColor: "#E8E7E5",
+    borderBottomRightRadius: 1000,
+    borderTopRightRadius: 1000,
   },
+  emailInput: { fontSize: 18 },
   prefixContainer: {
     marginBottom: 10,
     borderRadius: 1000,

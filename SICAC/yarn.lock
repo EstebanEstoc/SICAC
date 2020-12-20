@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@arelstone/react-native-email-chip@^2.1.3":
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/@arelstone/react-native-email-chip/-/react-native-email-chip-2.1.3.tgz#4f2becaa8bb05621703fce5c946a5a789d7c7654"
+  integrity sha512-QGhDCnNqWs7mBra414NXtx/BdL/Zv6YVe24C95Yw1Gid6ERFzJ6XinArts3iRM2L3IbvIDx0WjUr+kh/Ndw4xQ==
+
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.10.4", "@babel/code-frame@^7.8.3", "@babel/code-frame@~7.10.4":
   version "7.10.4"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.10.4.tgz#168da1a36e90da68ae8d49c0f1b48c7c6249213a"
@@ -6522,11 +6527,6 @@ react-native-elements@^3.0.0-alpha.1:
     react-native-ratings "^7.3.0"
     react-native-size-matters "^0.3.1"
     react-native-status-bar-height "^2.5.0"
-
-react-native-email-chip@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/react-native-email-chip/-/react-native-email-chip-1.0.4.tgz#9acafdfff1b92fa740ab1b3cd6c710ee3779f81b"
-  integrity sha512-gAho5gkOtTsQwz+Lya1Pq1eSVjyaKOvEETcXco3f0tOpmbGldvWA15r2BYuuG4KJhFgj35erI57qZKCBulK2kw==
 
 react-native-gesture-handler@~1.9.0:
   version "1.9.0"
