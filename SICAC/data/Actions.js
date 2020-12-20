@@ -2,37 +2,44 @@ export const actions = [
     {
         id: 1,
         Title: "Wifi \n(On/Off) ",
-        IconName: "wifi"
+        IconName: "wifi",
+        Action: "WifiAction"
     },
     {
         id: 2,
         Title: "Formulaire",
-        IconName: "description"
+        IconName: "description",
+        Action: ""
     },
     {
         id: 3,
         Title: "Bluetooth \n(On/Off)",
-        IconName: "bluetooth"
+        IconName: "bluetooth",
+        Action: ""
     },
     {
         id: 4,
         Title: "Alert",
-        IconName: "notifications"
+        IconName: "notifications",
+        Action: ""
     },
     {
         id: 5,
         Title: "Sms",
-        IconName: "send"
+        IconName: "send",
+        Action: ""
     },
     {
         id: 6,
         Title: "Mode \nSilencieux",
-        IconName: "vibration"
+        IconName: "vibration",
+        Action: ""
     },
     {
         id: 7,
         Title: "Mail",
-        IconName: "mail"
+        IconName: "mail",
+        Action: ""
     }
 
 ]

@@ -11,7 +11,7 @@ const WifiAction = ({ navigation }) => {
     <View style={styles.container}>
       <ConditionButton title="Activate Wifi" size="sm" icon={{ name: "wifi" }}
         onPress={() => navigation.navigate("CreateScenario")} />
-      <ConditionButton title="Deactivate" size="sm" icon={{ name: "times-circle-o" }}
+      <ConditionButton title="Deactivate wifi" size="sm" icon={{ name: "times-circle-o" }}
         onPress={() => navigation.navigate("CreateScenario")} />
     </View>
   );

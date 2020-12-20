@@ -16,6 +16,8 @@ import Conditions from "./NewScenario/Conditions/Conditions";
 import Summary from "./NewScenario/Summary/Summary";
 import Notifications from "../helpers/Notifications";
 
+import WifiAction from "./Actions/WifiAction";
+
 const Stack = createStackNavigator();
 
 const Root = () => {
@@ -38,6 +40,7 @@ const Root = () => {
         <Stack.Screen name="New scenario - Summary" component={Summary} />
         <Stack.Screen name="Notifications" component={Notifications} />
         <Stack.Screen name="CreateScenario" component={CreateScenario} />
+        <Stack.Screen name="WifiAction" component={WifiAction} />
       </Stack.Navigator>
     </NavigationContainer>
   );
