@@ -3,15 +3,15 @@ import { useSelector } from "react-redux";
 import { StyleSheet, View } from "react-native";
 import { ConditionButton } from "../../helpers/Buttons";
 
-const WifiAction = ({ navigation }) => {
+const BluetoothAction = ({ navigation }) => {
   const scenario = useSelector((state) => state.createScenario);
   const ref = React.useRef();
 
   return (
     <View style={styles.container}>
-      <ConditionButton title="Activate wifi" size="sm" icon={{ name: "wifi" }}
+      <ConditionButton title="Activate bluetooth" size="sm" icon={{ name: "bluetooth" }}
         onPress={() => navigation.navigate("CreateScenario")} />
-      <ConditionButton title="Deactivate wifi" size="sm" icon={{ name: "times-circle-o" }}
+      <ConditionButton title="Deactivate bluetooth" size="sm" icon={{ name: "times-circle-o" }}
         onPress={() => navigation.navigate("CreateScenario")} />
     </View>
   );
@@ -25,4 +25,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default WifiAction;
+export default BluetoothAction;

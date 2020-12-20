@@ -17,6 +17,7 @@ import Summary from "./NewScenario/Summary/Summary";
 import Notifications from "../helpers/Notifications";
 
 import WifiAction from "./Actions/WifiAction";
+import BluetoothAction from "./Actions/BluetoothAction";
 
 const Stack = createStackNavigator();
 
@@ -41,6 +42,7 @@ const Root = () => {
         <Stack.Screen name="Notifications" component={Notifications} />
         <Stack.Screen name="CreateScenario" component={CreateScenario} />
         <Stack.Screen name="WifiAction" component={WifiAction} />
+        <Stack.Screen name="BluetoothAction" component={BluetoothAction} />
       </Stack.Navigator>
     </NavigationContainer>
   );

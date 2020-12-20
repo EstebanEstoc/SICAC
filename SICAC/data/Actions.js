@@ -15,7 +15,7 @@ export const actions = [
         id: 3,
         Title: "Bluetooth \n(On/Off)",
         IconName: "bluetooth",
-        Action: ""
+        Action: "BluetoothAction"
     },
     {
         id: 4,
