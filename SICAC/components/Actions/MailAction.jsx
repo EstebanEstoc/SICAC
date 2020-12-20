@@ -61,7 +61,7 @@ const MailAction = ({ navigation }) => {
           multiline
           placeholder="Type the email that will be sent..."
           underlineColorAndroid="transparent"
-          onChangeText={(input) => setsubject(input)}
+          onChangeText={(input) => setcore(input)}
           style={styles.coreInput}
         />
       </View>
