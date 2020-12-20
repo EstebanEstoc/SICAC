@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   subCategoriesListText: {
     textAlign: 'center',
     width: '100%',
-    fontSize: 12,
+    fontSize: 16,
     color: "#fff",
     fontWeight: "bold",
     alignSelf: "center",
@@ -98,6 +98,21 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     justifyContent: 'flex-end',
     marginBottom: 0
+  },
+  scenarioIcons: {
+    flexDirection: 'row', 
+    justifyContent: 'space-evenly', 
+    marginTop: 10
+  },
+  scenarioIconAndLabel: {
+    flexDirection: 'column', 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    alignSelf: 'flex-end' 
+  },
+  scenarioIconLabel: {
+    fontSize: 12,
+    color: 'black',
   }
 });
 
