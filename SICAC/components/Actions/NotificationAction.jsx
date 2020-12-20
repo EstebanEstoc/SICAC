@@ -31,7 +31,7 @@ const MailAction = ({ navigation }) => {
           <Text style={styles.prefix}>Message:</Text>
           <TextInput
             multiline
-            placeholder="The notification message"
+            placeholder="Type the notification message that will be sent"
             underlineColorAndroid="transparent"
             onChangeText={(input) => setsubject(input)}
             style={styles.subjectInput}
