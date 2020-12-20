@@ -10,6 +10,7 @@ import CreateScenario from "./CreateScenario/CreateScenarioTabs";
 import SunriseSunsetAPI from "../helpers/SunriseSunsetAPI";
 import ScenarioList from "./ScenarioList/ScenarioList";
 import ConditionType from "./ConditionType";
+import ActionType from "./ActionType";
 import Actions from "./NewScenario/Actions/Actions";
 import Conditions from "./NewScenario/Conditions/Conditions";
 import Summary from "./NewScenario/Summary/Summary";
@@ -31,6 +32,7 @@ const Root = () => {
         <Stack.Screen name="SunriseSunsetAPI" component={SunriseSunsetAPI} />
         <Stack.Screen name="ScenarioList" component={ScenarioList} />
         <Stack.Screen name="ConditionType" component={ConditionType} />
+        <Stack.Screen name="ActionType" component={ActionType} />
         <Stack.Screen name="New scenario - Conditions" component={Conditions} />
         <Stack.Screen name="New scenario - Actions" component={Actions} />
         <Stack.Screen name="New scenario - Summary" component={Summary} />
