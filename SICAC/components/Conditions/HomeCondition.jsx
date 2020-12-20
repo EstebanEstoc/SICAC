@@ -3,15 +3,15 @@ import { useSelector } from "react-redux";
 import { StyleSheet, View } from "react-native";
 import ConditionButton from "../../helpers/Buttons";
 
-const TimeOfDayCondition = ({ navigation }) => {
+const HomeCondition = ({ navigation }) => {
   const scenario = useSelector((state) => state.createScenario);
   const ref = React.useRef();
 
   return (
     <View style={styles.container}>
-      <ConditionButton title="Daytime" size="sm" icon={{name: "sun-o"}} 
+      <ConditionButton title="At home" size="sm" icon={{name: "home"}} 
         onPress={() => navigation.navigate("CreateScenario")}/>
-      <ConditionButton title="Nighttime" size="sm" icon={{name: "moon-o"}} 
+      <ConditionButton title="Away from home" size="sm" icon={{name: "plane"}} 
         onPress={() => navigation.navigate("CreateScenario")}/>
     </View>
   );
@@ -25,4 +25,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default TimeOfDayCondition;
+export default HomeCondition;

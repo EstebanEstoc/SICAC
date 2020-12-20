@@ -3,7 +3,7 @@ export const conditions = [
         id: 1,
         Title: "Home",
         IconName: "home",
-        Condition: ""
+        Condition: "HomeCondition"
     },
     {
         id: 2,
