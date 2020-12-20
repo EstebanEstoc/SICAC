@@ -205,39 +205,6 @@ export default function ScenarioList() {
           buttonStyles={styles.newScenarioButton}
           textStyles={styles.newScenarioButtonText}
         />
-        <TouchableOpacity onPress={() => {
-          const dummy_scenario = {
-            name: 'Mon scenario fun',
-            conditions: [
-              {
-                id: 34,
-                options: {}
-              },
-              {
-                id: 75,
-                options: {
-                  auth: '33442243654234_fg'
-                }
-              }
-            ],
-            actions: [
-              {
-                id: 45,
-                options: {}
-              },
-              {
-                id: 30,
-                options: {
-                  lng: -45,
-                  lat: 35
-                }
-              }
-            ]
-          }
-          dispatch(addScenario(dummy_scenario))
-        }}>
-          <Text>JMKDFB</Text>
-        </TouchableOpacity>
       </View>
     </View>
   );
