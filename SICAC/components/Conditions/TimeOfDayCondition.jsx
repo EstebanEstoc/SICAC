@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { StyleSheet, View } from "react-native";
-import ConditionButton from "../../helpers/Buttons";
+import { ConditionButton } from "../../helpers/Buttons";
 
 const TimeOfDayCondition = ({ navigation }) => {
   const scenario = useSelector((state) => state.createScenario);
@@ -9,10 +9,10 @@ const TimeOfDayCondition = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <ConditionButton title="Daytime" size="sm" icon={{name: "sun-o"}} 
-        onPress={() => navigation.navigate("CreateScenario")}/>
-      <ConditionButton title="Nighttime" size="sm" icon={{name: "moon-o"}} 
-        onPress={() => navigation.navigate("CreateScenario")}/>
+      <ConditionButton title="Daytime" size="sm" icon={{ name: "sun-o" }}
+        onPress={() => navigation.navigate("CreateScenario")} />
+      <ConditionButton title="Nighttime" size="sm" icon={{ name: "moon-o" }}
+        onPress={() => navigation.navigate("CreateScenario")} />
     </View>
   );
 }

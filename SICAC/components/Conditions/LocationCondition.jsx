@@ -1,17 +1,20 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { StyleSheet, View } from "react-native";
-import { ConditionButton } from "../../helpers/Buttons";
+import { Input } from 'react-native-elements';
+import { MediumConditionButton } from "../../helpers/Buttons";
 
-const HomeCondition = ({ navigation }) => {
+const LocationCondition = ({ navigation }) => {
     const scenario = useSelector((state) => state.createScenario);
     const ref = React.useRef();
 
     return (
         <View style={styles.container}>
-            <ConditionButton title="At home" size="sm" icon={{ name: "home" }}
+            <Input placeholder='Address'
+                leftIcon={{ type: 'font-awesome', name: 'map-pin' }} />
+            <MediumConditionButton title="At this location" size="sm" icon={{ name: "map-marker" }}
                 onPress={() => navigation.navigate("CreateScenario")} />
-            <ConditionButton title="Away from home" size="sm" icon={{ name: "plane" }}
+            <MediumConditionButton title="Away from this location" size="sm" icon={{ name: "map-o" }}
                 onPress={() => navigation.navigate("CreateScenario")} />
         </View>
     );
@@ -25,4 +28,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default HomeCondition;
+export default LocationCondition;

@@ -16,6 +16,7 @@ import Summary from "./NewScenario/Summary/Summary";
 import Notifications from "../helpers/Notifications";
 import TimeOfDayCondition from "./Conditions/TimeOfDayCondition";
 import HomeCondition from "./Conditions/HomeCondition";
+import LocationCondition from "./Conditions/LocationCondition";
 
 const Stack = createStackNavigator();
 
@@ -40,6 +41,7 @@ const Root = () => {
         <Stack.Screen name="CreateScenario" component={CreateScenario} />
         <Stack.Screen name="TimeOfDayCondition" component={TimeOfDayCondition} />
         <Stack.Screen name="HomeCondition" component={HomeCondition} />
+        <Stack.Screen name="LocationCondition" component={LocationCondition} />
       </Stack.Navigator>
     </NavigationContainer>
   );
