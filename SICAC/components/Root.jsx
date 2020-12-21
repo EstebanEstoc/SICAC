@@ -18,6 +18,7 @@ import Notifications from "../helpers/Notifications";
 import MailAction from "./Actions/MailAction";
 import SMSAction from "./Actions/SMSAction";
 import NotificationAction from "./Actions/NotificationAction";
+import Bluetooth from "./Conditions/Bluetooth/Bluetooth";
 
 import TimeOfDayCondition from "./Conditions/TimeOfDayCondition";
 import HomeCondition from "./Conditions/HomeCondition";
@@ -67,6 +68,7 @@ const Root = () => {
         <Stack.Screen name="LocationCondition" component={LocationCondition} />
         <Stack.Screen name="WifiAction" component={WifiAction} />
         <Stack.Screen name="BluetoothAction" component={BluetoothAction} />
+        <Stack.Screen name="Bluetooth" component={Bluetooth} />
       </Stack.Navigator>
     </NavigationContainer>
   );

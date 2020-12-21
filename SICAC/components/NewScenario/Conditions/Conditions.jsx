@@ -5,6 +5,8 @@ import { Card, Icon } from "react-native-elements";
 import { Transition, Transitioning } from "react-native-reanimated";
 import styles, { mainColor, secondaryColor } from "./ConditionsStyles";
 
+
+
 const transition = (
   <Transition.Together>
     <Transition.In type="scale" durationMs={200} />

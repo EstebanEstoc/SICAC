@@ -51,7 +51,7 @@ export const conditions = [
         id: 9,
         Title: "TV (Bluetooth)",
         IconName: "tv",
-        Condition: ""
+        Condition: "Bluetooth"
     }
     
 ]
