@@ -18,7 +18,7 @@ import Notifications from "../helpers/Notifications";
 import MailAction from "./Actions/MailAction";
 import SMSAction from "./Actions/SMSAction";
 import NotificationAction from "./Actions/NotificationAction";
-import Bluetooth from "./Bluetooth/Bluetooth";
+import Bluetooth from "./Conditions/Bluetooth/Bluetooth";
 
 import TimeOfDayCondition from "./Conditions/TimeOfDayCondition";
 import HomeCondition from "./Conditions/HomeCondition";
