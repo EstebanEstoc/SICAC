@@ -9,7 +9,7 @@ import {
 import EmailChip from "react-native-email-chip";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-const MailAction = ({ navigation }) => {
+const NotificationAction = ({ navigation }) => {
   const [emails, setemails] = useState([]);
   const [core, setcore] = useState("");
   const [subject, setsubject] = useState("");
@@ -85,4 +85,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MailAction;
+export default NotificationAction;

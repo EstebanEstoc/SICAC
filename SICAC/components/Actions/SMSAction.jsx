@@ -12,7 +12,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 
 import { contacts } from "../../helpers/contactList";
 
-const MailAction = ({ navigation }) => {
+const SMSAction = ({ navigation }) => {
   const [core, setcore] = useState("");
   const [selectedItems, setselectedItems] = useState([]);
 
@@ -134,4 +134,4 @@ const selectContacts = {
   },
 };
 
-export default MailAction;
+export default SMSAction;
