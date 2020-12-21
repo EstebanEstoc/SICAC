@@ -7,14 +7,16 @@ import { conditions } from '../data/Conditions'
 
 
 
-const ConditionType = () => {
+const ConditionType = ({ navigation }) => {
     return (
         <View style={styles.containerMain}>
             {
 
                 conditions.map((item) => {
                     return (
-                        <Button key={item.id} title={item.Title} titleStyle={{ color: 'black' }} type="outline" icon={{ name: item.IconName, size: 40 }} buttonStyle={styles.buttonStyle} />
+                        <Button key={item.id} title={item.Title} titleStyle={{ color: 'black' }} 
+                                type="outline" icon={{ name: item.IconName, size: 40 }}
+                                buttonStyle={styles.buttonStyle} onPress={() => navigation.navigate(item.Condition)}/>
                     )
                 }).reduce(function (r, element, index) {
                     index % 2 === 0 && r.push([]);
