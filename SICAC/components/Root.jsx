@@ -14,6 +14,7 @@ import ConditionType from "./ConditionType";
 import Actions from "./NewScenario/Actions/Actions";
 import Conditions from "./NewScenario/Conditions/Conditions";
 import Summary from "./NewScenario/Summary/Summary";
+import Bluetooth from "./Bluetooth/Bluetooth";
 import Notifications from "../helpers/Notifications"
 
 
@@ -39,6 +40,7 @@ const Root = () => {
         <Stack.Screen name="New scenario - Summary" component={Summary} />
         <Stack.Screen name="Notifications" component={Notifications} />
         <Stack.Screen name="CreateScenario" component={CreateScenario} />
+        <Stack.Screen name="Bluetooth" component={Bluetooth} />
 
       </Stack.Navigator>
     </NavigationContainer >

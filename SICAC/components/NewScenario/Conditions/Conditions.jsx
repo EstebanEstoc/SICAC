@@ -5,6 +5,8 @@ import { Transition, Transitioning } from 'react-native-reanimated';
 import scenarios from 'helpers/ConditionsData';
 import styles, { mainColor, secondaryColor } from './ConditionsStyles'
 
+
+
 const transition = (
   <Transition.Together>
     <Transition.In type='scale' durationMs={200} />
