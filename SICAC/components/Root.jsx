@@ -15,6 +15,9 @@ import Actions from "./NewScenario/Actions/Actions";
 import Conditions from "./NewScenario/Conditions/Conditions";
 import Summary from "./NewScenario/Summary/Summary";
 import Notifications from "../helpers/Notifications";
+import MailAction from "./Actions/MailAction";
+import SMSAction from "./Actions/SMSAction";
+import NotificationAction from "./Actions/NotificationAction";
 
 import TimeOfDayCondition from "./Conditions/TimeOfDayCondition";
 import HomeCondition from "./Conditions/HomeCondition";
@@ -36,6 +39,21 @@ const Root = () => {
           <Stack.Screen name="Authentication" component={Authentication} />
         )}
         <Stack.Screen name="SunriseSunsetAPI" component={SunriseSunsetAPI} />
+        <Stack.Screen
+          name="MailAction"
+          options={styles.headerMailAction}
+          component={MailAction}
+        />
+        <Stack.Screen
+          name="SMSAction"
+          options={styles.headerSMSAction}
+          component={SMSAction}
+        />
+        <Stack.Screen
+          name="NotificationAction"
+          options={styles.headerNotificationAction}
+          component={NotificationAction}
+        />
         <Stack.Screen name="ScenarioList" component={ScenarioList} />
         <Stack.Screen name="ConditionType" component={ConditionType} />
         <Stack.Screen name="ActionType" component={ActionType} />
@@ -58,6 +76,36 @@ const styles = {
   header: {
     headerStyle: {
       backgroundColor: "#093E60",
+    },
+    headerTintColor: "#fff",
+    headerTitleStyle: {
+      fontWeight: "bold",
+    },
+  },
+  headerMailAction: {
+    headerStyle: {
+      backgroundColor: "#4F465A",
+      elevation: 0,
+    },
+    headerTintColor: "#fff",
+    headerTitleStyle: {
+      fontWeight: "bold",
+    },
+  },
+  headerSMSAction: {
+    headerStyle: {
+      backgroundColor: "#66BB6A",
+      elevation: 0,
+    },
+    headerTintColor: "#fff",
+    headerTitleStyle: {
+      fontWeight: "bold",
+    },
+  },
+  headerNotificationAction: {
+    headerStyle: {
+      backgroundColor: "#00BAC5",
+      elevation: 0,
     },
     headerTintColor: "#fff",
     headerTitleStyle: {
