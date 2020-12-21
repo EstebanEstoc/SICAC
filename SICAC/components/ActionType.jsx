@@ -7,14 +7,16 @@ import { actions } from '../data/Actions'
 
 
 
-const ActionType = () => {
+const ActionType = ({ navigation }) => {
     return (
         <View style={styles.containerMain}>
             {
 
                 actions.map((item) => {
                     return (
-                        <Button key={item.id} title={item.Title} titleStyle={{ color: 'black' }} type="outline" icon={{ name: item.IconName, size: 40 }} buttonStyle={styles.buttonStyle} />
+                        <Button key={item.id} title={item.Title} titleStyle={{ color: 'black' }}
+                        type="outline" icon={{ name: item.IconName, size: 40 }}
+                        buttonStyle={styles.buttonStyle} onPress={() => navigation.navigate(item.Action)}/>
                     )
                 }).reduce(function (r, element, index) {
                     index % 2 === 0 && r.push([]);

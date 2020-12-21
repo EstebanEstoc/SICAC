@@ -15,7 +15,7 @@ const transition = (
 
 const Title = ({ text }) => <Text style={styles.title}>{text}</Text>;
 
-export default function Actions() {
+export default function Actions({ navigation }) {
   const scenario = useSelector((state) => state.createScenario);
   const ref = React.useRef();
 
@@ -53,7 +53,7 @@ export default function Actions() {
           <Text>|</Text>
           <TouchableOpacity
             activeOpacity={0.8}
-            onPress={() => console.log("→ Redirect to new scenario page")}
+            onPress={() => navigation.navigate("ActionType")}
           >
             <Icon
               containerStyle={styles.addButtonIcon}
