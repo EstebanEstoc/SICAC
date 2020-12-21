@@ -21,13 +21,13 @@ export const actions = [
         id: 4,
         Title: "Alert",
         IconName: "notifications",
-        Action: ""
+        Action: "NotificationAction"
     },
     {
         id: 5,
         Title: "Sms",
         IconName: "send",
-        Action: ""
+        Action: "SMSAction"
     },
     {
         id: 6,
@@ -39,7 +39,7 @@ export const actions = [
         id: 7,
         Title: "Mail",
         IconName: "mail",
-        Action: ""
+        Action: "MailAction"
     }
 
 ]
