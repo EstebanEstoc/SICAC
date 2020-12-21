@@ -28,7 +28,7 @@ function getSubCategoriesListStyles(section) {
   ];
 }
 
-export default function ScenarioList() {
+export default function ScenarioList({ navigation }) {
   const [currentIndex, setCurrentIndex] = React.useState(0);
   const dispatch = useDispatch()
   const scenarios = useSelector((state) => state.scenarios);
@@ -121,7 +121,7 @@ export default function ScenarioList() {
     </TouchableOpacity>
   );
   
-  const ScenarioButton = ({ scenario, buttonStyles, textStyles, icon, isScenario }) => (
+  const ScenarioButton = ({ scenario, buttonStyles, textStyles, icon, isScenario, onPress }) => (
     <View>
       <AppButton
         scenario={scenario}
@@ -130,6 +130,7 @@ export default function ScenarioList() {
         icon={icon}
         isScenario={isScenario}
         size="sm"
+        onPress={onPress}
       />
     </View>
   );
@@ -204,6 +205,7 @@ export default function ScenarioList() {
           scenario={{ name: "New scenario" }}
           buttonStyles={styles.newScenarioButton}
           textStyles={styles.newScenarioButtonText}
+          onPress={() => navigation.navigate("CreateScenario")}
         />
       </View>
     </View>
