@@ -44,18 +44,6 @@ const HomeScreen = ({ navigation }) => {
         title="Notifications"
         onPress={() => navigation.navigate("Notifications")}
       />
-      <Button
-        title="MailAction"
-        onPress={() => navigation.navigate("MailAction")}
-      />
-      <Button
-        title="SMSAction"
-        onPress={() => navigation.navigate("SMSAction")}
-      />
-      <Button
-        title="NotificationAction"
-        onPress={() => navigation.navigate("NotificationAction")}
-      />
     </View>
   );
 };

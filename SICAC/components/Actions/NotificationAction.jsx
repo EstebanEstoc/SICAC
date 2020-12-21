@@ -6,7 +6,6 @@ import {
   StyleSheet,
   TextInput,
 } from "react-native";
-import EmailChip from "react-native-email-chip";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const NotificationAction = ({ navigation }) => {
