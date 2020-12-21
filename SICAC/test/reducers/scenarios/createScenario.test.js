@@ -10,7 +10,7 @@ describe('createScenario Reducer', () => {
   describe('INITIAL_STATE', () => {
     test('is correct', () => {
       const action = { type: 'dummy_action' }
-      const initialState = { name: '', if: [], then: [] }
+      const initialState = { name: '', conditions: [], actions: [] }
       expect(createScenarioReducer(undefined, action)).toEqual(initialState)
     })
   })

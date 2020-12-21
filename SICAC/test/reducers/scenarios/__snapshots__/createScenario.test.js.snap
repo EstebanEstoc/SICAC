@@ -2,9 +2,7 @@
 
 exports[`createScenario Reducer addAction must push an action in the then field 1`] = `
 Object {
-  "if": Array [],
-  "name": "",
-  "then": Array [
+  "actions": Array [
     Object {
       "id": 33,
       "options": Object {
@@ -13,12 +11,15 @@ Object {
       },
     },
   ],
+  "conditions": Array [],
+  "name": "",
 }
 `;
 
 exports[`createScenario Reducer addCondition must push an condition in the if field 1`] = `
 Object {
-  "if": Array [
+  "actions": Array [],
+  "conditions": Array [
     Object {
       "id": 35,
       "options": Object {
@@ -28,22 +29,21 @@ Object {
     },
   ],
   "name": "",
-  "then": Array [],
 }
 `;
 
 exports[`createScenario Reducer addName must add name to the name field 1`] = `
 Object {
-  "if": Array [],
+  "actions": Array [],
+  "conditions": Array [],
   "name": "toto's scenario",
-  "then": Array [],
 }
 `;
 
 exports[`createScenario Reducer clear must reset to initialState 1`] = `
 Object {
-  "if": Array [],
+  "actions": Array [],
+  "conditions": Array [],
   "name": "",
-  "then": Array [],
 }
 `;

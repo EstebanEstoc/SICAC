@@ -10,16 +10,16 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     flexShrink: 1,
-    marginTop: 40,
+    marginTop: 0,
   },
   card: {
     flexGrow: 1,
-    marginTop: 50,
+    marginTop: 30,
     alignItems: 'center',
     justifyContent: 'center',
   },
   heading: {
-    fontSize: 38,
+    fontSize: 16,
     fontWeight: '900',
     textTransform: 'uppercase',
     color: '#000',
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   body: {
-    fontSize: 20,
+    fontSize: 12,
     lineHeight: 20 * 1.5,
     textAlign: 'center',
     color: '#000',
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   subCategoriesListText: {
     textAlign: 'center',
     width: '100%',
-    fontSize: 18,
+    fontSize: 16,
     color: "#fff",
     fontWeight: "bold",
     alignSelf: "center",
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     width: '100%',
     textTransform: 'uppercase',
-    fontSize: 25,
+    fontSize: 16,
     color: "#00BAC5",
     fontWeight: "bold",
     alignSelf: "center",
@@ -98,6 +98,21 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     justifyContent: 'flex-end',
     marginBottom: 0
+  },
+  scenarioIcons: {
+    flexDirection: 'row', 
+    justifyContent: 'space-evenly', 
+    marginTop: 10
+  },
+  scenarioIconAndLabel: {
+    flexDirection: 'column', 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    alignSelf: 'flex-end' 
+  },
+  scenarioIconLabel: {
+    fontSize: 12,
+    color: 'black',
   }
 });
 

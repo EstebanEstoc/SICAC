@@ -4,12 +4,12 @@
  * @param {Number} id
  * @param {Object} draftScenario
  * @param {String} draftScenario.name
- * @param {Object[]} draftScenario.if
- * @param {Object[]} draftScenario.then
- * @param {Number} draftScenario.if[].id
- * @param {Object} draftScenario.if[].options All the if options
- * @param {Number} draftScenario.then[].id
- * @param {Object} draftScenario.then[].options All the then options
+ * @param {Object[]} draftScenario.conditions
+ * @param {Object[]} draftScenario.actions
+ * @param {Number} draftScenario.conditions[].id
+ * @param {Object} draftScenario.conditions[].options All the if options
+ * @param {Number} draftScenario.actions[].id
+ * @param {Object} draftScenario.actions[].options All the then options
  */
 export const createScenario = (draftScenario, id) => {
   return {
@@ -17,8 +17,8 @@ export const createScenario = (draftScenario, id) => {
     name: draftScenario.name,
     date: new Date(),
     active: true,
-    if: draftScenario.if,
-    then: draftScenario.if
+    conditions: draftScenario.conditions,
+    actions: draftScenario.actions
   }
 }
 
@@ -31,19 +31,19 @@ export const createScenario = (draftScenario, id) => {
  * @param {Array} state.scenarios
  * @param {Object} newScenarioValues
  * @param {String} newScenarioValues.name
- * @param {Object[]} newScenarioValues.if
- * @param {Object[]} newScenarioValues.then
- * @param {Number} newScenarioValues.if[].id
- * @param {Object} newScenarioValues.if[].options All the if options
- * @param {Number} newScenarioValues.then[].id
- * @param {Object} newScenarioValues.then[].options All the then options
+ * @param {Object[]} newScenarioValues.conditions
+ * @param {Object[]} newScenarioValues.actions
+ * @param {Number} newScenarioValues.conditions[].id
+ * @param {Object} newScenarioValues.conditions[].options All the if options
+ * @param {Number} newScenarioValues.actions[].id
+ * @param {Object} newScenarioValues.actions[].options All the then options
  */
 export const editScenario = (newScenarioValues, id, state) => {
   const scenario = state.scenarios.find(scenario => scenario.id === id)
   if (scenario) {
     scenario.name = newScenarioValues.name
-    scenario.then = newScenarioValues.then
-    scenario.if = newScenarioValues.if
+    scenario.actions = newScenarioValues.actions
+    scenario.conditions = newScenarioValues.conditions
   } else {
     throw new Error('No such scenario')
   }
