@@ -1,10 +1,17 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { useSelector } from "react-redux";
-import { Text, View, TouchableOpacity, ScrollView } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { Text, View, TouchableOpacity, ScrollView, Switch } from "react-native";
 import styles from "./ScenarioListStyles";
 import { Transition, Transitioning } from "react-native-reanimated";
 import Icon from "react-native-vector-icons/FontAwesome";
+import {
+  addScenario,
+  deleteScenario,
+  switchOnScenario,
+  switchOffScenario,
+  modifyScenario
+} from 'reducers/scenarios/scenariosSlice'
 
 const transition = (
   <Transition.Together>
@@ -21,56 +28,111 @@ function getSubCategoriesListStyles(section) {
   ];
 }
 
-const AppButton = ({ onPress, title, buttonStyles, textStyles, icon }) => (
-  <TouchableOpacity onPress={onPress} style={buttonStyles}>
-    <Text style={textStyles}>
-      {icon ? (
-        icon.left ? (
-          <Text>
-            <Icon name={icon.name} size={icon.size} />
-            {"   "}
-          </Text>
-        ) : (
-          ""
-        )
-      ) : (
-        ""
-      )}
-      {title}
-      {icon ? (
-        icon.right ? (
-          <Text>
-            <Icon name={icon.name} size={icon.size} />
-            {"   "}
-          </Text>
-        ) : (
-          ""
-        )
-      ) : (
-        ""
-      )}
-    </Text>
-  </TouchableOpacity>
-);
-
-const ScenarioButton = ({ name, buttonStyles, textStyles, icon }) => (
-  <View>
-    <AppButton
-      title={name}
-      buttonStyles={buttonStyles}
-      textStyles={textStyles}
-      icon={icon}
-      size="sm"
-    />
-  </View>
-);
-
 export default function ScenarioList() {
   const [currentIndex, setCurrentIndex] = React.useState(0);
+  const dispatch = useDispatch()
   const scenarios = useSelector((state) => state.scenarios);
   const ref = React.useRef();
 
   const headers = ['Enabled', 'Disabled'];
+
+  const AppButton = ({ onPress, scenario, buttonStyles, textStyles, icon }) => (
+    <TouchableOpacity onPress={onPress} style={buttonStyles}>
+      <Text style={textStyles}>
+        {icon ? (
+          icon.left ? (
+            <Text>
+              <Icon name={icon.name} size={icon.size} />
+              {"   "}
+            </Text>
+          ) : (
+            ""
+          )
+        ) : (
+          ""
+        )}
+        {scenario.name}
+        {icon ? (
+          icon.right ? (
+            <Text>
+              <Icon name={icon.name} size={icon.size} />
+              {"   "}
+            </Text>
+          ) : (
+            ""
+          )
+        ) : (
+          ""
+        )}
+      </Text>
+      {scenario.id && (
+        <View style={styles.scenarioIcons}>
+          <View style={styles.scenarioIconAndLabel}>
+            <Switch
+              onValueChange={() => {
+                ref.current.animateNextTransition();
+                if (scenario.active) {
+                  dispatch(switchOffScenario(scenario.id))
+                } else {
+                  dispatch(switchOnScenario(scenario.id))
+                }
+              }}
+              value={scenario.active}
+              trackColor={{ false: "white", true: "black" }}
+              thumbColor={scenario.active ? "white" : "black"}
+            />
+            <Text style={styles.scenarioIconLabel}>
+              Tap to { scenario.active ? 'disable' : 'enable' }
+            </Text>
+          </View>
+          <View style={styles.scenarioIconAndLabel}>
+            <Icon
+              containerStyle={{ alignSelf: 'flex-end' }}
+              name='edit'
+              size={20}
+              color='black'
+              type='font-awesome'
+              onPress={() => {
+                //
+              }}
+            />
+            <Text style={styles.scenarioIconLabel}>
+              Tap to modify
+            </Text>
+          </View>
+          <View style={styles.scenarioIconAndLabel}>
+            <Icon
+              containerStyle={{ alignSelf: 'flex-end' }}
+              name='trash'
+              size={20}
+              color='black'
+              type='font-awesome'
+              onPress={() => {
+                ref.current.animateNextTransition();
+                dispatch(deleteScenario(scenario.id))
+              }}
+            />
+            <Text style={styles.scenarioIconLabel}>
+              Tap to delete
+            </Text>
+          </View>
+        </View>
+      )}
+    </TouchableOpacity>
+  );
+  
+  const ScenarioButton = ({ scenario, buttonStyles, textStyles, icon, isScenario }) => (
+    <View>
+      <AppButton
+        scenario={scenario}
+        buttonStyles={buttonStyles}
+        textStyles={textStyles}
+        icon={icon}
+        isScenario={isScenario}
+        size="sm"
+      />
+    </View>
+  );
 
   return (
     <View style={styles.container}>
@@ -81,7 +143,7 @@ export default function ScenarioList() {
           style={styles.container}
         >
           <StatusBar hidden />
-          {scenarios && scenarios.scenarios &&
+          {headers &&
             headers.map((title, index) => {
               return (
                 <TouchableOpacity
@@ -112,17 +174,20 @@ export default function ScenarioList() {
                         <Icon name="chevron-up" size={styles.heading.fontSize} />
                       )}
                     </Text>
-                    {index === currentIndex && (
+                    {index === currentIndex && scenarios && scenarios.scenarios && (
                       <View style={styles.subCategoriesList}>
-                        {scenarios.scenarios.map(({ id, name, active, conditions, actions }) =>
-                          {active && (
-                            <ScenarioButton
-                              key={id}
-                              name={name}
-                              buttonStyles={getSubCategoriesListStyles(headers[currentIndex])}
-                              textStyles={styles.subCategoriesListText}
-                            />
-                          )}
+                        {scenarios.scenarios.map((scenario) =>
+                          {
+                            return scenario.active === !index && (
+                              <ScenarioButton
+                                key={scenario.id}
+                                scenario={scenario}
+                                buttonStyles={getSubCategoriesListStyles(headers[currentIndex])}
+                                textStyles={styles.subCategoriesListText}
+                                isScenario={true}
+                              />
+                            )
+                          }
                         )}
                       </View>
                     )}
@@ -136,7 +201,7 @@ export default function ScenarioList() {
       <View style={styles.floatingButton}>
         <ScenarioButton
           icon={{ left: true, name: "plus", size: styles.newScenarioButtonText.fontSize }}
-          name="New scenario"
+          scenario={{ name: "New scenario" }}
           buttonStyles={styles.newScenarioButton}
           textStyles={styles.newScenarioButtonText}
         />
