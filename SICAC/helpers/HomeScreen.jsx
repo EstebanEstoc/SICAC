@@ -8,6 +8,8 @@ import { toggleAuthFalse } from "../reducers/authentication/authenticationSlice"
 import { clearUserInfo } from "../reducers/authentication/userSlice";
 import { GoogleConfigure } from "../services/authentication/providers/GoogleSignIn";
 import styles from "./styles";
+import { persistor } from "../store/store";
+import { GetPrimaryCalendarID } from "../services/conditions/calendar/providers/GoogleCalendarRepository";
 
 const HomeScreen = ({ navigation }) => {
   const userInfo = useSelector((state) => state.user);
@@ -21,6 +23,10 @@ const HomeScreen = ({ navigation }) => {
     await signOut();
     dispatch(toggleAuthFalse());
     dispatch(clearUserInfo());
+  };
+
+  const test = async () => {
+    console.log(await GetPrimaryCalendarID());
   };
 
   return (
@@ -44,6 +50,8 @@ const HomeScreen = ({ navigation }) => {
         title="Notifications"
         onPress={() => navigation.navigate("Notifications")}
       />
+      <Button title="Reset Store" onPress={() => persistor.purge()} />
+      <Button title="Test" onPress={test} />
     </View>
   );
 };
