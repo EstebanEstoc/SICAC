@@ -22,7 +22,7 @@ export const GetGoogleCalendarList = async () => {
     const json = await res.json()
     return json.items
   } catch (error) {
-    console.error(error)
+    throw new Error(error)
   }
 }
 
@@ -42,8 +42,33 @@ export const GetGoogleCalendarEventList = async calendarID => {
         headers: GoogleCalendarHeader
       }
     )
+    const json = await res.json()
+    return json.items
+  } catch (error) {
+    throw new Error(error)
+  }
+}
+
+/**
+ * Get Event with the id
+ *
+ * @param {String} eventID
+ * @param {String} calendarID
+ */
+export const GetGoogleCalendarEvent = async (eventID, calendarID) => {
+  try {
+    const res = await fetch(
+      'https://www.googleapis.com/calendar/v3/calendars/' +
+        calendarID +
+        '/events/' +
+        eventID,
+      {
+        method: 'GET',
+        headers: GoogleCalendarHeader
+      }
+    )
     return await res.json()
   } catch (error) {
-    console.log(error)
+    throw new Error(error)
   }
 }
