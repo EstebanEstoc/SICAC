@@ -5,6 +5,7 @@ GoogleCalendarAPI.GoogleCalendarConfig()
 export const GetPrimaryCalendarID = async () => {
   try {
     const calendars = await GoogleCalendarAPI.GetGoogleCalendarList()
+    console.log(calendars)
     const primary = calendars.filter(calendar => calendar.primary)
     return primary[0].id
   } catch (error) {
@@ -34,7 +35,7 @@ export const GetEventsTitleList = async calendarID => {
       calendarID
     )
     const nextEvents = events.filter(event => {
-      return new Date(event.start.dateTime) - new Date() > 0
+      return new Date(event.end.dateTime) - new Date() > 0
     })
     const eventList = []
     nextEvents.forEach(event => {
