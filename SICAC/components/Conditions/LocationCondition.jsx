@@ -9,7 +9,7 @@ const LocationCondition = ({ navigation }) => {
     const scenario = useSelector((state) => state.createScenario);
     const dispatch = useDispatch();
     const ref = React.useRef();
-    const addressInput = ""
+    var addressInput = ""
 
     return (
         <View style={styles.container}>
