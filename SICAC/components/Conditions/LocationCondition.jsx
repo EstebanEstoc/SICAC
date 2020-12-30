@@ -10,11 +10,12 @@ const LocationCondition = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <Input placeholder='Address'
+            <Input label="Address"
+                placeholder="Tap to enter the address"
                 leftIcon={{ type: 'font-awesome', name: 'map-pin' }} />
-            <MediumConditionButton title="At this location" size="sm" icon={{ name: "map-marker" }}
+            <MediumConditionButton title="At this address" size="sm" icon={{ name: "map-marker" }}
                 onPress={() => navigation.navigate("CreateScenario")} />
-            <MediumConditionButton title="Away from this location" size="sm" icon={{ name: "map-o" }}
+            <MediumConditionButton title="Away from this address" size="sm" icon={{ name: "map-o" }}
                 onPress={() => navigation.navigate("CreateScenario")} />
         </View>
     );
