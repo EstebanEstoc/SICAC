@@ -8,6 +8,15 @@ import { toggleAuthFalse } from "../reducers/authentication/authenticationSlice"
 import { clearUserInfo } from "../reducers/authentication/userSlice";
 import { GoogleConfigure } from "../services/authentication/providers/GoogleSignIn";
 import styles from "./styles";
+import { persistor } from "../store/store";
+import {
+  GetPrimaryCalendarID,
+  GetCalendarsNameList,
+  GetEventsTitleList,
+  SearchEventsByTitle,
+  GetEventDates,
+  GetEventDuration,
+} from "../services/conditions/calendar/providers/GoogleCalendarRepository";
 
 const HomeScreen = ({ navigation }) => {
   const userInfo = useSelector((state) => state.user);
@@ -21,6 +30,27 @@ const HomeScreen = ({ navigation }) => {
     await signOut();
     dispatch(toggleAuthFalse());
     dispatch(clearUserInfo());
+  };
+
+  const test = async () => {
+    console.log(await GetPrimaryCalendarID());
+    console.log(await GetCalendarsNameList());
+    console.log(await GetEventsTitleList("esteban.estoc@gmail.com"));
+    console.log(
+      await SearchEventsByTitle("esteban.estoc@gmail.com", "coifeur")
+    );
+    console.log(
+      await GetEventDates(
+        "pjau304s0ih55ddbfbb13as7qo",
+        "esteban.estoc@gmail.com"
+      )
+    );
+    console.log(
+      await GetEventDuration(
+        "pjau304s0ih55ddbfbb13as7qo",
+        "esteban.estoc@gmail.com"
+      )
+    );
   };
 
   return (
@@ -44,6 +74,8 @@ const HomeScreen = ({ navigation }) => {
         title="Notifications"
         onPress={() => navigation.navigate("Notifications")}
       />
+      <Button title="Reset Store" onPress={() => persistor.purge()} />
+      <Button title="Test" onPress={test} />
     </View>
   );
 };
