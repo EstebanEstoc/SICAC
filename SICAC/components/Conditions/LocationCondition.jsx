@@ -1,22 +1,32 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { StyleSheet, View } from "react-native";
 import { Input } from 'react-native-elements';
 import { MediumConditionButton } from "../../helpers/Buttons";
+import { addCondition } from "../../reducers/scenarios/createScenarioSlice";
 
 const LocationCondition = ({ navigation }) => {
     const scenario = useSelector((state) => state.createScenario);
+    const dispatch = useDispatch();
     const ref = React.useRef();
+    const addressInput = ""
 
     return (
         <View style={styles.container}>
             <Input label="Address"
                 placeholder="Tap to enter the address"
+                onChangeText={(text) => addressInput = text}
                 leftIcon={{ type: 'font-awesome', name: 'map-pin' }} />
             <MediumConditionButton title="At this address" size="sm" icon={{ name: "map-marker" }}
-                onPress={() => navigation.navigate("CreateScenario")} />
+                onPress={() => {
+                    dispatch(addCondition({name: "At this address", options: { address: addressInput }}));
+                    navigation.navigate("CreateScenario");
+                  }}/>
             <MediumConditionButton title="Away from this address" size="sm" icon={{ name: "map-o" }}
-                onPress={() => navigation.navigate("CreateScenario")} />
+                onPress={() => {
+                    dispatch(addCondition({name: "Away from this address", options: { address: addressInput }}));
+                    navigation.navigate("CreateScenario");
+                  }}/>
         </View>
     );
 }
