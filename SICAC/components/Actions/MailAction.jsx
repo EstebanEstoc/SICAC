@@ -6,18 +6,27 @@ import {
   StyleSheet,
   TextInput,
 } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import EmailChipInput from "@arelstone/react-native-email-chip";
+import { addAction } from "../../reducers/scenarios/createScenarioSlice";
 
 const MailAction = ({ navigation }) => {
   const [emails, setemails] = useState([]);
   const [core, setcore] = useState("");
   const [subject, setsubject] = useState("");
+  const scenario = useSelector((state) => state.createScenario);
+  const dispatch = useDispatch();
+  const ref = React.useRef();
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <TouchableOpacity onPress={() => {}} style={styles.saveButtonContainer}>
+        <TouchableOpacity onPress={() => {
+          dispatch(addAction({ name: "Send mail : " + subject, options: { to: emails, subject: subject, core: core } }));
+          navigation.navigate("CreateScenario");
+        }}
+          style={styles.saveButtonContainer}>
           <Text style={styles.saveButtonText}>Save</Text>
         </TouchableOpacity>
       ),

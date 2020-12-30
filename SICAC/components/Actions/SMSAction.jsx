@@ -6,15 +6,19 @@ import {
   StyleSheet,
   TextInput,
 } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import SectionedMultiSelect from "react-native-sectioned-multi-select";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-
 import { contacts } from "../../helpers/contactList";
+import { addAction } from "../../reducers/scenarios/createScenarioSlice";
 
 const SMSAction = ({ navigation }) => {
   const [core, setcore] = useState("");
   const [selectedItems, setselectedItems] = useState([]);
+  const scenario = useSelector((state) => state.createScenario);
+  const dispatch = useDispatch();
+  const ref = React.useRef();
 
   const onSelectedItemsChange = (selectedItems) => {
     console.log(selectedItems);
@@ -24,7 +28,11 @@ const SMSAction = ({ navigation }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <TouchableOpacity onPress={() => {}} style={styles.saveButtonContainer}>
+        <TouchableOpacity onPress={() => {
+          dispatch(addAction({ name: "Send SMS to " + selectedItems, options: { to: selectedItems, core: core } }));
+          navigation.navigate("CreateScenario");
+        }} 
+          style={styles.saveButtonContainer}>
           <Text style={styles.saveButtonText}>Save</Text>
         </TouchableOpacity>
       ),

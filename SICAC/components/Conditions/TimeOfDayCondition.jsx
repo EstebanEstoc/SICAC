@@ -13,14 +13,14 @@ const TimeOfDayCondition = ({ navigation }) => {
     <View style={styles.container}>
       <ConditionButton title="Daytime" size="sm" icon={{ name: "sun-o" }}
         onPress={() => {
-          dispatch(addCondition({name: "Daytime"}));
+          dispatch(addCondition({ name: "Daytime" }));
           navigation.navigate("CreateScenario");
-        }}/>
+        }} />
       <ConditionButton title="Nighttime" size="sm" icon={{ name: "moon-o" }}
         onPress={() => {
-          dispatch(addCondition({name: "Nighttime"}));
+          dispatch(addCondition({ name: "Nighttime" }));
           navigation.navigate("CreateScenario");
-        }}/>
+        }} />
     </View>
   );
 }

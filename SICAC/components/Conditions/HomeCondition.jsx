@@ -13,14 +13,14 @@ const HomeCondition = ({ navigation }) => {
         <View style={styles.container}>
             <ConditionButton title="At home" size="sm" icon={{ name: "home" }}
                 onPress={() => {
-                    dispatch(addCondition({name: "At home"}));
+                    dispatch(addCondition({ name: "At home" }));
                     navigation.navigate("CreateScenario");
-                  }}/>
+                }} />
             <ConditionButton title="Away from home" size="sm" icon={{ name: "plane" }}
                 onPress={() => {
-                    dispatch(addCondition({name: "Away from home"}));
+                    dispatch(addCondition({ name: "Away from home" }));
                     navigation.navigate("CreateScenario");
-                  }}/>
+                }} />
         </View>
     );
 }

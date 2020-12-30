@@ -19,14 +19,14 @@ const LocationCondition = ({ navigation }) => {
                 leftIcon={{ type: 'font-awesome', name: 'map-pin' }} />
             <MediumConditionButton title="At this address" size="sm" icon={{ name: "map-marker" }}
                 onPress={() => {
-                    dispatch(addCondition({name: "At this address", options: { address: addressInput }}));
+                    dispatch(addCondition({ name: "At this address : " + addressInput, options: { address: addressInput } }));
                     navigation.navigate("CreateScenario");
-                  }}/>
+                }} />
             <MediumConditionButton title="Away from this address" size="sm" icon={{ name: "map-o" }}
                 onPress={() => {
-                    dispatch(addCondition({name: "Away from this address", options: { address: addressInput }}));
+                    dispatch(addCondition({ name: "Away from this address : " + addressInput, options: { address: addressInput } }));
                     navigation.navigate("CreateScenario");
-                  }}/>
+                }} />
         </View>
     );
 }
