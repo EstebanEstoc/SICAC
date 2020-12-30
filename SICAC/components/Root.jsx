@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 
 import Authentication from "./Authentication/Authentication";
 import HomeScreen from "../helpers/HomeScreen";
+import Home from "./Home";
 import CreateScenario from "./CreateScenario/CreateScenarioTabs";
 
 import SunriseSunsetAPI from "../helpers/SunriseSunsetAPI";
@@ -35,10 +36,11 @@ const Root = () => {
     <NavigationContainer>
       <Stack.Navigator screenOptions={styles.header}>
         {isAuth ? (
-          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Home" component={Home} />
         ) : (
           <Stack.Screen name="Authentication" component={Authentication} />
         )}
+        <Stack.Screen name="HomeHelper" component={HomeScreen} />
         <Stack.Screen name="SunriseSunsetAPI" component={SunriseSunsetAPI} />
         <Stack.Screen
           name="MailAction"
