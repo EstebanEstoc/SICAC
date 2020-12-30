@@ -6,7 +6,7 @@ export const WEB_CLIENT_ID =
 
 export const GoogleConfigure = () => {
   GoogleSignin.configure({
-    scopes: [],
+    scopes: ['profile', 'email', 'https://www.googleapis.com/auth/calendar'],
     webClientId: WEB_CLIENT_ID,
     offlineAccess: true,
     forceConsentPrompt: true
