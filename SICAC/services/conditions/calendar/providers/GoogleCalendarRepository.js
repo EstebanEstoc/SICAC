@@ -29,7 +29,7 @@ export const GetCalendarsNameList = async () => {
   }
 }
 
-export const GetEventsTitleList = async calendarID => {
+export const GetFutureEventList = async calendarID => {
   try {
     const events = await GoogleCalendarAPI.GetGoogleCalendarEventList(
       calendarID
@@ -39,10 +39,7 @@ export const GetEventsTitleList = async calendarID => {
     })
     const eventList = []
     nextEvents.forEach(event => {
-      eventList.push({
-        id: event.id,
-        name: event.summary
-      })
+      eventList.push(event)
     })
     return eventList
   } catch (error) {
@@ -52,36 +49,51 @@ export const GetEventsTitleList = async calendarID => {
 
 export const SearchEventsByTitle = async (calendarID, searchQuery) => {
   try {
-    const eventList = await GetEventsTitleList(calendarID)
+    const eventList = await GetFutureEventList(calendarID)
     const searchedEvents = eventList.filter(event =>
-      new RegExp(searchQuery, 'i').test(event.name)
+      new RegExp(searchQuery, 'i').test(event.summary)
     )
     return searchedEvents
   } catch (error) {
     console.log(error)
   }
 }
-
-export const GetEventDates = async (eventID, calendarID) => {
+export const GetEventByID = async (eventID, calendarID) => {
   try {
-    const event = await GoogleCalendarAPI.GetGoogleCalendarEvent(
-      eventID,
-      calendarID
-    )
-    return {
-      start: new Date(event.start.dateTime),
-      end: new Date(event.end.dateTime)
-    }
+    return await GoogleCalendarAPI.GetGoogleCalendarEvent(eventID, calendarID)
   } catch (error) {
     console.log(error)
   }
 }
 
-export const GetEventDuration = async (eventID, calendarID) => {
-  try {
-    const dates = await GetEventDates(eventID, calendarID)
-    return Math.abs(dates.end - dates.start) / 36e5
-  } catch (error) {
-    console.log(error)
+export const GetEventDates = event => {
+  return {
+    start: new Date(event.start.dateTime),
+    end: new Date(event.end.dateTime)
   }
+}
+
+export const GetEventDuration = event => {
+  const dates = GetEventDates(event)
+  return Math.abs(dates.end - dates.start) / 36e5
+}
+
+export const EventIsCurrent = event => {
+  const eventDates = GetEventDates(event)
+  return eventDates.start - new Date() <= 0 && eventDates.end - new Date() >= 0
+}
+
+export const EventIsIn30Minutes = event => {
+  const eventDates = GetEventDates(event)
+  const current = new Date()
+  return eventDates.start - current > 17e5 && eventDates.start - current < 19e5
+}
+
+export const GetEventLocation = event => {
+  return event.location
+}
+
+export const GetEventData = (event, queryDataName) => {
+  const data = JSON.parse(event.description)
+  return data[queryDataName]
 }
