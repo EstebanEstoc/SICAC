@@ -19,6 +19,7 @@ export default function Actions({ navigation }) {
   const scenario = useSelector((state) => state.createScenario);
   const ref = React.useRef();
 
+
   return (
     <ScrollView containerStyle={styles.container}>
       <Transitioning.View

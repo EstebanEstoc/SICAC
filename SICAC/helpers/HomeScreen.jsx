@@ -74,6 +74,10 @@ const HomeScreen = ({ navigation }) => {
         title="Notifications"
         onPress={() => navigation.navigate("Notifications")}
       />
+      <Button
+        title="Add scenario"
+        onPress={() => navigation.navigate("AddScenario")}
+      />
       <Button title="Reset Store" onPress={() => persistor.purge()} />
       <Button title="Test" onPress={test} />
     </View>

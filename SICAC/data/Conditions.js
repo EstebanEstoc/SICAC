@@ -19,48 +19,42 @@ export const conditions = [
     },
     {
         id: 4,
-        Title: "Hour",
-        IconName: "schedule",
-        Condition: ""
-    },
-    {
-        id: 5,
         Title: "Time of day",
         IconName: "flare",
         Condition: "TimeOfDayCondition"
     },
     {
-        id: 6,
+        id: 5,
         Title: "Have to walk",
         IconName: "nature",
         Condition: ""
     },
     {
-        id: 7,
+        id: 6,
         Title: "Connexion to earphones",
         IconName: "headset",
         Condition: ""
     },
     {
-        id: 8,
+        id: 7,
         Title: "Connexion to speaker",
         IconName: "speaker",
         Condition: ""
     },
     {
-        id: 9,
+        id: 8,
         Title: "Have an appointment",
         IconName: "today",
         Condition: ""
     },
     {
-        id: 10,
+        id: 9,
         Title: "Have to take pills",
         IconName: "healing",
         Condition: ""
     },
     {
-        id: 11,
+        id: 10,
         Title: "High\n heart rate",
         IconName: "favorite",
         Condition: ""

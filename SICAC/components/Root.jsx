@@ -15,6 +15,7 @@ import Actions from "./NewScenario/Actions/Actions";
 import Conditions from "./NewScenario/Conditions/Conditions";
 import Summary from "./NewScenario/Summary/Summary";
 import Notifications from "../helpers/Notifications";
+import AddScenario from "../helpers/AddScenario";
 import MailAction from "./Actions/MailAction";
 import SMSAction from "./Actions/SMSAction";
 import NotificationAction from "./Actions/NotificationAction";
@@ -62,6 +63,7 @@ const Root = () => {
         <Stack.Screen name="New scenario - Actions" component={Actions} />
         <Stack.Screen name="New scenario - Summary" component={Summary} />
         <Stack.Screen name="Notifications" component={Notifications} />
+        <Stack.Screen name="AddScenario" component={AddScenario} />
         <Stack.Screen name="CreateScenario" component={CreateScenario} />
         <Stack.Screen name="TimeOfDayCondition" component={TimeOfDayCondition} />
         <Stack.Screen name="HomeCondition" component={HomeCondition} />

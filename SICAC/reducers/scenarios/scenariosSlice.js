@@ -4,7 +4,7 @@ import {
   createScenario,
   editScenario,
   enableScenario,
-  disableScenario
+  disableScenario,
 } from './lib/createScenario'
 
 /**
@@ -41,9 +41,38 @@ const scenariosSlice = createSlice({
      * @param {Object} action.payload
      * @param {Number} action.payload.id Id of the scenario
      */
-    deleteScenario: (state, action) => {
-      return state.scenarios.filter(scenario => scenario.id !== action.payload)
+    deleteScenario: (state, id) => {
+      state.scenarios = state.scenarios.filter(scenario => scenario.id !== id.payload)
     },
+
+
+        /**
+     *
+     * @param {Object} state
+     * @param {Object} action
+     * @param {String} action.type
+     * @param {Object} action.payload
+     * @param {Number} action.payload.id Id of the scenario
+     */
+    selectScenario: (state, id) => {
+      // console.log("zdkjlnqsdvkjndsvkjvdsq")
+      // console.log(state.scenarios.find(scenario => scenario.id === id.payload))
+      return state.scenarios.find(scenario => scenario.id === id.payload)
+    },
+
+
+    // /**
+    //  *
+    //  * @param {Object} state
+    //  * @param {Object} action
+    //  * @param {String} action.type
+    //  * @param {Object} action.payload
+    //  * @param {Number} action.payload.id Id of the scenario
+    //  */
+    // selectScenario: (state, action) => {
+    //   console.log("action.payload.id")
+    //   return state.scenarios.find(scenario => scenario.id === action.payload.id)
+    // },
 
     /**
      *
@@ -81,8 +110,8 @@ const scenariosSlice = createSlice({
      * @param {Object[]} action.payload.values.conditions
      * @param {Object[]} action.payload.values.actions
      */
-    modifyScenario: (state, action) =>
-      editScenario(action.payload.values, action.payload.id, state)
+    modifyScenario: (state, action) =>{
+      editScenario(action.payload.values, action.payload.id, state)}
   }
 })
 
@@ -91,7 +120,8 @@ export const {
   deleteScenario,
   switchOffScenario,
   switchOnScenario,
-  modifyScenario
+  modifyScenario,
+  selectScenario
 } = scenariosSlice.actions
 
 export default scenariosSlice.reducer
