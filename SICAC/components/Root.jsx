@@ -26,6 +26,7 @@ import HomeCondition from "./Conditions/HomeCondition";
 import LocationCondition from "./Conditions/LocationCondition";
 import WifiAction from "./Actions/WifiAction";
 import BluetoothAction from "./Actions/BluetoothAction";
+import Calendar from "../helpers/Calendar";
 
 const Stack = createStackNavigator();
 
@@ -65,12 +66,16 @@ const Root = () => {
         <Stack.Screen name="Notifications" component={Notifications} />
         <Stack.Screen name="AddScenario" component={AddScenario} />
         <Stack.Screen name="CreateScenario" component={CreateScenario} />
-        <Stack.Screen name="TimeOfDayCondition" component={TimeOfDayCondition} />
+        <Stack.Screen
+          name="TimeOfDayCondition"
+          component={TimeOfDayCondition}
+        />
         <Stack.Screen name="HomeCondition" component={HomeCondition} />
         <Stack.Screen name="LocationCondition" component={LocationCondition} />
         <Stack.Screen name="WifiAction" component={WifiAction} />
         <Stack.Screen name="BluetoothAction" component={BluetoothAction} />
         <Stack.Screen name="Bluetooth" component={Bluetooth} />
+        <Stack.Screen name="Calendar" component={Calendar} />
       </Stack.Navigator>
     </NavigationContainer>
   );

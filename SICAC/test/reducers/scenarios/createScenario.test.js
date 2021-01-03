@@ -1,7 +1,9 @@
 import createScenarioReducer from '../../../reducers/scenarios/createScenarioSlice'
 import {
   addAction,
+  removeAction,
   addCondition,
+  removeCondition,
   clear,
   addName
 } from '../../../reducers/scenarios/createScenarioSlice'
@@ -42,6 +44,27 @@ describe('createScenario Reducer', () => {
       const action = { type: addCondition.type, payload: conditionScenario }
 
       expect(createScenarioReducer(undefined, action)).toMatchSnapshot()
+    })
+  })
+
+  describe('removeCondition', () => {
+    test('must delete a condition in the if field', () => {
+      const conditionScenario = {
+        id: 35,
+        options: {
+          lat: -123,
+          lng: 13
+        }
+      }
+      const addAction = { type: addCondition.type, payload: conditionScenario }
+      const removeAction = { type: removeCondition.type, payload: 0 }
+
+      expect(
+        createScenarioReducer(
+          createScenarioReducer(undefined, addAction),
+          removeAction
+        )
+      ).toMatchSnapshot()
     })
   })
 

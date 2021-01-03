@@ -32,27 +32,6 @@ const HomeScreen = ({ navigation }) => {
     dispatch(clearUserInfo());
   };
 
-  const test = async () => {
-    console.log(await GetPrimaryCalendarID());
-    console.log(await GetCalendarsNameList());
-    console.log(await GetEventsTitleList("esteban.estoc@gmail.com"));
-    console.log(
-      await SearchEventsByTitle("esteban.estoc@gmail.com", "coifeur")
-    );
-    console.log(
-      await GetEventDates(
-        "pjau304s0ih55ddbfbb13as7qo",
-        "esteban.estoc@gmail.com"
-      )
-    );
-    console.log(
-      await GetEventDuration(
-        "pjau304s0ih55ddbfbb13as7qo",
-        "esteban.estoc@gmail.com"
-      )
-    );
-  };
-
   return (
     <View style={styles.container}>
       <Text>Welcome {userInfo && userInfo.user && userInfo.user.name}</Text>
@@ -79,7 +58,10 @@ const HomeScreen = ({ navigation }) => {
         onPress={() => navigation.navigate("AddScenario")}
       />
       <Button title="Reset Store" onPress={() => persistor.purge()} />
-      <Button title="Test" onPress={test} />
+      <Button
+        title="Calendar"
+        onPress={() => navigation.navigate("Calendar")}
+      />
     </View>
   );
 };

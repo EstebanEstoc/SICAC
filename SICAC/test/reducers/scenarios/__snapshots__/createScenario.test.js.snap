@@ -47,3 +47,11 @@ Object {
   "name": "",
 }
 `;
+
+exports[`createScenario Reducer removeCondition must delete a condition in the if field 1`] = `
+Object {
+  "actions": Array [],
+  "conditions": Array [],
+  "name": "",
+}
+`;
