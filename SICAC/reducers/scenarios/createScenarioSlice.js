@@ -19,12 +19,32 @@ const createScenarioSlice = createSlice({
     /**
      *
      * @param {Object} state
+     * @param {Number} index
+     */
+
+    removeAction: (state, index) => {
+      state.actions.splice(index, 1)
+    },
+
+    /**
+     *
+     * @param {Object} state
      * @param {Object} action
      * @param {Object[]} action.payload
      */
     addCondition: (state, action) => {
       state.conditions.push(action.payload)
     },
+
+    /**
+     *
+     * @param {Object} state
+     * @param {Number} index
+     */
+    removeCondition: (state, index) => {
+      state.conditions.splice(index, 1)
+    },
+
     clear: state => initialState,
 
     /**
@@ -41,6 +61,8 @@ const createScenarioSlice = createSlice({
 
 export const {
   addAction,
+  removeAction,
+  removeCondition,
   addCondition,
   clear,
   addName

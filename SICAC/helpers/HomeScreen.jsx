@@ -8,6 +8,15 @@ import { toggleAuthFalse } from "../reducers/authentication/authenticationSlice"
 import { clearUserInfo } from "../reducers/authentication/userSlice";
 import { GoogleConfigure } from "../services/authentication/providers/GoogleSignIn";
 import styles from "./styles";
+import { persistor } from "../store/store";
+import {
+  GetPrimaryCalendarID,
+  GetCalendarsNameList,
+  GetEventsTitleList,
+  SearchEventsByTitle,
+  GetEventDates,
+  GetEventDuration,
+} from "../services/conditions/calendar/providers/GoogleCalendarRepository";
 
 const HomeScreen = ({ navigation }) => {
   const userInfo = useSelector((state) => state.user);
@@ -43,6 +52,11 @@ const HomeScreen = ({ navigation }) => {
       <Button
         title="Notifications"
         onPress={() => navigation.navigate("Notifications")}
+      />
+      <Button title="Reset Store" onPress={() => persistor.purge()} />
+      <Button
+        title="Calendar"
+        onPress={() => navigation.navigate("Calendar")}
       />
     </View>
   );
