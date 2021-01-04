@@ -10,10 +10,12 @@ import { Card, Icon, Input } from "react-native-elements";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./SummaryStyles";
 import { addName } from "../../../reducers/scenarios/createScenarioSlice";
+import { addScenario } from "../../../reducers/scenarios/scenariosSlice";
 
-export default function Summary() {
+export default function Summary({ navigation }) {
   const dispatch = useDispatch();
   const scenario = useSelector((state) => state.createScenario);
+  const scenarios = useSelector((state) => state.scenarios);
   const ref = React.useRef();
 
   return (
@@ -78,7 +80,10 @@ export default function Summary() {
 
       <View style={styles.floatingButton}>
         <TouchableOpacity
-          onPress={() => console.log("Create scenario")}
+          onPress={() => {
+            dispatch(addScenario(scenario, scenarios.lastId));
+            navigation.navigate("ScenarioList");
+          }}
           style={styles.newScenarioButton}
         >
           <Text style={styles.newScenarioButtonText}>Create this scenario</Text>
