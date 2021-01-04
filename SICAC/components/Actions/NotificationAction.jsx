@@ -6,17 +6,23 @@ import {
   StyleSheet,
   TextInput,
 } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { addAction } from "../../reducers/scenarios/createScenarioSlice";
 
 const NotificationAction = ({ navigation }) => {
-  const [emails, setemails] = useState([]);
-  const [core, setcore] = useState("");
   const [subject, setsubject] = useState("");
+  const scenario = useSelector((state) => state.createScenario);
+  const dispatch = useDispatch();
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <TouchableOpacity onPress={() => {}} style={styles.saveButtonContainer}>
+        <TouchableOpacity onPress={() => {
+          dispatch(addAction({ name: "Send notification : " + subject, options: { core: subject } }));
+          navigation.navigate("CreateScenario");
+        }} 
+          style={styles.saveButtonContainer}>
           <Text style={styles.saveButtonText}>Save</Text>
         </TouchableOpacity>
       ),

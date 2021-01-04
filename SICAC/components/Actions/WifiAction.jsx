@@ -5,7 +5,6 @@ import { ConditionButton } from "../../helpers/Buttons";
 
 const WifiAction = ({ navigation }) => {
   const scenario = useSelector((state) => state.createScenario);
-  const ref = React.useRef();
 
   return (
     <View style={styles.container}>

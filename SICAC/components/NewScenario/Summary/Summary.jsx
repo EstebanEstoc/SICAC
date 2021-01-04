@@ -9,22 +9,13 @@ import {
 import { Card, Icon, Input } from "react-native-elements";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./SummaryStyles";
-import { addName } from "../../../reducers/scenarios/createScenarioSlice";
-
-import {
-  modifyScenario
-} from 'reducers/scenarios/scenariosSlice'
-import { addScenario } from "../../../reducers/scenarios/scenariosSlice";
-
+import { addName, clear } from "../../../reducers/scenarios/createScenarioSlice";
+import { addScenario, modifyScenario } from "../../../reducers/scenarios/scenariosSlice";
 
 export default function Summary({ route, navigation }) {
-
-  const dispatch = useDispatch();  
-
-  const ref = React.useRef();
-
-  var scenario = useSelector((state) => state.createScenario);
-
+  const dispatch = useDispatch();
+  const scenario = useSelector((state) => state.createScenario);
+  const scenarios = useSelector((state) => state.scenarios);
 
   try {
     var { itemId } = route.params;
@@ -32,8 +23,6 @@ export default function Summary({ route, navigation }) {
   } catch (e) {
     console.log(e)
   }
-
-
 
   return (
     <View style={styles.container}>
@@ -101,8 +90,11 @@ export default function Summary({ route, navigation }) {
 
       <View style={styles.floatingButton}>
         <TouchableOpacity
-          onPress={() => id != -1 ? dispatch(modifyScenario({values: scenario, id: Number(id)})) : dispatch(addScenario(scenario))
-          }
+          onPress={() => {
+            id != -1 ? dispatch(modifyScenario({values: scenario, id: Number(id)})) : dispatch(addScenario(scenario));
+            dispatch(clear());
+            navigation.navigate("ScenarioList");
+          }}
           style={styles.newScenarioButton}
         >
           <Text style={styles.newScenarioButtonText}>{id != -1 ? "Modify" : "Create"} this scenario</Text>

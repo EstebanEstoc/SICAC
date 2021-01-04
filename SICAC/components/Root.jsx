@@ -5,7 +5,9 @@ import { useSelector } from "react-redux";
 
 import Authentication from "./Authentication/Authentication";
 import HomeScreen from "../helpers/HomeScreen";
+import Home from "./Home";
 import CreateScenario from "./CreateScenario/CreateScenarioTabs";
+import ExampleScenarios from "./ExampleScenarios"
 
 import SunriseSunsetAPI from "../helpers/SunriseSunsetAPI";
 import ScenarioList from "./ScenarioList/ScenarioList";
@@ -37,10 +39,11 @@ const Root = () => {
     <NavigationContainer>
       <Stack.Navigator screenOptions={styles.header}>
         {isAuth ? (
-          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Home" component={Home} />
         ) : (
           <Stack.Screen name="Authentication" component={Authentication} />
         )}
+        <Stack.Screen name="HomeHelper" component={HomeScreen} />
         <Stack.Screen name="SunriseSunsetAPI" component={SunriseSunsetAPI} />
         <Stack.Screen
           name="MailAction"
@@ -66,16 +69,14 @@ const Root = () => {
         <Stack.Screen name="Notifications" component={Notifications} />
         <Stack.Screen name="AddScenario" component={AddScenario} />
         <Stack.Screen name="CreateScenario" component={CreateScenario} />
-        <Stack.Screen
-          name="TimeOfDayCondition"
-          component={TimeOfDayCondition}
-        />
+        <Stack.Screen name="TimeOfDayCondition" component={TimeOfDayCondition} />
         <Stack.Screen name="HomeCondition" component={HomeCondition} />
         <Stack.Screen name="LocationCondition" component={LocationCondition} />
         <Stack.Screen name="WifiAction" component={WifiAction} />
         <Stack.Screen name="BluetoothAction" component={BluetoothAction} />
         <Stack.Screen name="Bluetooth" component={Bluetooth} />
         <Stack.Screen name="Calendar" component={Calendar} />
+        <Stack.Screen name="ExampleScenarios" component={ExampleScenarios} />
       </Stack.Navigator>
     </NavigationContainer>
   );
