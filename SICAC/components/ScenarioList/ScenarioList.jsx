@@ -5,12 +5,15 @@ import { Text, View, TouchableOpacity, ScrollView, Switch } from "react-native";
 import styles from "./ScenarioListStyles";
 import { Transition, Transitioning } from "react-native-reanimated";
 import Icon from "react-native-vector-icons/FontAwesome";
+
+import { Button } from 'react-native-elements';
+
 import {
   addScenario,
   deleteScenario,
   switchOnScenario,
   switchOffScenario,
-  modifyScenario
+  modifyScenario,
 } from 'reducers/scenarios/scenariosSlice'
 
 const transition = (
@@ -32,8 +35,8 @@ export default function ScenarioList({ navigation }) {
   const [currentIndex, setCurrentIndex] = React.useState(0);
   const dispatch = useDispatch()
   const scenarios = useSelector((state) => state.scenarios);
+  console.log(scenarios)
   const ref = React.useRef();
-
   const headers = ['Enabled', 'Disabled'];
 
   const AppButton = ({ onPress, scenario, buttonStyles, textStyles, icon }) => (
@@ -46,11 +49,11 @@ export default function ScenarioList({ navigation }) {
               {"   "}
             </Text>
           ) : (
-            ""
-          )
+              ""
+            )
         ) : (
-          ""
-        )}
+            ""
+          )}
         {scenario.name}
         {icon ? (
           icon.right ? (
@@ -59,11 +62,11 @@ export default function ScenarioList({ navigation }) {
               {"   "}
             </Text>
           ) : (
-            ""
-          )
+              ""
+            )
         ) : (
-          ""
-        )}
+            ""
+          )}
       </Text>
       {scenario.id && (
         <View style={styles.scenarioIcons}>
@@ -82,7 +85,7 @@ export default function ScenarioList({ navigation }) {
               thumbColor={scenario.active ? "white" : "black"}
             />
             <Text style={styles.scenarioIconLabel}>
-              Tap to { scenario.active ? 'disable' : 'enable' }
+              Tap to {scenario.active ? 'disable' : 'enable'}
             </Text>
           </View>
           <View style={styles.scenarioIconAndLabel}>
@@ -93,7 +96,9 @@ export default function ScenarioList({ navigation }) {
               color='black'
               type='font-awesome'
               onPress={() => {
-                //
+                navigation.navigate('CreateScenario', {
+                  itemId: scenario.id
+                });
               }}
             />
             <Text style={styles.scenarioIconLabel}>
@@ -120,7 +125,7 @@ export default function ScenarioList({ navigation }) {
       )}
     </TouchableOpacity>
   );
-  
+
   const ScenarioButton = ({ scenario, buttonStyles, textStyles, icon, isScenario, onPress }) => (
     <View>
       <AppButton
@@ -172,23 +177,22 @@ export default function ScenarioList({ navigation }) {
                       {index === currentIndex ? (
                         <Icon name="chevron-down" size={styles.heading.fontSize} />
                       ) : (
-                        <Icon name="chevron-up" size={styles.heading.fontSize} />
-                      )}
+                          <Icon name="chevron-up" size={styles.heading.fontSize} />
+                        )}
                     </Text>
                     {index === currentIndex && scenarios && scenarios.scenarios && (
                       <View style={styles.subCategoriesList}>
-                        {scenarios.scenarios.map((scenario) =>
-                          {
-                            return scenario.active === !index && (
-                              <ScenarioButton
-                                key={scenario.id}
-                                scenario={scenario}
-                                buttonStyles={getSubCategoriesListStyles(headers[currentIndex])}
-                                textStyles={styles.subCategoriesListText}
-                                isScenario={true}
-                              />
-                            )
-                          }
+                        {scenarios.scenarios.map((scenario) => {
+                          return scenario.active === !index && (
+                            <ScenarioButton
+                              key={scenario.id}
+                              scenario={scenario}
+                              buttonStyles={getSubCategoriesListStyles(headers[currentIndex])}
+                              textStyles={styles.subCategoriesListText}
+                              isScenario={true}
+                            />
+                          )
+                        }
                         )}
                       </View>
                     )}

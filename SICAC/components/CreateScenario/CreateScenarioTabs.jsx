@@ -1,18 +1,45 @@
-import React, { useLayoutEffect } from "react";
+import React, { useLayoutEffect, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { View, StyleSheet, Alert } from "react-native";
 import { IconButton, Colors } from "react-native-paper";
 
-import { clear } from "../../reducers/scenarios/createScenarioSlice";
+import {
+  addAction,
+  addCondition,
+  clear,
+  addName
+} from "../../reducers/scenarios/createScenarioSlice";
+
 import Resume from "../NewScenario/Summary/Summary";
 import Actions from "../NewScenario/Actions/Actions";
 import Conditions from "../NewScenario/Conditions/Conditions";
 
 const Tab = createMaterialTopTabNavigator();
 
-const CreateScenarioTabs = ({ navigation }) => {
+const CreateScenarioTabs = ({ route, navigation }) => {
   const dispatch = useDispatch();
+  const scenarios = useSelector((state) => state.scenarios);
+
+
+
+  try {
+    var { itemId } = route.params;
+    var id = JSON.stringify(itemId);
+    var SelectedScenario = scenarios.scenarios.find(item => item.id === Number(id))
+    useEffect(() => {
+      dispatch(addName(SelectedScenario.name));
+      SelectedScenario.actions.map(action => dispatch(addAction(action)));
+      SelectedScenario.conditions.map(condition => dispatch(addCondition(condition)));
+
+    }, []);
+
+  } catch (e) {
+    var itemId = -1;
+  }
+
+
+
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -32,6 +59,7 @@ const CreateScenarioTabs = ({ navigation }) => {
                     text: "Yes",
                     onPress: () => {
                       navigation.goBack();
+                      dispatch(clear());
                     },
                   },
                   {
@@ -62,7 +90,7 @@ const CreateScenarioTabs = ({ navigation }) => {
     >
       <Tab.Screen name="Conditions" component={Conditions} />
       <Tab.Screen name="Actions" component={Actions} />
-      <Tab.Screen name="Resume" component={Resume} />
+      <Tab.Screen name="Resume" component={Resume} initialParams={{ itemId: itemId }} />
     </Tab.Navigator>
   );
 };

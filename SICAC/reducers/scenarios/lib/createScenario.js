@@ -82,3 +82,10 @@ export const disableScenario = (state, id) => {
     throw new Error('No such scenario')
   }
 }
+
+
+
+
+
+
+

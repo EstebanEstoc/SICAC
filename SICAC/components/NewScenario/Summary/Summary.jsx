@@ -11,16 +11,36 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./SummaryStyles";
 import { addName } from "../../../reducers/scenarios/createScenarioSlice";
 
-export default function Summary() {
-  const dispatch = useDispatch();
-  const scenario = useSelector((state) => state.createScenario);
+import {
+  modifyScenario
+} from 'reducers/scenarios/scenariosSlice'
+import { addScenario } from "../../../reducers/scenarios/scenariosSlice";
+
+
+export default function Summary({ route, navigation }) {
+
+  const dispatch = useDispatch();  
+
   const ref = React.useRef();
+
+  var scenario = useSelector((state) => state.createScenario);
+
+
+  try {
+    var { itemId } = route.params;
+    var id = JSON.stringify(itemId);
+  } catch (e) {
+    console.log(e)
+  }
+
+
 
   return (
     <View style={styles.container}>
       <ScrollView containerStyle={styles.scrollView}>
         <View style={styles.name}>
-          {/* <Text>Scenario Name</Text>
+          {
+          /* <Text>Scenario Name</Text>
           <TextInput
             style={styles.textInput}
             onChangeText={scenarioName => onChangeScenarioName(scenarioName)}
@@ -29,14 +49,17 @@ export default function Summary() {
           <Input
             label="Scenario name"
             placeholder="Tap to enter the scenario name"
+            // onChangeText={text => onChangeText(text)}
             leftIcon={{
               type: "font-awesome-5",
               name: "pen-fancy",
               size: 18,
             }}
             style={styles.textInput2}
-            value={scenario.name && scenario.name}
+            defaultValue={scenario.name}
             onChangeText={(scenarioName) => dispatch(addName(scenarioName))}
+            
+            // onChangeText={(scenarioName) => dispatch(modifyScenario({name: scenarioName}, Number(id)))}
           />
         </View>
 
@@ -78,10 +101,11 @@ export default function Summary() {
 
       <View style={styles.floatingButton}>
         <TouchableOpacity
-          onPress={() => console.log("Create scenario")}
+          onPress={() => id != -1 ? dispatch(modifyScenario({values: scenario, id: Number(id)})) : dispatch(addScenario(scenario))
+          }
           style={styles.newScenarioButton}
         >
-          <Text style={styles.newScenarioButtonText}>Create this scenario</Text>
+          <Text style={styles.newScenarioButtonText}>{id != -1 ? "Modify" : "Create"} this scenario</Text>
         </TouchableOpacity>
       </View>
     </View>

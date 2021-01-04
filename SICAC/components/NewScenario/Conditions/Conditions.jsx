@@ -18,6 +18,7 @@ const transition = (
 const Title = ({ text }) => <Text style={styles.title}>{text}</Text>;
 
 export default function Conditions({ navigation }) {
+
   const scenario = useSelector((state) => state.createScenario);
   const ref = React.useRef();
 
