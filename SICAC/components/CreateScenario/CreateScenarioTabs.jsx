@@ -20,23 +20,22 @@ const Tab = createMaterialTopTabNavigator();
 const CreateScenarioTabs = ({ route, navigation }) => {
   const dispatch = useDispatch();
   const scenarios = useSelector((state) => state.scenarios);
+  const  itemId  = route.params ? route.params.itemId : -1;
 
 
 
-  try {
-    var { itemId } = route.params;
-    var id = JSON.stringify(itemId);
-    var SelectedScenario = scenarios.scenarios.find(item => item.id === Number(id))
-    useEffect(() => {
+
+  useEffect(() => {
+    if(itemId !== -1){
+      const SelectedScenario = scenarios.scenarios.find(item => item.id === Number(JSON.stringify(itemId)))
+      console.log(SelectedScenario)
       dispatch(addName(SelectedScenario.name));
       SelectedScenario.actions.map(action => dispatch(addAction(action)));
       SelectedScenario.conditions.map(condition => dispatch(addCondition(condition)));
+    }
+  }, []);
 
-    }, []);
 
-  } catch (e) {
-    var itemId = -1;
-  }
 
 
 
