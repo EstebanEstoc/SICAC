@@ -1,21 +1,21 @@
 export const actions = [
     {
         id: 1,
-        Title: "Wifi \n(On/Off) ",
-        IconName: "wifi",
+        Title: "Launch music",
+        IconName: "audiotrack",
         Action: "WifiAction"
     },
     {
         id: 2,
-        Title: "Formulaire",
+        Title: "Launch a form",
         IconName: "description",
         Action: ""
     },
     {
         id: 3,
-        Title: "Bluetooth \n(On/Off)",
-        IconName: "bluetooth",
-        Action: "BluetoothAction"
+        Title: "Trigger the pedometer",
+        IconName: "watch",
+        Action: ""
     },
     {
         id: 4,
@@ -31,8 +31,8 @@ export const actions = [
     },
     {
         id: 6,
-        Title: "Mode \nSilencieux",
-        IconName: "vibration",
+        Title: "Lights",
+        IconName: "highlight",
         Action: ""
     },
     {

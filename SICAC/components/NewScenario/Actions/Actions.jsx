@@ -21,6 +21,7 @@ export default function Actions({ navigation }) {
   const dispatch = useDispatch();
   const ref = React.useRef();
 
+
   return (
     <ScrollView containerStyle={styles.container}>
       <Transitioning.View
