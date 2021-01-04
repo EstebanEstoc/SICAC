@@ -40,6 +40,13 @@ export const actions = [
         Title: "Mail",
         IconName: "mail",
         Action: "MailAction"
+    },
+    {
+        id: 8,
+        Title: "Shutters",
+        IconName: "reorder",
+        Action: ""
     }
+
 
 ]
