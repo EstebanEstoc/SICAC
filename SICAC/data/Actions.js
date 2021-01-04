@@ -33,7 +33,7 @@ export const actions = [
         id: 6,
         Title: "Lights",
         IconName: "highlight",
-        Action: ""
+        Action: "LightsAction"
     },
     {
         id: 7,
