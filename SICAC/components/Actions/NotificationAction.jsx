@@ -14,7 +14,6 @@ const NotificationAction = ({ navigation }) => {
   const [subject, setsubject] = useState("");
   const scenario = useSelector((state) => state.createScenario);
   const dispatch = useDispatch();
-  const ref = React.useRef();
 
   useLayoutEffect(() => {
     navigation.setOptions({

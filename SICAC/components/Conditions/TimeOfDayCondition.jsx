@@ -7,7 +7,6 @@ import { addCondition } from "../../reducers/scenarios/createScenarioSlice";
 const TimeOfDayCondition = ({ navigation }) => {
   const scenario = useSelector((state) => state.createScenario);
   const dispatch = useDispatch();
-  const ref = React.useRef();
 
   return (
     <View style={styles.container}>

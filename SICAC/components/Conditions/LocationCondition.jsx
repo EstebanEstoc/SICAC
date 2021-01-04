@@ -8,7 +8,6 @@ import { addCondition } from "../../reducers/scenarios/createScenarioSlice";
 const LocationCondition = ({ navigation }) => {
     const scenario = useSelector((state) => state.createScenario);
     const dispatch = useDispatch();
-    const ref = React.useRef();
     var addressInput = ""
 
     return (

@@ -18,7 +18,6 @@ const SMSAction = ({ navigation }) => {
   const [selectedItems, setselectedItems] = useState([]);
   const scenario = useSelector((state) => state.createScenario);
   const dispatch = useDispatch();
-  const ref = React.useRef();
 
   const onSelectedItemsChange = (selectedItems) => {
     console.log(selectedItems);

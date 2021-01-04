@@ -16,7 +16,6 @@ export default function Summary({ navigation }) {
   const dispatch = useDispatch();
   const scenario = useSelector((state) => state.createScenario);
   const scenarios = useSelector((state) => state.scenarios);
-  const ref = React.useRef();
 
   return (
     <View style={styles.container}>
