@@ -9,7 +9,7 @@ import {
 import { Card, Icon, Input } from "react-native-elements";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./SummaryStyles";
-import { addName } from "../../../reducers/scenarios/createScenarioSlice";
+import { addName, clear } from "../../../reducers/scenarios/createScenarioSlice";
 import { addScenario, modifyScenario } from "../../../reducers/scenarios/scenariosSlice";
 
 export default function Summary({ route, navigation }) {
@@ -92,6 +92,7 @@ export default function Summary({ route, navigation }) {
         <TouchableOpacity
           onPress={() => {
             id != -1 ? dispatch(modifyScenario({values: scenario, id: Number(id)})) : dispatch(addScenario(scenario));
+            dispatch(clear());
             navigation.navigate("ScenarioList");
           }}
           style={styles.newScenarioButton}
