@@ -1,9 +1,10 @@
 import React from "react";
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Card, Icon } from "react-native-elements";
 import { Transition, Transitioning } from "react-native-reanimated";
 import styles, { mainColor, secondaryColor } from "./ConditionsStyles";
+import { removeCondition } from "../../../reducers/scenarios/createScenarioSlice";
 
 
 
@@ -19,6 +20,7 @@ const Title = ({ text }) => <Text style={styles.title}>{text}</Text>;
 
 export default function Conditions({ navigation }) {
   const scenario = useSelector((state) => state.createScenario);
+  const dispatch = useDispatch();
   const ref = React.useRef();
 
   return (
@@ -41,9 +43,7 @@ export default function Conditions({ navigation }) {
                     type="font-awesome"
                     onPress={() => {
                       ref.current.animateNextTransition();
-                      setCurrentScenarios((previousScenarios) =>
-                        previousScenarios.filter((item, id) => index !== id)
-                      );
+                      dispatch(removeCondition((index)));
                     }}
                   />
                 </Card>
