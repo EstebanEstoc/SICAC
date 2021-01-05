@@ -1,4 +1,4 @@
-import configurationReducer from '../../../reducers/configuration / configrationSlice'
+import configurationReducer from '../../../reducers/configuration/configrationSlice'
 import {
   modifyHouseWifi,
   setRelativesNumbers,
@@ -41,6 +41,7 @@ describe('configuration Reducer', () => {
       expect(configurationReducer(undefined, action)).toMatchSnapshot()
     })
   })
+
   describe('setRelativesNumbers', () => {
     test('must add Relatives Numbers to relativesNumbers', () => {
       const setRelativesNumbersPayload = ['+33606060606', '+33606060606']

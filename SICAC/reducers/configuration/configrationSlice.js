@@ -28,14 +28,9 @@ const configurationSlice = createSlice({
      * @param {Object} state
      * @param {Object} action
      * @param {String[]} action.payload Array of phone number
-     * @throws {Error}
      */
     setRelativesNumbers: (state, action) => {
-      if (typeof action.payload === Array) {
-        state.relativesNumbers = action.payload
-      } else {
-        throw new Error('Relatives Numbers must be an array')
-      }
+      state.relativesNumbers = action.payload
     },
 
     /**
