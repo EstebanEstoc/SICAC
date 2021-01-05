@@ -31,6 +31,7 @@ import WifiAction from "./Actions/WifiAction";
 import BluetoothAction from "./Actions/BluetoothAction";
 import Calendar from "../helpers/Calendar";
 import Sms from "../helpers/SMS";
+import CalendarSelector from "../helpers/CalendarSelector";
 
 const Stack = createStackNavigator();
 
@@ -84,6 +85,7 @@ const Root = () => {
         <Stack.Screen name="ExampleScenarios" component={ExampleScenarios} />
         <Stack.Screen name="LightsAction" component={LightsAction} />
         <Stack.Screen name="SMS" component={Sms} />
+        <Stack.Screen name="CalendarSelector" component={CalendarSelector} />
       </Stack.Navigator>
     </NavigationContainer>
   );

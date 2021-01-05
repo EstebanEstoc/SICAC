@@ -58,7 +58,7 @@ const configurationSlice = createSlice({
      * @param {Object} action
      * @param {String} action.payload GoogleCalendar ID
      */
-    modifyDefaultCalendarId: (state, action) => {
+    modifyDefaultCalendarID: (state, action) => {
       state.defaultCalendarID = action.payload
     },
 
@@ -104,7 +104,7 @@ export const {
   modifyHouseWifi,
   setRelativesNumbers,
   modifyDoctoreNumber,
-  modifyDefaultCalendarId,
+  modifyDefaultCalendarID,
   modifySmarWatch,
   modifyCardiacThreshold,
   clearHouseWifi,

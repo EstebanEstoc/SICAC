@@ -9,14 +9,6 @@ import { clearUserInfo } from "../reducers/authentication/userSlice";
 import { GoogleConfigure } from "../services/authentication/providers/GoogleSignIn";
 import styles from "./styles";
 import { persistor } from "../store/store";
-import {
-  GetPrimaryCalendarID,
-  GetCalendarsNameList,
-  GetEventsTitleList,
-  SearchEventsByTitle,
-  GetEventDates,
-  GetEventDuration,
-} from "../services/conditions/calendar/providers/GoogleCalendarRepository";
 
 const HomeScreen = ({ navigation }) => {
   const userInfo = useSelector((state) => state.user);
@@ -63,6 +55,10 @@ const HomeScreen = ({ navigation }) => {
         onPress={() => navigation.navigate("Calendar")}
       />
       <Button title="SMS" onPress={() => navigation.navigate("SMS")} />
+      <Button
+        title="CalendarSelector"
+        onPress={() => navigation.navigate("CalendarSelector")}
+      />
     </View>
   );
 };
