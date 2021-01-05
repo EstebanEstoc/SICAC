@@ -4,7 +4,7 @@ import {
   createScenario,
   editScenario,
   enableScenario,
-  disableScenario,
+  disableScenario
 } from './lib/createScenario'
 
 /**
@@ -42,11 +42,12 @@ const scenariosSlice = createSlice({
      * @param {Number} action.payload.id Id of the scenario
      */
     deleteScenario: (state, id) => {
-      state.scenarios = state.scenarios.filter(scenario => scenario.id !== id.payload)
+      state.scenarios = state.scenarios.filter(
+        scenario => scenario.id !== id.payload
+      )
     },
 
-
-        /**
+    /**
      *
      * @param {Object} state
      * @param {Object} action
@@ -59,7 +60,6 @@ const scenariosSlice = createSlice({
       // console.log(state.scenarios.find(scenario => scenario.id === id.payload))
       return state.scenarios.find(scenario => scenario.id === id.payload)
     },
-
 
     // /**
     //  *
@@ -110,8 +110,9 @@ const scenariosSlice = createSlice({
      * @param {Object[]} action.payload.values.conditions
      * @param {Object[]} action.payload.values.actions
      */
-    modifyScenario: (state, action) =>{
-      editScenario(action.payload.values, action.payload.id, state)}
+    modifyScenario: (state, action) => {
+      editScenario(action.payload.values, action.payload.id, state)
+    }
   }
 })
 

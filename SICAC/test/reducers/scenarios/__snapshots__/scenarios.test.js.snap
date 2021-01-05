@@ -40,78 +40,89 @@ Object {
 `;
 
 exports[`scenarios Reducer deleteScenario must delete an existing scenario 1`] = `
-Array [
-  Object {
-    "actions": Array [
-      Object {
-        "id": 45,
-        "options": Object {},
-      },
-      Object {
-        "id": 30,
-        "options": Object {
-          "lat": 35,
-          "lng": -45,
+Object {
+  "lastId": 2,
+  "scenarios": Array [
+    Object {
+      "actions": Array [
+        Object {
+          "id": 45,
+          "options": Object {},
         },
-      },
-    ],
-    "active": true,
-    "conditions": Array [
-      Object {
-        "id": 34,
-        "options": Object {},
-      },
-      Object {
-        "id": 75,
-        "options": Object {
-          "auth": "33442243654234_fg",
+        Object {
+          "id": 30,
+          "options": Object {
+            "lat": 35,
+            "lng": -45,
+          },
         },
-      },
-    ],
-    "date": 2000-11-22T00:00:00.000Z,
-    "id": 2,
-    "name": "Mon scenario fun",
-  },
-]
+      ],
+      "active": true,
+      "conditions": Array [
+        Object {
+          "id": 34,
+          "options": Object {},
+        },
+        Object {
+          "id": 75,
+          "options": Object {
+            "auth": "33442243654234_fg",
+          },
+        },
+      ],
+      "date": 2000-11-22T00:00:00.000Z,
+      "id": 2,
+      "name": "Mon scenario fun",
+    },
+  ],
+}
 `;
 
 exports[`scenarios Reducer deleteScenario must do nothing if no scenario match 1`] = `
-Array [
-  Object {
-    "actions": Array [
-      Object {
-        "id": 45,
-        "options": Object {},
-      },
-      Object {
-        "id": 30,
-        "options": Object {
-          "lat": 35,
-          "lng": -45,
+Object {
+  "lastId": 1,
+  "scenarios": Array [
+    Object {
+      "actions": Array [
+        Object {
+          "id": 45,
+          "options": Object {},
         },
-      },
-    ],
-    "active": true,
-    "conditions": Array [
-      Object {
-        "id": 34,
-        "options": Object {},
-      },
-      Object {
-        "id": 75,
-        "options": Object {
-          "auth": "33442243654234_fg",
+        Object {
+          "id": 30,
+          "options": Object {
+            "lat": 35,
+            "lng": -45,
+          },
         },
-      },
-    ],
-    "date": 2000-11-22T00:00:00.000Z,
-    "id": 1,
-    "name": "Mon scenario fun",
-  },
-]
+      ],
+      "active": true,
+      "conditions": Array [
+        Object {
+          "id": 34,
+          "options": Object {},
+        },
+        Object {
+          "id": 75,
+          "options": Object {
+            "auth": "33442243654234_fg",
+          },
+        },
+      ],
+      "date": 2000-11-22T00:00:00.000Z,
+      "id": 1,
+      "name": "Mon scenario fun",
+    },
+  ],
+}
 `;
 
-exports[`scenarios Reducer deleteScenario must return the initial state if no scenario was in the state 1`] = `Array []`;
+exports[`scenarios Reducer deleteScenario must return the initial state if no scenario was in the state 1`] = `
+Object {
+  "lastId": 0,
+  "scenarios": Array [],
+}
+`;
 
 exports[`scenarios Reducer modifyScenario must edit an existing scenario  1`] = `
 Object {
