@@ -62,6 +62,7 @@ const HomeScreen = ({ navigation }) => {
         title="Calendar"
         onPress={() => navigation.navigate("Calendar")}
       />
+      <Button title="SMS" onPress={() => navigation.navigate("SMS")} />
     </View>
   );
 };

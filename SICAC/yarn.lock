@@ -1708,11 +1708,6 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.12.tgz#0b1d86f8c40141091285dea02e4940df73bba43f"
   integrity sha512-ASH8OPHMNlkdjrEdmoILmzFfsJICvhBsFfAum4aKZ/9U4B6M6tTmTPh+f3ttWdD74CEGV5XvXWkbyfSdXaTd7g==
 
-"@types/node@^9.6.39":
-  version "9.6.61"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.61.tgz#29f124eddd41c4c74281bd0b455d689109fc2a2d"
-  integrity sha512-/aKAdg5c8n468cYLy2eQrcR5k6chlbNwZNGUj3TboyPa2hcO2QAJcfymlqPzMiRj8B6nYKXjzQz36minFE0RwQ==
-
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/@types/normalize-package-data/-/normalize-package-data-2.4.0.tgz#e486d0d97396d79beedd0a6e33f4534ff6b4973e"
@@ -3830,11 +3825,6 @@ function-bind@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
   integrity sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==
-
-gapi-script@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/gapi-script/-/gapi-script-1.0.2.tgz#8bc6ffa475ad6b4080caa59acaad70c29da4a875"
-  integrity sha512-/WW6FrT2MUag641pM2vDJ3QbHlBKngsv5oLnd9UyplFUGtf4TxyiRGIJKawaH+cb8jXDXni+jNMH6SsL2PxbUQ==
 
 gensync@^1.0.0-beta.1:
   version "1.0.0-beta.2"
@@ -6511,13 +6501,6 @@ react-dom@16.13.1:
     prop-types "^15.6.2"
     scheduler "^0.19.1"
 
-react-google-calendar-api@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/react-google-calendar-api/-/react-google-calendar-api-1.2.1.tgz#92595004c509fc725f9f7e524c6957fab0c62b8a"
-  integrity sha512-kqIgEPGTdLcUyRFMT2+SIj+iPxqQ5mcilS27XzPmgXBsvbB7PAIOsJYh9yPDOKxHIoCgqNERW/jOnXdG5MS/qA==
-  dependencies:
-    "@types/node" "^9.6.39"
-
 react-is@^16.12.0, react-is@^16.13.0, react-is@^16.13.1, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
@@ -6527,6 +6510,11 @@ react-is@^16.12.0, react-is@^16.13.0, react-is@^16.13.1, react-is@^16.7.0, react
   version "17.0.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.1.tgz#5b3531bd76a645a4c9fb6e693ed36419e3301339"
   integrity sha512-NAnt2iGDXohE5LI7uBnLnqvLQMtzhkiAOLXTmv+qnF9Ky7xAPcX8Up/xWIhxvLVGJvuLiNc4xQLtuqDRzb4fSA==
+
+react-native-contacts@^6.0.3:
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/react-native-contacts/-/react-native-contacts-6.0.3.tgz#74066c53db88d865d4630d1539a6e8ca50607a93"
+  integrity sha512-JoiYBrJ2/sAgzhytwaa7ephmqXkxO0o2vk4eNyOb74WjZNIEiBdZdjxjB62Lt4zMDT/28NwRk82d5m5x92m3Kg==
 
 react-native-elements@^3.0.0-alpha.1:
   version "3.0.0-alpha.1"

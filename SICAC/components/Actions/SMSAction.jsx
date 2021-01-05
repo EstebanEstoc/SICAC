@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from "react";
+import React, { useState, useLayoutEffect, useEffect, useRef } from "react";
 import {
   TouchableOpacity,
   Text,
@@ -6,32 +6,45 @@ import {
   StyleSheet,
   TextInput,
 } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import SectionedMultiSelect from "react-native-sectioned-multi-select";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { contacts } from "../../helpers/contactList";
+
 import { addAction } from "../../reducers/scenarios/createScenarioSlice";
+import * as ContactRetriver from "../../services/actions/SMS/Contacts";
 
 const SMSAction = ({ navigation }) => {
   const [core, setcore] = useState("");
   const [selectedItems, setselectedItems] = useState([]);
-  const scenario = useSelector((state) => state.createScenario);
+  const [contacts, setcontacts] = useState([]);
   const dispatch = useDispatch();
 
   const onSelectedItemsChange = (selectedItems) => {
-    console.log(selectedItems);
     setselectedItems(selectedItems);
   };
+
+  useEffect(() => {
+    ContactRetriver.getContacts().then((contactsList) => {
+      setcontacts(contactsList);
+    });
+  }, []);
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <TouchableOpacity onPress={() => {
-          dispatch(addAction({ name: "Send SMS to " + selectedItems, options: { to: selectedItems, core: core } }));
-          navigation.navigate("CreateScenario");
-        }} 
-          style={styles.saveButtonContainer}>
+        <TouchableOpacity
+          onPress={() => {
+            dispatch(
+              addAction({
+                name: "Send SMS to " + selectedItems,
+                options: { to: selectedItems, core: core },
+              })
+            );
+            navigation.navigate("CreateScenario");
+          }}
+          style={styles.saveButtonContainer}
+        >
           <Text style={styles.saveButtonText}>Save</Text>
         </TouchableOpacity>
       ),

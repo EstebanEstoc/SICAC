@@ -7,7 +7,7 @@ import Authentication from "./Authentication/Authentication";
 import HomeScreen from "../helpers/HomeScreen";
 import Home from "./Home";
 import CreateScenario from "./CreateScenario/CreateScenarioTabs";
-import ExampleScenarios from "./ExampleScenarios"
+import ExampleScenarios from "./ExampleScenarios";
 
 import SunriseSunsetAPI from "../helpers/SunriseSunsetAPI";
 import ScenarioList from "./ScenarioList/ScenarioList";
@@ -30,6 +30,7 @@ import LocationCondition from "./Conditions/LocationCondition";
 import WifiAction from "./Actions/WifiAction";
 import BluetoothAction from "./Actions/BluetoothAction";
 import Calendar from "../helpers/Calendar";
+import Sms from "../helpers/SMS";
 
 const Stack = createStackNavigator();
 
@@ -70,7 +71,10 @@ const Root = () => {
         <Stack.Screen name="Notifications" component={Notifications} />
         <Stack.Screen name="AddScenario" component={AddScenario} />
         <Stack.Screen name="CreateScenario" component={CreateScenario} />
-        <Stack.Screen name="TimeOfDayCondition" component={TimeOfDayCondition} />
+        <Stack.Screen
+          name="TimeOfDayCondition"
+          component={TimeOfDayCondition}
+        />
         <Stack.Screen name="HomeCondition" component={HomeCondition} />
         <Stack.Screen name="LocationCondition" component={LocationCondition} />
         <Stack.Screen name="WifiAction" component={WifiAction} />
@@ -79,6 +83,7 @@ const Root = () => {
         <Stack.Screen name="Calendar" component={Calendar} />
         <Stack.Screen name="ExampleScenarios" component={ExampleScenarios} />
         <Stack.Screen name="LightsAction" component={LightsAction} />
+        <Stack.Screen name="SMS" component={Sms} />
       </Stack.Navigator>
     </NavigationContainer>
   );
