@@ -1,4 +1,4 @@
-import { useSelector } from 'redux'
+import { useSelector } from 'react-redux'
 import {
   EventIsCurrent,
   EventIsIn30Minutes,
@@ -10,10 +10,7 @@ import {
   GetFutureEventList
 } from './providers/GoogleCalendarRepository'
 
-/**
- * @todo Create a conf state in order to store the conf
- */
-// const calendarID = useSelector(state => state.configuration.calendarID)
+import { store } from '../../../store/store'
 
 export const EVENTS_NAME = {
   PILLS: 'Pills',
@@ -27,9 +24,8 @@ export const DATA_NAME = {
   FORM_ID: 'FormID'
 }
 
-const CALENDAR_ID = 'b59g8vi80e6krrnao5ae7jn8g0@group.calendar.google.com' // replace by calendarID
-
 export const GetEventsTitleList = async () => {
+  const CALENDAR_ID = store.getState().configuration.defaultCalendarID
   const events = await GetFutureEventList(CALENDAR_ID)
   const eventList = []
   events.forEach(event => {
@@ -43,6 +39,7 @@ export const GetEventsTitleList = async () => {
 
 export const getPillCondition = async () => {
   try {
+    const CALENDAR_ID = store.getState().configuration.defaultCalendarID
     const pillsEvents = await SearchEventsByTitle(
       CALENDAR_ID,
       EVENTS_NAME.PILLS
@@ -65,6 +62,7 @@ export const getPillCondition = async () => {
 
 export const haveToWalkConditon = async () => {
   try {
+    const CALENDAR_ID = store.getState().configuration.defaultCalendarID
     const walkEvents = await SearchEventsByTitle(CALENDAR_ID, EVENTS_NAME.WALK)
     if (walkEvents) {
       const walkEvent = walkEvents.filter(event => EventIsCurrent(event))
@@ -111,6 +109,7 @@ export const haveAnAppointment = async () => {
 
 export const answerForm = async () => {
   try {
+    const CALENDAR_ID = store.getState().configuration.defaultCalendarID
     const formEvents = await SearchEventsByTitle(CALENDAR_ID, EVENTS_NAME.FORM)
     if (formEvents) {
       const formEvent = formEvents.filter(event => EventIsCurrent(event))
@@ -132,6 +131,7 @@ export const answerForm = async () => {
 
 export const currentEvent = async eventID => {
   try {
+    const CALENDAR_ID = store.getState().configuration.defaultCalendarID
     const event = await GetEventByID(eventID, CALENDAR_ID)
     if (event) {
       return {
@@ -147,6 +147,7 @@ export const currentEvent = async eventID => {
 
 export const in30MinutesEvent = async eventID => {
   try {
+    const CALENDAR_ID = store.getState().configuration.defaultCalendarID
     const event = await GetEventByID(eventID, CALENDAR_ID)
     return {
       execute: EventIsIn30Minutes(event),

@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`configuration Reducer clearHouseWifi must add the Wifi SSID to houseWifi 1`] = `
+Object {
+  "cardiacThreshold": 180,
+  "defaultCalendarID": "",
+  "doctorNumber": "",
+  "houseWifi": "",
+  "relativesNumbers": Array [],
+  "smartWatch": "",
+}
+`;
+
+exports[`configuration Reducer modifyHouseWifi must add the Wifi SSID to houseWifi 1`] = `
+Object {
+  "cardiacThreshold": 180,
+  "defaultCalendarID": "",
+  "doctorNumber": "",
+  "houseWifi": "wifi_SSID_test",
+  "relativesNumbers": Array [],
+  "smartWatch": "",
+}
+`;
+
+exports[`configuration Reducer setRelativesNumbers must add Relatives Numbers to relativesNumbers 1`] = `
+Object {
+  "cardiacThreshold": 180,
+  "defaultCalendarID": "",
+  "doctorNumber": "",
+  "houseWifi": "",
+  "relativesNumbers": Array [
+    "+33606060606",
+    "+33606060606",
+  ],
+  "smartWatch": "",
+}
+`;
