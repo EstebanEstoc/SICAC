@@ -6,9 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { GetCalendarsNameList } from "../services/conditions/calendar/providers/GoogleCalendarRepository";
 import { modifyDefaultCalendarID } from "../reducers/configuration/configrationSlice";
 
-import styles from "./styles";
-
-const CalendarSelector = () => {
+const CalendarSelector = ({ containerStyle }) => {
   const calendarID = useSelector(
     (state) => state.configuration.defaultCalendarID
   );
@@ -22,11 +20,11 @@ const CalendarSelector = () => {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <View style={containerStyle}>
       {calendarList && (
         <Picker
           selectedValue={calendarID}
-          style={{ height: 50, width: 250 }}
+          style={{ height: "100%", width: "100%" }}
           onValueChange={(itemValue, itemIndex) =>
             dispatch(modifyDefaultCalendarID(itemValue))
           }
