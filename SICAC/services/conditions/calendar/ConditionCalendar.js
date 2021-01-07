@@ -10,7 +10,7 @@ import {
   GetFutureEventList
 } from './providers/GoogleCalendarRepository'
 
-import { store } from '../../../store/store'
+import { store } from '../../../Store/store'
 
 export const EVENTS_NAME = {
   PILLS: 'Pills',

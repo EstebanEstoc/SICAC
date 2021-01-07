@@ -8,7 +8,7 @@ import { toggleAuthFalse } from "../reducers/authentication/authenticationSlice"
 import { clearUserInfo } from "../reducers/authentication/userSlice";
 import { GoogleConfigure } from "../services/authentication/providers/GoogleSignIn";
 import styles from "./styles";
-import { persistor } from "../store/store";
+import { persistor } from "../Store/store";
 
 const HomeScreen = ({ navigation }) => {
   const userInfo = useSelector((state) => state.user);
