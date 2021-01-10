@@ -5,20 +5,20 @@ import { ConditionButton } from "../../helpers/Buttons";
 import { addAction } from "../../reducers/scenarios/createScenarioSlice";
 
 
-const LightsAction = ({ navigation }) => {
+const ShuttersAction = ({ navigation }) => {
   const scenario = useSelector((state) => state.createScenario);
   const dispatch = useDispatch();
 
   return (
     <View style={styles.container}>
-      <ConditionButton title="Turn on lights" size="sm" icon={{ name: "lightbulb-o" }}
+      <ConditionButton title="Open the shutters" size="sm" icon={{ name: "arrow-up" }}
         onPress={() => {
-            dispatch(addAction({ name: "Turn on the lights" }));
+            dispatch(addAction({ name: "Open the shutters" }));
             navigation.navigate("CreateScenario");
           }} />
-      <ConditionButton title="Turn off lights" size="sm" icon={{ name: "power-off" }}
+      <ConditionButton title="Close the shutters" size="sm" icon={{ name: "arrow-down" }}
         onPress={() => {
-            dispatch(addAction({ name: "Turn off the lights" }));
+            dispatch(addAction({ name: "Close the shutters" }));
             navigation.navigate("CreateScenario");
           }} />
     </View>
@@ -33,4 +33,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default LightsAction;
+export default ShuttersAction;

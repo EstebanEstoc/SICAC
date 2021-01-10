@@ -15,7 +15,7 @@ export const conditions = [
         id: 3,
         Title: "Have to answer form",
         IconName: "description",
-        Condition: ""
+        Condition: "HaveToAnswerFormCondition"
     },
     {
         id: 4,
@@ -27,37 +27,37 @@ export const conditions = [
         id: 5,
         Title: "Have to walk",
         IconName: "nature",
-        Condition: ""
+        Condition: "HaveToWalkCondition"
     },
     {
         id: 6,
-        Title: "Connexion to earphones",
+        Title: "Connected to earphones",
         IconName: "headset",
-        Condition: ""
+        Condition: "ConnectedToHeadphonesCondition"
     },
     {
         id: 7,
-        Title: "Connexion to speaker",
+        Title: "Connected to speaker",
         IconName: "speaker",
-        Condition: ""
+        Condition: "ConnectedToSpeakerCondition"
     },
     {
         id: 8,
         Title: "Have an appointment",
         IconName: "today",
-        Condition: ""
+        Condition: "HaveAnAppointmentCondition"
     },
     {
         id: 9,
         Title: "Have to take pills",
         IconName: "healing",
-        Condition: ""
+        Condition: "HaveToTakePillsCondition"
     },
     {
         id: 10,
         Title: "High\n heart rate",
         IconName: "favorite",
-        Condition: ""
+        Condition: "HighHeartRateCondition"
     }
     
 ]

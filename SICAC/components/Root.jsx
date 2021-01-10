@@ -27,8 +27,18 @@ import LightsAction from "./Actions/LightsAction";
 import TimeOfDayCondition from "./Conditions/TimeOfDayCondition";
 import HomeCondition from "./Conditions/HomeCondition";
 import LocationCondition from "./Conditions/LocationCondition";
+import HighHeartRateCondition from "./Conditions/HighHeartRateCondition";
+import HaveToTakePillsCondition from "./Conditions/Calendar/HaveToTakePillsCondition";
+import HaveToWalkCondition from "./Conditions/Calendar/HaveToWalkCondition";
+import HaveToAnswerFormCondition from "./Conditions/Calendar/HaveToAnswerFormCondition";
+import HaveAnAppointmentCondition from "./Conditions/Calendar/HaveAnAppointmentCondition";
+import ConnectedToHeadphonesCondition from "./Conditions/Bluetooth/ConnectedToHeadphonesCondition";
+import ConnectedToSpeakerCondition from "./Conditions/Bluetooth/ConnectedToSpeakerCondition";
 import WifiAction from "./Actions/WifiAction";
 import BluetoothAction from "./Actions/BluetoothAction";
+import ShuttersAction from "./Actions/ShuttersAction";
+import LaunchMusicAction from "./Actions/LaunchMusicAction";
+import TriggerPedometerAction from "./Actions/TriggerPedometerAction";
 import Calendar from "../helpers/Calendar";
 import Sms from "../helpers/SMS";
 
@@ -77,12 +87,22 @@ const Root = () => {
         />
         <Stack.Screen name="HomeCondition" component={HomeCondition} />
         <Stack.Screen name="LocationCondition" component={LocationCondition} />
+        <Stack.Screen name="HighHeartRateCondition" component={HighHeartRateCondition} />
+        <Stack.Screen name="HaveToTakePillsCondition" component={HaveToTakePillsCondition} />
+        <Stack.Screen name="HaveToWalkCondition" component={HaveToWalkCondition} />
+        <Stack.Screen name="HaveToAnswerFormCondition" component={HaveToAnswerFormCondition} />
+        <Stack.Screen name="HaveAnAppointmentCondition" component={HaveAnAppointmentCondition} />
+        <Stack.Screen name="ConnectedToHeadphonesCondition" component={ConnectedToHeadphonesCondition} />
+        <Stack.Screen name="ConnectedToSpeakerCondition" component={ConnectedToSpeakerCondition} />
         <Stack.Screen name="WifiAction" component={WifiAction} />
         <Stack.Screen name="BluetoothAction" component={BluetoothAction} />
         <Stack.Screen name="Bluetooth" component={Bluetooth} />
         <Stack.Screen name="Calendar" component={Calendar} />
         <Stack.Screen name="ExampleScenarios" component={ExampleScenarios} />
         <Stack.Screen name="LightsAction" component={LightsAction} />
+        <Stack.Screen name="ShuttersAction" component={ShuttersAction} />
+        <Stack.Screen name="LaunchMusicAction" component={LaunchMusicAction} />
+        <Stack.Screen name="TriggerPedometerAction" component={TriggerPedometerAction} />
         <Stack.Screen name="SMS" component={Sms} />
       </Stack.Navigator>
     </NavigationContainer>

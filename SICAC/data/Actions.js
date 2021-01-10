@@ -3,7 +3,7 @@ export const actions = [
         id: 1,
         Title: "Launch music",
         IconName: "audiotrack",
-        Action: "WifiAction"
+        Action: "LaunchMusicAction"
     },
     {
         id: 2,
@@ -15,7 +15,7 @@ export const actions = [
         id: 3,
         Title: "Trigger the pedometer",
         IconName: "watch",
-        Action: ""
+        Action: "TriggerPedometerAction"
     },
     {
         id: 4,
@@ -45,7 +45,7 @@ export const actions = [
         id: 8,
         Title: "Shutters",
         IconName: "reorder",
-        Action: ""
+        Action: "ShuttersAction"
     }
 
 
