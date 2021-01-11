@@ -188,7 +188,7 @@ export const exampleScenarios = [
         id: 11,
         conditions: [
             {
-                name: "Connected to speaker"
+                name: "Connected to headphones"
             }
         ],
         actions: [
