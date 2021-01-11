@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { StyleSheet, View } from "react-native";
-import { ConditionButton } from "../../helpers/Buttons";
+import { ConditionButton } from "../Buttons";
 
 const BluetoothAction = ({ navigation }) => {
   const scenario = useSelector((state) => state.createScenario);

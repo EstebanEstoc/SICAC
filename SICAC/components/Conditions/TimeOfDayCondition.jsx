@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { StyleSheet, View } from "react-native";
-import { ConditionButton } from "../../helpers/Buttons";
+import { ConditionButton } from "../Buttons";
 import { addCondition } from "../../reducers/scenarios/createScenarioSlice";
 
 const TimeOfDayCondition = ({ navigation }) => {
