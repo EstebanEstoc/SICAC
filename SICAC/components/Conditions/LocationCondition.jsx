@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { StyleSheet, View } from "react-native";
 import { Input } from 'react-native-elements';
-import { MediumConditionButton } from "../../helpers/Buttons";
+import { MediumConditionButton } from "../Buttons";
 import { addCondition } from "../../reducers/scenarios/createScenarioSlice";
 
 const LocationCondition = ({ navigation }) => {
