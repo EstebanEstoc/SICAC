@@ -3,8 +3,7 @@ export const exampleScenarios = [
         id: 1,
         conditions: [
             {
-                name: "High heart rate (> 100 BPM)",
-                options: { threshold: 100 }
+                name: "High heart rate (> 100 BPM)"
             }
         ],
         actions: [

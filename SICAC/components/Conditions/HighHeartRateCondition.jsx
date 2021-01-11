@@ -1,24 +1,23 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { StyleSheet, View } from "react-native";
-import { Input } from 'react-native-elements';
+import { StyleSheet, View, Text } from "react-native";
 import { ConditionButton } from "../../helpers/Buttons";
 import { addCondition } from "../../reducers/scenarios/createScenarioSlice";
 
 const HighHeartRateCondition = ({ navigation }) => {
     const scenario = useSelector((state) => state.createScenario);
     const dispatch = useDispatch();
-    var heartRate = "";
+    var heartRate = "100"; // TO REPLACE with the value in store (given in wizard)
 
     return (
         <View style={styles.container}>
-            <Input label="Threshold"
-                placeholder="Tap to enter the heart rate threshold"
-                onChangeText={(text) => heartRate = text}
-                leftIcon={{ type: 'font-awesome', name: 'heart' }} />
-            <ConditionButton title="Heart rate superior to this threshold" size="sm" icon={{ name: "heartbeat" }}
+            <Text style={styles.mainText}>
+                This condition is linked to your connected watch.
+            </Text>
+            <ConditionButton title={"Heart rate superior to your threshold (" + heartRate + " BPM)"} 
+                size="sm" icon={{ name: "heartbeat" }}
                 onPress={() => {
-                    dispatch(addCondition({ name: "High heart rate (> " + heartRate + " BPM)", options: { threshold: heartRate } }));
+                    dispatch(addCondition({ name: "High heart rate (> " + heartRate + " BPM)" }));
                     navigation.navigate("CreateScenario");
                 }} />
         </View>
@@ -30,6 +29,11 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         padding: 16
+    },
+    mainText: {
+        fontSize: 20,
+        alignSelf: "center",
+        marginBottom: 35
     }
 });
 
