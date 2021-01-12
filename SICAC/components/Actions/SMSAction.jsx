@@ -13,6 +13,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 
 import { addAction } from "../../reducers/scenarios/createScenarioSlice";
 import * as ContactRetriver from "../../services/actions/SMS/Contacts";
+import ChipParam from "../ChipParam";
 
 const SMSAction = ({ navigation }) => {
   const [core, setcore] = useState("");
@@ -76,6 +77,10 @@ const SMSAction = ({ navigation }) => {
           </View>
         </View>
       </View>
+      <ChipParam
+        containerStyle={{ flex: 1 }}
+        chipAction={() => console.log("Pressed")}
+      />
       <View style={styles.containerCore}>
         <TextInput
           multiline
