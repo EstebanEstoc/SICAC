@@ -31,19 +31,20 @@ import WifiAction from "./Actions/WifiAction";
 import BluetoothAction from "./Actions/BluetoothAction";
 import Calendar from "../helpers/Calendar";
 import Sms from "../helpers/SMS";
+import Wizard from "./Wizard";
 
 const Stack = createStackNavigator();
 
 const Root = () => {
   const isAuth = useSelector((state) => state.authentication);
-
+  const isFirstLaunch = useSelector((state) => state.configuration.wizardState);
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={styles.header}>
-        {isAuth ? (
+        {isFirstLaunch ?(
           <Stack.Screen name="Home" component={Home} />
         ) : (
-          <Stack.Screen name="Authentication" component={Authentication} />
+          <Stack.Screen name="Wizard" component={Wizard} />  
         )}
         <Stack.Screen name="HomeHelper" component={HomeScreen} />
         <Stack.Screen name="SunriseSunsetAPI" component={SunriseSunsetAPI} />
