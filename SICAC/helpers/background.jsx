@@ -15,7 +15,7 @@ BackgroundJob.register({
 });
 
 
-export default class backtest extends Component{
+export default class BackTest extends Component{
 
   constructor(props) {
     super(props);

@@ -41,6 +41,7 @@ import LaunchMusicAction from "./Actions/LaunchMusicAction";
 import TriggerPedometerAction from "./Actions/TriggerPedometerAction";
 import Calendar from "../helpers/Calendar";
 import Sms from "../helpers/SMS";
+import BackTest from "../helpers/background";
 
 const Stack = createStackNavigator();
 
@@ -114,6 +115,7 @@ const Root = () => {
         <Stack.Screen name="New scenario - Summary" component={Summary} />
         <Stack.Screen name="Notifications" component={Notifications} />
         <Stack.Screen name="AddScenario" component={AddScenario} />
+        <Stack.Screen name="BackTest" component={BackTest} />
         <Stack.Screen 
           name="CreateScenario"
           options={{
