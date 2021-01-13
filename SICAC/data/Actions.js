@@ -9,7 +9,7 @@ export const actions = [
         id: 2,
         Title: "Launch a form",
         IconName: "description",
-        Action: "Form"
+        Action: "FormAction"
     },
     {
         id: 3,

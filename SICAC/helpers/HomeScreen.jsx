@@ -9,6 +9,7 @@ import { clearUserInfo } from "../reducers/authentication/userSlice";
 import { GoogleConfigure } from "../services/authentication/providers/GoogleSignIn";
 import styles from "./styles";
 import { persistor } from "../store/store";
+import { ChangeFormActionStatus } from "../services/actions/Form/Form";
 
 const HomeScreen = ({ navigation }) => {
   const userInfo = useSelector((state) => state.user);
@@ -58,6 +59,10 @@ const HomeScreen = ({ navigation }) => {
       <Button
         title="CalendarSelector"
         onPress={() => navigation.navigate("CalendarSelector")}
+      />
+      <Button
+        title="ChangeStatus"
+        onPress={() => navigation.navigate("Form")}
       />
     </View>
   );

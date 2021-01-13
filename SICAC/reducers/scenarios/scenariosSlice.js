@@ -4,7 +4,8 @@ import {
   createScenario,
   editScenario,
   enableScenario,
-  disableScenario
+  disableScenario,
+  editFormActionStatus
 } from './lib/createScenario'
 
 /**
@@ -112,6 +113,26 @@ const scenariosSlice = createSlice({
      */
     modifyScenario: (state, action) => {
       editScenario(action.payload.values, action.payload.id, state)
+    },
+
+    /**
+     *
+     * @param {Object} state
+     * @param {Object} action
+     * @param {String} action.type
+     * @param {Object} action.payload
+     * @param {Number} action.payload.id Id of the scenario
+     * @param {Object} action.payload.values
+     * @param {String} action.payload.values.name
+     * @param {Object[]} action.payload.values.conditions
+     * @param {Object[]} action.payload.values.actions
+     * @param {String} action.payload.values.actions.question
+     * @param {Number} action.payload.values.actions.status Id of the scenario
+
+     */
+    EditStatus: (state, action) => {
+      console.log(action)
+      editFormActionStatus(action.payload.id, action.payload.value, state)
     }
   }
 })
@@ -122,7 +143,8 @@ export const {
   switchOffScenario,
   switchOnScenario,
   modifyScenario,
-  selectScenario
+  selectScenario,
+  EditStatus
 } = scenariosSlice.actions
 
 export default scenariosSlice.reducer

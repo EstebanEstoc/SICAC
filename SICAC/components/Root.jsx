@@ -1,7 +1,9 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
+import { View, StyleSheet, Alert, Button } from "react-native";
 
 import Authentication from "./Authentication/Authentication";
 import HomeScreen from "../helpers/HomeScreen";
@@ -17,6 +19,7 @@ import Actions from "./NewScenario/Actions/Actions";
 import Conditions from "./NewScenario/Conditions/Conditions";
 import Summary from "./NewScenario/Summary/Summary";
 import Notifications from "../helpers/Notifications";
+import Form from "../helpers/Form";
 import AddScenario from "../helpers/AddScenario";
 import MailAction from "./Actions/MailAction";
 import SMSAction from "./Actions/SMSAction";
@@ -36,19 +39,39 @@ import ConnectedToHeadphonesCondition from "./Conditions/Bluetooth/ConnectedToHe
 import ConnectedToSpeakerCondition from "./Conditions/Bluetooth/ConnectedToSpeakerCondition";
 import WifiAction from "./Actions/WifiAction";
 import BluetoothAction from "./Actions/BluetoothAction";
+import FormAction from "./Actions/FormAction";
 import ShuttersAction from "./Actions/ShuttersAction";
 import LaunchMusicAction from "./Actions/LaunchMusicAction";
 import TriggerPedometerAction from "./Actions/TriggerPedometerAction";
 import Calendar from "../helpers/Calendar";
 import Sms from "../helpers/SMS";
 
+import { ChangeFormActionStatus } from "../services/actions/Form/Form";
+
+
+
 const Stack = createStackNavigator();
 
 const Root = () => {
   const isAuth = useSelector((state) => state.authentication);
+  const scenarios = useSelector((state) => state.scenarios);
+  const dispatch = useDispatch();
+  
 
   return (
+    
     <NavigationContainer>
+      {scenarios.scenarios.map(
+        (scenario) => scenario.actions.map(
+          
+          (data) => data.status === 1 ? Alert.alert(data.question, '', [
+            { text: "Oui", onPress: () => ChangeFormActionStatus({id: scenario.id, value: 0, dispatch}) },
+            { text: "Non", onPress: () => ChangeFormActionStatus({id: scenario.id, value: 0, dispatch}) }
+            ],
+            { cancelable: true }) : null ) )
+        
+      }
+        
       <Stack.Navigator screenOptions={styles.header}>
         {isAuth ? (
           <Stack.Screen name="Home" component={Home} />
@@ -95,6 +118,8 @@ const Root = () => {
         <Stack.Screen name="ConnectedToHeadphonesCondition" component={ConnectedToHeadphonesCondition} />
         <Stack.Screen name="ConnectedToSpeakerCondition" component={ConnectedToSpeakerCondition} />
         <Stack.Screen name="WifiAction" component={WifiAction} />
+        <Stack.Screen name="FormAction" component={FormAction} />
+        <Stack.Screen name="Form" component={Form} />
         <Stack.Screen name="BluetoothAction" component={BluetoothAction} />
         <Stack.Screen name="Bluetooth" component={Bluetooth} />
         <Stack.Screen name="Calendar" component={Calendar} />
