@@ -23,7 +23,7 @@ const createScenarioSlice = createSlice({
      */
 
     removeAction: (state, index) => {
-      state.actions.splice(index, 1)
+      state.actions.splice(index.payload, 1)
     },
 
     /**
@@ -42,7 +42,7 @@ const createScenarioSlice = createSlice({
      * @param {Number} index
      */
     removeCondition: (state, index) => {
-      state.conditions.splice(index, 1)
+      state.conditions.splice(index.payload, 1)
     },
 
     clear: state => initialState,
