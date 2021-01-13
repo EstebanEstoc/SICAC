@@ -20,6 +20,7 @@ const SMSAction = ({ navigation }) => {
   const [selectedItems, setselectedItems] = useState([]);
   const [contacts, setcontacts] = useState([]);
   const dispatch = useDispatch();
+  const calendar = useRef([]);
 
   const onSelectedItemsChange = (selectedItems) => {
     setselectedItems(selectedItems);
@@ -31,6 +32,21 @@ const SMSAction = ({ navigation }) => {
     });
   }, []);
 
+  const chipAction = (stringToAdd) => {
+    setcore((old) => `${old} ${stringToAdd}`);
+  };
+
+  const chipActionCalendar = (addCalendarResult, CalendarName) => {
+    const calendarIndex = calendar.current.indexOf(CalendarName);
+    if (addCalendarResult) {
+      if (calendarIndex === -1) {
+        calendar.current.push(CalendarName);
+      }
+    } else {
+      calendar.current.splice(calendarIndex, 1);
+    }
+  };
+
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
@@ -40,6 +56,7 @@ const SMSAction = ({ navigation }) => {
               addAction({
                 name: "Send SMS to " + selectedItems,
                 options: { to: selectedItems, core: core },
+                calendar,
               })
             );
             navigation.navigate("CreateScenario");
@@ -79,7 +96,8 @@ const SMSAction = ({ navigation }) => {
       </View>
       <ChipParam
         containerStyle={{ flex: 1 }}
-        chipAction={() => console.log("Pressed")}
+        chipAction={chipAction}
+        chipActionCalendar={chipActionCalendar}
       />
       <View style={styles.containerCore}>
         <TextInput
@@ -88,6 +106,7 @@ const SMSAction = ({ navigation }) => {
           underlineColorAndroid="transparent"
           onChangeText={(input) => setcore(input)}
           style={styles.coreInput}
+          value={core}
         />
       </View>
     </KeyboardAwareScrollView>

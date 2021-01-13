@@ -1,32 +1,28 @@
 import React, { useEffect, useRef, useState } from "react";
-import { StyleSheet, View } from "react-native";
-import { useSelector, useDispatch } from "react-redux";
+import { StyleSheet, View, Text } from "react-native";
+import { useSelector } from "react-redux";
 import { Chip } from "react-native-paper";
 
 const ChipParam = ({ containerStyle, chipAction, chipActionCalendar }) => {
   const scenario = useSelector((state) => state.createScenario);
-  const dispatch = useDispatch();
   const [selectedConditionChip, setselectedConditionChip] = useState([]);
-  const [selectedActionChip, setselectedActionChip] = useState([]);
+  const conditionLenght = useRef(0);
+
   useEffect(() => {
     const chipArrayConditions = [];
     for (let i = 0; i < scenario.conditions.length; i++) {
       chipArrayConditions.push(false);
+      conditionLenght.current++;
     }
     setselectedConditionChip(chipArrayConditions);
-    const chipArrayActions = [];
-    for (let i = 0; i < scenario.actions.length; i++) {
-      chipArrayActions.push(false);
-    }
-    setselectedActionChip(chipArrayActions);
   }, []);
 
   const actionChips = () => {
     const chips = [];
-    scenario.actions.forEach((action) => {
+    scenario.actions.forEach((action, index) => {
       for (const property in action.options) {
         chips.push(
-          <View style={styles.chip} key={i.current}>
+          <View style={styles.chip} key={conditionLenght.current + index}>
             <Chip
               style={{
                 backgroundColor: "#4F465A",
@@ -45,29 +41,20 @@ const ChipParam = ({ containerStyle, chipAction, chipActionCalendar }) => {
     return chips;
   };
 
-  const toggleCalendarChipClose = (i) => {
-    console.log("close");
-    const newState = selectedConditionChip;
-    newState[i] = false;
-    setselectedConditionChip(newState);
-  };
-
   const toggleCalendarChip = (i) => {
     const newState = selectedConditionChip;
-    newState[i] = true;
-    setselectedConditionChip(newState);
+    newState[i] = !newState[i];
+    setselectedConditionChip([...newState]);
   };
 
   const conditionChips = () => {
     const chips = [];
     scenario.conditions.forEach((condition, index) => {
-      console.log(condition);
       if (condition.name && condition.name.startsWith("Have")) {
         chips.push(
           <View style={styles.chip} key={index}>
             <Chip
               selected={selectedConditionChip[index]}
-              disabled={selectedConditionChip[index]}
               style={{
                 backgroundColor: "#4F465A",
               }}
@@ -76,12 +63,12 @@ const ChipParam = ({ containerStyle, chipAction, chipActionCalendar }) => {
               }}
               onPress={() => {
                 toggleCalendarChip(index);
-                //chipActionCalendar();
+                chipActionCalendar(
+                  selectedConditionChip[index],
+                  condition.name
+                );
               }}
-              onClose={() => {
-                toggleCalendarChipClose(index);
-                //chipActionCalendar();
-              }}
+              selectedColor="white"
             >
               {condition.name}
             </Chip>
@@ -98,7 +85,7 @@ const ChipParam = ({ containerStyle, chipAction, chipActionCalendar }) => {
                 textStyle={{
                   color: "#fff",
                 }}
-                onPress={chipAction}
+                onPress={() => chipAction(condition.options[property])}
               >
                 {property}
               </Chip>
@@ -112,6 +99,11 @@ const ChipParam = ({ containerStyle, chipAction, chipActionCalendar }) => {
 
   return (
     <View style={containerStyle}>
+      <Text>
+        Press the chip to add the content to the body. If it is calendar
+        condition (starting by "Have"), it will be placed at the end of the
+        body.
+      </Text>
       <View style={styles.chipsContainer}>
         {actionChips()}
         {conditionChips()}

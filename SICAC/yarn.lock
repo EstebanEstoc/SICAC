@@ -6645,6 +6645,11 @@ react-native-background-job@^2.3.1:
   resolved "https://registry.yarnpkg.com/react-native-background-job/-/react-native-background-job-2.3.1.tgz#c9aa299d9ffb40b84a3156dec5fa40a604a9462b"
   integrity sha512-6R0krrH+zDNolauCyxjotiSK3X2YIJIP9+YX4HVVLFd/coAUnQKn1oy0fCqQzK4zhcggLN6D27wVOkjl5IjPaw==
 
+react-native-chip-view@^0.0.12:
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/react-native-chip-view/-/react-native-chip-view-0.0.12.tgz#4e7fc7b45220a14803d2c50cf331ca6d9b788fb0"
+  integrity sha512-9AshvLilm91ICl7iJrqsKvvrC6/QU5/q5oRO9IaK4dhBVgQbXPjqgVNWZdbA+iLeXmsS+xwvxDHSfJsnztBJFg==
+
 react-native-contacts@^6.0.3:
   version "6.0.3"
   resolved "https://registry.yarnpkg.com/react-native-contacts/-/react-native-contacts-6.0.3.tgz#74066c53db88d865d4630d1539a6e8ca50607a93"
@@ -6707,6 +6712,11 @@ react-native-keyboard-aware-scroll-view@^0.9.3:
   dependencies:
     prop-types "^15.6.2"
     react-native-iphone-x-helper "^1.0.3"
+
+react-native-material-chip@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-material-chip/-/react-native-material-chip-1.0.2.tgz#30c65e0c9b8dbf9d3ab9fce9c363abe859ff8663"
+  integrity sha512-Q3P4BMoqTf9I4ApvUmvvtumiJOFlb0Qtc3wQZW1zRQU/ymWbIn4EtWdgwWzQfdmgvoFxx0mqhUzysklU1koCcw==
 
 react-native-multiple-select-list@^1.0.4:
   version "1.0.4"
