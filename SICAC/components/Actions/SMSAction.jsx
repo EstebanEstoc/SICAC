@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   },
   containerHeader: {
     flex: 1,
-    backgroundColor: "#66BB6A",
+    backgroundColor: "#093E60",
     alignItems: "center",
   },
   containerCore: {
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
   },
   saveButtonContainer: {
     elevation: 8,
-    backgroundColor: "#093E60",
+    backgroundColor: "#7C7F80",
     borderRadius: 10,
     paddingVertical: 10,
     paddingHorizontal: 12,

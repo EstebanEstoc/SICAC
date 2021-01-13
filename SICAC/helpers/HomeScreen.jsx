@@ -59,6 +59,10 @@ const HomeScreen = ({ navigation }) => {
         title="CalendarSelector"
         onPress={() => navigation.navigate("CalendarSelector")}
       />
+      <Button
+        title="Background script"
+        onPress={() => navigation.navigate("BackTest")}
+      />
     </View>
   );
 };
