@@ -49,7 +49,7 @@ const NotificationAction = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#00BAC5",
+    backgroundColor: "#093E60",
     flex: 1,
     justifyContent: "center",
     alignItems: "stretch",
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   },
   saveButtonContainer: {
     elevation: 8,
-    backgroundColor: "#093E60",
+    backgroundColor: "#7C7F80",
     borderRadius: 10,
     paddingVertical: 10,
     paddingHorizontal: 12,

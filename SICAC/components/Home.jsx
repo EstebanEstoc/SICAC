@@ -27,6 +27,12 @@ const Home = ({ navigation }) => {
                 <Text style={styles.buttonText}>My scenarios</Text>
             </TouchableOpacity>
 
+            <TouchableOpacity onPress={() => { navigation.navigate("") }}
+                style={styles.button}>
+                <Icon name="user" size={30} color="white" style={styles.buttonIcon} />
+                <Text style={styles.buttonText}>My profile</Text>
+            </TouchableOpacity>
+
             <TouchableOpacity onPress={() => { navigation.navigate("ExampleScenarios") }}
                 style={styles.button}>
                 <Icon name="bookmark" size={30} color="white" style={styles.buttonIcon} />

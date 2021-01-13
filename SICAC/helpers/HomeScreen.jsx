@@ -9,7 +9,6 @@ import { clearUserInfo } from "../reducers/authentication/userSlice";
 import { GoogleConfigure } from "../services/authentication/providers/GoogleSignIn";
 import styles from "./styles";
 import { persistor } from "../store/store";
-import { ChangeFormActionStatus } from "../services/actions/Form/Form";
 
 const HomeScreen = ({ navigation }) => {
   const userInfo = useSelector((state) => state.user);
@@ -64,6 +63,13 @@ const HomeScreen = ({ navigation }) => {
         title="ChangeStatus"
         onPress={() => navigation.navigate("Form")}
       />
+
+      <Button
+        title="Background script"
+        onPress={() => navigation.navigate("BackTest")}
+      />
+
+
     </View>
   );
 };
