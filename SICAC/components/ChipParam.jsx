@@ -117,6 +117,7 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   chipsContainer: {
+    flexWrap: "wrap",
     flex: 1,
     flexDirection: "row",
     justifyContent: "center",

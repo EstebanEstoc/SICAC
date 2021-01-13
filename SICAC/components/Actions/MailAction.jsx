@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import EmailChipInput from "@arelstone/react-native-email-chip";
 import { addAction } from "../../reducers/scenarios/createScenarioSlice";
+import ChipParam from "../ChipParam";
 
 const MailAction = ({ navigation }) => {
   const [emails, setemails] = useState([]);
