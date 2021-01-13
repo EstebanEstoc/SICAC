@@ -31,7 +31,8 @@ export default class BackTest extends Component{
               jobKey: "myJob",
               notificationTitle: "tâche Background",
               notificationText: "tâche Background",
-              period: 1000
+              period: 1000,
+              allowExecutionInForeground: true
             });
           }}
         >
