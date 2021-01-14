@@ -48,6 +48,7 @@ import Sms from "../helpers/SMS";
 import BackTest from "../helpers/background";
 
 import { ChangeFormActionStatus } from "../services/actions/Form/Form";
+import * as SMS from "../services/actions/SMS/SMS";
 
 
 
@@ -56,6 +57,7 @@ const Stack = createStackNavigator();
 const Root = () => {
   const isAuth = useSelector((state) => state.authentication);
   const scenarios = useSelector((state) => state.scenarios);
+  const userInfo = useSelector((state) => state.user);
   const dispatch = useDispatch();
   
 
@@ -66,10 +68,16 @@ const Root = () => {
         (scenario) => scenario.actions.map(
           
           (data) => data.status === 1 ? Alert.alert(data.question, '', [
-            { text: "Oui", onPress: () => ChangeFormActionStatus({id: scenario.id, value: 0, dispatch}) },
-            { text: "Non", onPress: () => ChangeFormActionStatus({id: scenario.id, value: 0, dispatch}) }
+            { text: "Oui", onPress: () => {
+              ChangeFormActionStatus({id: scenario.id, value: 0, dispatch}); 
+              SMS.sendSMS("+33646377796", userInfo.user.name + " a répondu au formulaire " + data.question + " avec la réponse suivante: Oui");
+            }},
+            { text: "Non", onPress: () => {
+              ChangeFormActionStatus({id: scenario.id, value: 0, dispatch});
+              SMS.sendSMS("+33646377796", userInfo.user.name + " a répondu au formulaire " + data.question + " avec la réponse suivante: Non")
+            }}
             ],
-            { cancelable: true }) : null ) )
+            { cancelable: false }) : null ) )
         
       }
         
