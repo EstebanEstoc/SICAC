@@ -49,7 +49,9 @@ export const getPillCondition = async () => {
       if (pillsEvent.length === 1) {
         return {
           execute: true,
-          pillsToTake: GetEventData(pillsEvent[0], DATA_NAME.PILLS)
+          data: {
+            pillsToTake: GetEventData(pillsEvent[0], DATA_NAME.PILLS)
+          }
         }
       } else {
         return { execute: false }
@@ -69,7 +71,9 @@ export const haveToWalkConditon = async () => {
       if (walkEvent.length === 1) {
         return {
           execute: true,
-          duration: GetEventDuration(walkEvent[0])
+          data: {
+            duration: GetEventDuration(walkEvent[0])
+          }
         }
       } else {
         return {
@@ -95,8 +99,10 @@ export const haveAnAppointment = async () => {
       if (appointmentEvent.length === 1) {
         return {
           execute: true,
-          where: GetEventLocation(appointmentEvent[0]),
-          duration: GetEventDuration(appointmentEvent[0])
+          data: {
+            where: GetEventLocation(appointmentEvent[0]),
+            duration: GetEventDuration(appointmentEvent[0])
+          }
         }
       } else {
         return { execute: false }
@@ -116,7 +122,7 @@ export const answerForm = async () => {
       if (formEvent.length === 1) {
         return {
           execute: true,
-          formId: GetEventData(formEvent[0], DATA_NAME.FORM_ID)
+          data: { formId: GetEventData(formEvent[0], DATA_NAME.FORM_ID) }
         }
       } else {
         return {
@@ -136,8 +142,10 @@ export const currentEvent = async eventID => {
     if (event) {
       return {
         execute: EventIsCurrent(event),
-        where: GetEventLocation(event),
-        duration: GetEventDuration(event)
+        data: {
+          where: GetEventLocation(event),
+          duration: GetEventDuration(event)
+        }
       }
     }
   } catch (error) {
@@ -151,8 +159,10 @@ export const in30MinutesEvent = async eventID => {
     const event = await GetEventByID(eventID, CALENDAR_ID)
     return {
       execute: EventIsIn30Minutes(event),
-      where: GetEventLocation(event),
-      duration: GetEventDuration(event)
+      data: {
+        where: GetEventLocation(event),
+        duration: GetEventDuration(event)
+      }
     }
   } catch (error) {
     console.log(error)

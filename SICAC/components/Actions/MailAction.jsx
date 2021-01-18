@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from "react";
+import React, { useState, useLayoutEffect, useRef } from "react";
 import {
   TouchableOpacity,
   Text,
@@ -10,22 +10,46 @@ import { useDispatch, useSelector } from "react-redux";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import EmailChipInput from "@arelstone/react-native-email-chip";
 import { addAction } from "../../reducers/scenarios/createScenarioSlice";
+import ChipParam from "../ChipParam";
 
 const MailAction = ({ navigation }) => {
   const [emails, setemails] = useState([]);
   const [core, setcore] = useState("");
   const [subject, setsubject] = useState("");
-  const scenario = useSelector((state) => state.createScenario);
+  const calendar = useRef([]);
   const dispatch = useDispatch();
+
+  const chipAction = (stringToAdd) => {
+    setcore((old) => `${old} ${stringToAdd}`);
+  };
+
+  const chipActionCalendar = (addCalendarResult, CalendarName) => {
+    const calendarIndex = calendar.current.indexOf(CalendarName);
+    if (addCalendarResult) {
+      if (calendarIndex === -1) {
+        calendar.current.push(CalendarName);
+      }
+    } else {
+      calendar.current.splice(calendarIndex, 1);
+    }
+  };
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <TouchableOpacity onPress={() => {
-          dispatch(addAction({ name: "Send mail : " + subject, options: { to: emails, subject: subject, core: core } }));
-          navigation.navigate("CreateScenario");
-        }}
-          style={styles.saveButtonContainer}>
+        <TouchableOpacity
+          onPress={() => {
+            dispatch(
+              addAction({
+                name: "Send mail : " + subject,
+                options: { to: emails, subject: subject, core: core },
+                calendar,
+              })
+            );
+            navigation.navigate("CreateScenario");
+          }}
+          style={styles.saveButtonContainer}
+        >
           <Text style={styles.saveButtonText}>Save</Text>
         </TouchableOpacity>
       ),
@@ -63,6 +87,11 @@ const MailAction = ({ navigation }) => {
           </View>
         </View>
       </View>
+      <ChipParam
+        containerStyle={{ flex: 1 }}
+        chipAction={chipAction}
+        chipActionCalendar={chipActionCalendar}
+      />
       <View style={styles.containerCore}>
         <TextInput
           multiline
@@ -70,6 +99,7 @@ const MailAction = ({ navigation }) => {
           underlineColorAndroid="transparent"
           onChangeText={(input) => setcore(input)}
           style={styles.coreInput}
+          value={core}
         />
       </View>
     </KeyboardAwareScrollView>
@@ -136,7 +166,7 @@ const styles = StyleSheet.create({
   },
   saveButtonContainer: {
     elevation: 8,
-    backgroundColor: "#7C7F80", 
+    backgroundColor: "#7C7F80",
     borderRadius: 10,
     paddingVertical: 10,
     paddingHorizontal: 12,
