@@ -95,3 +95,12 @@ export const GetEventData = (event, queryDataName) => {
   const data = JSON.parse(event.description)
   return data[queryDataName]
 }
+
+export const IsAlreadyTriggered = (event, triggeredIds) => {
+  for (const id in triggeredIds) {
+    if (event.if === id) {
+      return true
+    }
+  }
+  return false
+}

@@ -60,7 +60,7 @@ const SMSAction = ({ navigation }) => {
             dispatch(
               addAction({
                 name: "Send SMS to " + selectedItems,
-                options: { to: selectedItems, core: core },
+                options: { to: selectedContacts, core: core },
                 calendar,
               })
             );
