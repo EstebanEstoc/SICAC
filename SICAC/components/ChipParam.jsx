@@ -20,22 +20,29 @@ const ChipParam = ({ containerStyle, chipAction, chipActionCalendar }) => {
   const actionChips = () => {
     const chips = [];
     scenario.actions.forEach((action, index) => {
+      let indexProp = 0;
       for (const property in action.options) {
-        chips.push(
-          <View style={styles.chip} key={conditionLenght.current + index}>
-            <Chip
-              style={{
-                backgroundColor: "#4F465A",
-              }}
-              textStyle={{
-                color: "#fff",
-              }}
-              onPress={chipAction}
+        if (typeof action.options[property] !== "object") {
+          chips.push(
+            <View
+              style={styles.chip}
+              key={conditionLenght.current + index + indexProp}
             >
-              {property}
-            </Chip>
-          </View>
-        );
+              <Chip
+                style={{
+                  backgroundColor: "#4F465A",
+                }}
+                textStyle={{
+                  color: "#fff",
+                }}
+                onPress={() => chipAction(action.options[property])}
+              >
+                {property}
+              </Chip>
+            </View>
+          );
+        }
+        indexProp++;
       }
     });
     return chips;
@@ -75,22 +82,26 @@ const ChipParam = ({ containerStyle, chipAction, chipActionCalendar }) => {
           </View>
         );
       } else {
+        let indexProp = 0;
         for (const property in condition.options) {
-          chips.push(
-            <View style={styles.chip} key={index}>
-              <Chip
-                style={{
-                  backgroundColor: "#4F465A",
-                }}
-                textStyle={{
-                  color: "#fff",
-                }}
-                onPress={() => chipAction(condition.options[property])}
-              >
-                {property}
-              </Chip>
-            </View>
-          );
+          if (typeof condition.options[property] !== "object") {
+            chips.push(
+              <View style={styles.chip} key={index + indexProp}>
+                <Chip
+                  style={{
+                    backgroundColor: "#4F465A",
+                  }}
+                  textStyle={{
+                    color: "#fff",
+                  }}
+                  onPress={() => chipAction(condition.options[property])}
+                >
+                  {property}
+                </Chip>
+              </View>
+            );
+          }
+          indexProp++;
         }
       }
     });

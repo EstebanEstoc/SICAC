@@ -18,12 +18,17 @@ import ChipParam from "../ChipParam";
 const SMSAction = ({ navigation }) => {
   const [core, setcore] = useState("");
   const [selectedItems, setselectedItems] = useState([]);
+  const [selectedContacts, setselectedContacts] = useState([]);
   const [contacts, setcontacts] = useState([]);
   const dispatch = useDispatch();
   const calendar = useRef([]);
 
   const onSelectedItemsChange = (selectedItems) => {
     setselectedItems(selectedItems);
+  };
+
+  const onSelectedItemObjectsChange = (selectedItemObjects) => {
+    setselectedContacts(selectedItemObjects);
   };
 
   useEffect(() => {
@@ -88,6 +93,7 @@ const SMSAction = ({ navigation }) => {
                 readOnlyHeadings={false}
                 showCancelButton={true}
                 onSelectedItemsChange={onSelectedItemsChange}
+                onSelectedItemObjectsChange={onSelectedItemObjectsChange}
                 selectedItems={selectedItems}
               />
             </View>
