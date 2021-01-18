@@ -10,15 +10,23 @@ import SectionedMultiSelect from "react-native-sectioned-multi-select";
 import * as ContactRetriver from "../../services/actions/SMS/Contacts";
 
 export default function FormAction({ navigation }) {
-    const [selectedItems, setselectedItems] = useState([]);
+
     const [question, setquestion] = useState("");
+
+    const [core, setcore] = useState("");
+    const [selectedItems, setselectedItems] = useState([]);
+    const [selectedContacts, setselectedContacts] = useState([]);
     const [contacts, setcontacts] = useState([]);
     const dispatch = useDispatch();
+    const calendar = useRef([]);
 
     const onSelectedItemsChange = (selectedItems) => {
         setselectedItems(selectedItems);
-        console.log(selectedItems);
-        console.log(selectedItems[0]);
+    };
+
+    const onSelectedItemObjectsChange = (selectedItemObjects) => {
+        setselectedContacts(selectedItemObjects);
+        console.log(selectedItemObjects)
     };
 
     const onChangeQuestion = (question) => {
@@ -68,13 +76,14 @@ export default function FormAction({ navigation }) {
                                 readOnlyHeadings={false}
                                 showCancelButton={true}
                                 onSelectedItemsChange={onSelectedItemsChange}
+                                onSelectedItemObjectsChange={onSelectedItemObjectsChange}
                                 selectedItems={selectedItems}
                             />
                         </View>
                     </View>
                 </View>
                 <View style={styles.name}>
-                    <Button title="Submit question" onPress={() => question != "" && selectedItems[0] != undefined ? dispatch(addAction({ name: "Form\nQuestion: " + question + "\n Send to:\n" + selectedItems.map((info) => info.name + "\n"), question: question, status: 0, receivers: selectedItems })) && navigation.navigate("CreateScenario") : alert("Please enter a question and select at least one contact")} />
+                    <Button title="Submit question" onPress={() => question != "" && selectedContacts[0] != undefined ? dispatch(addAction({ name: "Form\nQuestion: " + question + "\n Send to: " + selectedContacts.map((info) => " " + info.name ), question: question, status: 0, receivers: selectedContacts })) && navigation.navigate("CreateScenario") : alert("Please enter a question and select at least one contact")} />
                 </View>
             </View>
 

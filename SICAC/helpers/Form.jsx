@@ -9,7 +9,7 @@ const Form = () => {
     const dispatch = useDispatch();
     return (
         <View style={styles.container}>
-            <Button onPress={() => ChangeFormActionStatus({id: 28, value: 1, dispatch})} title="ChangeFormActionStatus"></Button>
+            <Button onPress={() => ChangeFormActionStatus({id: 30, value: 1, dispatch})} title="ChangeFormActionStatus"></Button>
         </View>
     );
 };
