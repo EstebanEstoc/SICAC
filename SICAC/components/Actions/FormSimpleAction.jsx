@@ -1,37 +1,24 @@
-import React, { useState, useLayoutEffect, useEffect, useRef } from "react";
-import { View, Text } from "react-native";
-import Icon from "react-native-vector-icons/MaterialIcons";
+import React, { useState } from "react";
+import { View } from "react-native";
 import { useDispatch } from "react-redux";
 import { Input } from "react-native-elements";
 import { StyleSheet } from 'react-native';
 import { addAction } from "../../reducers/scenarios/createScenarioSlice";
 import { Button } from "react-native";
-import SectionedMultiSelect from "react-native-sectioned-multi-select";
-import * as ContactRetriver from "../../services/actions/SMS/Contacts";
 
-export default function FormAction({ navigation }) {
-    const [selectedItems, setselectedItems] = useState([]);
+
+export default function FormSimpleAction({ navigation }) {
+
     const [question, setquestion] = useState("");
-    const [contacts, setcontacts] = useState([]);
+
     const dispatch = useDispatch();
 
-    const onSelectedItemsChange = (selectedItems) => {
-        setselectedItems(selectedItems);
-        console.log(selectedItems);
-        console.log(selectedItems[0]);
-    };
+
 
     const onChangeQuestion = (question) => {
         setquestion(question);
     };
 
-    useEffect(() => {
-        ContactRetriver.getContacts().then((contactsList) => {
-            setcontacts(contactsList);
-            console.log(selectedItems)
-        });
-    }, []);
-    // var question = "";
 
     return (
         <View style={styles.container}>
@@ -48,36 +35,10 @@ export default function FormAction({ navigation }) {
                     defaultValue={""}
                     onChangeText={(QuestionInput) => onChangeQuestion(QuestionInput)}
                 />
-
-
             </View>
-            <View style={styles.containerHeader}>
-                <View style={styles.form}>
-                    <View style={styles.prefixContainer}>
-                        <Text style={styles.prefix}>To:</Text>
-                        <View style={styles.inputsContainer}>
-                            <SectionedMultiSelect
-                                styles={selectContacts}
-                                items={contacts}
-                                IconRenderer={Icon}
-                                uniqueKey="id"
-                                subKey="children"
-                                selectText="Choose contacts..."
-                                searchPlaceholderText="Search contacts..."
-                                showDropDowns={true}
-                                readOnlyHeadings={false}
-                                showCancelButton={true}
-                                onSelectedItemsChange={onSelectedItemsChange}
-                                selectedItems={selectedItems}
-                            />
-                        </View>
-                    </View>
-                </View>
-                <View style={styles.name}>
-                    <Button title="Submit question" onPress={() => question != "" && selectedItems[0] != undefined ? dispatch(addAction({ name: "Form\nQuestion: " + question + "\n Send to:\n" + selectedItems.map((info) => info.name + "\n"), question: question, status: 0, receivers: selectedItems })) && navigation.navigate("CreateScenario") : alert("Please enter a question and select at least one contact")} />
-                </View>
+            <View style={styles.name}>
+                <Button title="Submit question" onPress={() => question != "" ? dispatch(addAction({ name: "Simple Form \nQuestion: " + question, question: question, status: 0 })) && navigation.navigate("CreateScenario") : alert("Please enter a question")} />
             </View>
-
 
         </View>
 
@@ -160,8 +121,3 @@ const styles = StyleSheet.create({
     },
 })
 
-const selectContacts = {
-    button: {
-        backgroundColor: "#083E60",
-    },
-};

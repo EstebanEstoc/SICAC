@@ -3,7 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useSelector, useDispatch } from "react-redux";
 
-import { View, StyleSheet, Alert, Button } from "react-native";
+import { Alert } from "react-native";
 
 import Authentication from "./Authentication/Authentication";
 import HomeScreen from "../helpers/HomeScreen";
@@ -40,6 +40,7 @@ import ConnectedToSpeakerCondition from "./Conditions/Bluetooth/ConnectedToSpeak
 import WifiAction from "./Actions/WifiAction";
 import BluetoothAction from "./Actions/BluetoothAction";
 import FormAction from "./Actions/FormAction";
+import FormSimpleAction from "./Actions/FormSimpleAction";
 import ShuttersAction from "./Actions/ShuttersAction";
 import LaunchMusicAction from "./Actions/LaunchMusicAction";
 import TriggerPedometerAction from "./Actions/TriggerPedometerAction";
@@ -59,51 +60,65 @@ const Root = () => {
   const scenarios = useSelector((state) => state.scenarios);
   const userInfo = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  
+
 
   return (
-    
+
     <NavigationContainer>
       {scenarios.scenarios.map(
         (scenario) => scenario.actions.map(
+
+          (data) => data.status === 1 ? 
           
-          (data) => data.status === 1 ? Alert.alert(data.question, '', [
-            { text: "Oui", onPress: () => {
-              ChangeFormActionStatus({id: scenario.id, value: 0, dispatch}); 
-              SMS.sendSMS("+33646377796", userInfo.user.name + " a répondu au formulaire " + data.question + " avec la réponse suivante: Oui");
-            }},
-            { text: "Non", onPress: () => {
-              ChangeFormActionStatus({id: scenario.id, value: 0, dispatch});
-              SMS.sendSMS("+33646377796", userInfo.user.name + " a répondu au formulaire " + data.question + " avec la réponse suivante: Non")
-            }}
-            ],
-            { cancelable: false }) : null ) )
-        
+          Alert.alert(data.question, '', [
+            {
+              text: "Oui", onPress: () => {
+                ChangeFormActionStatus({ id: scenario.id, value: 0, dispatch });
+                if (data["receivers"] !== undefined) {
+                  data.receivers.map(
+                    (infos) => SMS.sendSMS(infos.phone, userInfo.user.name + " a répondu au formulaire " + data.question + " avec la réponse suivante: Oui")
+                  );
+                }
+              }
+            },
+            {
+              text: "Non", onPress: () => {
+                ChangeFormActionStatus({ id: scenario.id, value: 0, dispatch });
+                if (data["receivers"] !== undefined) {
+                  data.receivers.map(
+                    (infos) => SMS.sendSMS(infos.phone, userInfo.user.name + " a répondu au formulaire " + data.question + " avec la réponse suivante: Non")
+                  );
+                }
+              }
+            }
+          ],
+            { cancelable: false }) : null))
+
       }
-        
+
       <Stack.Navigator screenOptions={styles.header}>
         {isAuth ? (
-          <Stack.Screen 
-            name="Home" 
+          <Stack.Screen
+            name="Home"
             options={{
               title: 'Home',
             }}
             component={Home} />
         ) : (
-          <Stack.Screen 
-            name="Authentication"
-            options={{
-              title: 'Google authentication',
-            }}
-            component={Authentication} />
-        )}
+            <Stack.Screen
+              name="Authentication"
+              options={{
+                title: 'Google authentication',
+              }}
+              component={Authentication} />
+          )}
         <Stack.Screen name="HomeHelper" component={HomeScreen} />
         <Stack.Screen name="SunriseSunsetAPI" component={SunriseSunsetAPI} />
         <Stack.Screen
           name="MailAction"
           options={
             styles.headerMailAction,
-            {title: 'Action - Mail'}
+            { title: 'Action - Mail' }
           }
           component={MailAction}
         />
@@ -111,7 +126,7 @@ const Root = () => {
           name="SMSAction"
           options={
             styles.headerSMSAction,
-            {title: 'Action - SMS'}
+            { title: 'Action - SMS' }
           }
           component={SMSAction}
         />
@@ -119,23 +134,23 @@ const Root = () => {
           name="NotificationAction"
           options={
             styles.headerNotificationAction,
-            {title: 'Action - Notification'}
+            { title: 'Action - Notification' }
           }
           component={NotificationAction}
         />
-        <Stack.Screen 
+        <Stack.Screen
           name="ScenarioList"
           options={{
             title: 'My scenarios',
           }}
           component={ScenarioList} />
-        <Stack.Screen 
+        <Stack.Screen
           name="ConditionType"
           options={{
             title: 'Add a condition',
           }}
           component={ConditionType} />
-        <Stack.Screen 
+        <Stack.Screen
           name="ActionType"
           options={{
             title: 'Add an action',
@@ -147,11 +162,11 @@ const Root = () => {
         <Stack.Screen name="Notifications" component={Notifications} />
         <Stack.Screen name="AddScenario" component={AddScenario} />
         <Stack.Screen name="BackTest" component={BackTest} />
-        <Stack.Screen 
+        <Stack.Screen
           name="CreateScenario"
           options={{
             title: 'Create a scenario',
-          }}component={CreateScenario} />
+          }} component={CreateScenario} />
         <Stack.Screen
           name="TimeOfDayCondition"
           options={{
@@ -159,55 +174,55 @@ const Root = () => {
           }}
           component={TimeOfDayCondition}
         />
-        <Stack.Screen 
+        <Stack.Screen
           name="HomeCondition"
           options={{
             title: 'Condition - Home',
           }}
           component={HomeCondition} />
-        <Stack.Screen 
+        <Stack.Screen
           name="LocationCondition"
           options={{
             title: 'Condition - Location',
           }}
           component={LocationCondition} />
-        <Stack.Screen 
+        <Stack.Screen
           name="HighHeartRateCondition"
           options={{
             title: 'Condition - High heart rate',
           }}
           component={HighHeartRateCondition} />
-        <Stack.Screen 
+        <Stack.Screen
           name="HaveToTakePillsCondition"
           options={{
             title: 'Condition - Have to take pills',
           }}
           component={HaveToTakePillsCondition} />
-        <Stack.Screen 
+        <Stack.Screen
           name="HaveToWalkCondition"
           options={{
             title: 'Condition - Have to walk',
           }}
           component={HaveToWalkCondition} />
-        <Stack.Screen 
+        <Stack.Screen
           name="HaveToAnswerFormCondition"
           options={{
             title: 'Condition - Have to answer form',
           }}
           component={HaveToAnswerFormCondition} />
-        <Stack.Screen 
+        <Stack.Screen
           name="HaveAnAppointmentCondition"
           options={{
             title: 'Condition - Have an appointment',
           }}
           component={HaveAnAppointmentCondition} />
-        <Stack.Screen 
+        <Stack.Screen
           name="ConnectedToHeadphonesCondition"
           options={{
             title: 'Condition - Connected to headphones',
           }}
           component={ConnectedToHeadphonesCondition} />
-        <Stack.Screen 
+        <Stack.Screen
           name="ConnectedToSpeakerCondition"
           options={{
             title: 'Condition - Connected to speaker',
@@ -215,11 +230,12 @@ const Root = () => {
           component={ConnectedToSpeakerCondition} />
         <Stack.Screen name="WifiAction" component={WifiAction} />
         <Stack.Screen name="FormAction" component={FormAction} />
+        <Stack.Screen name="FormSimpleAction" component={FormSimpleAction} />
         <Stack.Screen name="Form" component={Form} />
         <Stack.Screen name="BluetoothAction" component={BluetoothAction} />
         <Stack.Screen name="Bluetooth" component={Bluetooth} />
         <Stack.Screen name="Calendar" component={Calendar} />
-        <Stack.Screen 
+        <Stack.Screen
           name="ExampleScenarios"
           options={{
             title: 'Example scenarios',
@@ -231,19 +247,19 @@ const Root = () => {
             title: 'Action - Lights',
           }}
           component={LightsAction} />
-        <Stack.Screen 
+        <Stack.Screen
           name="ShuttersAction"
           options={{
             title: 'Action - Shutters',
           }}
           component={ShuttersAction} />
-        <Stack.Screen 
+        <Stack.Screen
           name="LaunchMusicAction"
           options={{
             title: 'Action - Launch music',
           }}
           component={LaunchMusicAction} />
-        <Stack.Screen 
+        <Stack.Screen
           name="TriggerPedometerAction"
           options={{
             title: 'Action - Trigger the pedometer',
