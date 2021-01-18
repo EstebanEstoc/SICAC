@@ -13,15 +13,22 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 
 import { addAction } from "../../reducers/scenarios/createScenarioSlice";
 import * as ContactRetriver from "../../services/actions/SMS/Contacts";
+import ChipParam from "../ChipParam";
 
 const SMSAction = ({ navigation }) => {
   const [core, setcore] = useState("");
   const [selectedItems, setselectedItems] = useState([]);
+  const [selectedContacts, setselectedContacts] = useState([]);
   const [contacts, setcontacts] = useState([]);
   const dispatch = useDispatch();
+  const calendar = useRef([]);
 
   const onSelectedItemsChange = (selectedItems) => {
     setselectedItems(selectedItems);
+  };
+
+  const onSelectedItemObjectsChange = (selectedItemObjects) => {
+    setselectedContacts(selectedItemObjects);
   };
 
   useEffect(() => {
@@ -29,6 +36,21 @@ const SMSAction = ({ navigation }) => {
       setcontacts(contactsList);
     });
   }, []);
+
+  const chipAction = (stringToAdd) => {
+    setcore((old) => `${old} ${stringToAdd}`);
+  };
+
+  const chipActionCalendar = (addCalendarResult, CalendarName) => {
+    const calendarIndex = calendar.current.indexOf(CalendarName);
+    if (addCalendarResult) {
+      if (calendarIndex === -1) {
+        calendar.current.push(CalendarName);
+      }
+    } else {
+      calendar.current.splice(calendarIndex, 1);
+    }
+  };
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -38,7 +60,8 @@ const SMSAction = ({ navigation }) => {
             dispatch(
               addAction({
                 name: "Send SMS to " + selectedItems,
-                options: { to: selectedItems, core: core },
+                options: { to: selectedContacts, core: core },
+                calendar,
               })
             );
             navigation.navigate("CreateScenario");
@@ -70,12 +93,18 @@ const SMSAction = ({ navigation }) => {
                 readOnlyHeadings={false}
                 showCancelButton={true}
                 onSelectedItemsChange={onSelectedItemsChange}
+                onSelectedItemObjectsChange={onSelectedItemObjectsChange}
                 selectedItems={selectedItems}
               />
             </View>
           </View>
         </View>
       </View>
+      <ChipParam
+        containerStyle={{ flex: 1 }}
+        chipAction={chipAction}
+        chipActionCalendar={chipActionCalendar}
+      />
       <View style={styles.containerCore}>
         <TextInput
           multiline
@@ -83,6 +112,7 @@ const SMSAction = ({ navigation }) => {
           underlineColorAndroid="transparent"
           onChangeText={(input) => setcore(input)}
           style={styles.coreInput}
+          value={core}
         />
       </View>
     </KeyboardAwareScrollView>

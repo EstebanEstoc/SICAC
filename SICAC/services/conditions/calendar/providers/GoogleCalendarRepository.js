@@ -1,7 +1,5 @@
 import * as GoogleCalendarAPI from './GoogleCalendarAPI'
 
-GoogleCalendarAPI.GoogleCalendarConfig()
-
 export const GetPrimaryCalendarID = async () => {
   try {
     const calendars = await GoogleCalendarAPI.GetGoogleCalendarList()
@@ -96,4 +94,13 @@ export const GetEventLocation = event => {
 export const GetEventData = (event, queryDataName) => {
   const data = JSON.parse(event.description)
   return data[queryDataName]
+}
+
+export const IsAlreadyTriggered = (event, triggeredIds) => {
+  for (const id in triggeredIds) {
+    if (event.if === id) {
+      return true
+    }
+  }
+  return false
 }

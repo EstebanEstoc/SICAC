@@ -41,7 +41,7 @@ import LaunchMusicAction from "./Actions/LaunchMusicAction";
 import TriggerPedometerAction from "./Actions/TriggerPedometerAction";
 import Calendar from "../helpers/Calendar";
 import Sms from "../helpers/SMS";
-import BackTest from "../helpers/background";
+//import BackTest from "../helpers/background";
 
 const Stack = createStackNavigator();
 
@@ -52,170 +52,185 @@ const Root = () => {
     <NavigationContainer>
       <Stack.Navigator screenOptions={styles.header}>
         {isAuth ? (
-          <Stack.Screen 
-            name="Home" 
+          <Stack.Screen
+            name="Home"
             options={{
-              title: 'Home',
+              title: "Home",
             }}
-            component={Home} />
+            component={Home}
+          />
         ) : (
-          <Stack.Screen 
+          <Stack.Screen
             name="Authentication"
             options={{
-              title: 'Google authentication',
+              title: "Google authentication",
             }}
-            component={Authentication} />
+            component={Authentication}
+          />
         )}
         <Stack.Screen name="HomeHelper" component={HomeScreen} />
         <Stack.Screen name="SunriseSunsetAPI" component={SunriseSunsetAPI} />
         <Stack.Screen
           name="MailAction"
-          options={
-            styles.headerMailAction,
-            {title: 'Action - Mail'}
-          }
+          options={(styles.headerMailAction, { title: "Action - Mail" })}
           component={MailAction}
         />
         <Stack.Screen
           name="SMSAction"
-          options={
-            styles.headerSMSAction,
-            {title: 'Action - SMS'}
-          }
+          options={(styles.headerSMSAction, { title: "Action - SMS" })}
           component={SMSAction}
         />
         <Stack.Screen
           name="NotificationAction"
           options={
-            styles.headerNotificationAction,
-            {title: 'Action - Notification'}
+            (styles.headerNotificationAction,
+            { title: "Action - Notification" })
           }
           component={NotificationAction}
         />
-        <Stack.Screen 
+        <Stack.Screen
           name="ScenarioList"
           options={{
-            title: 'My scenarios',
+            title: "My scenarios",
           }}
-          component={ScenarioList} />
-        <Stack.Screen 
+          component={ScenarioList}
+        />
+        <Stack.Screen
           name="ConditionType"
           options={{
-            title: 'Add a condition',
+            title: "Add a condition",
           }}
-          component={ConditionType} />
-        <Stack.Screen 
+          component={ConditionType}
+        />
+        <Stack.Screen
           name="ActionType"
           options={{
-            title: 'Add an action',
+            title: "Add an action",
           }}
-          component={ActionType} />
+          component={ActionType}
+        />
         <Stack.Screen name="New scenario - Conditions" component={Conditions} />
         <Stack.Screen name="New scenario - Actions" component={Actions} />
         <Stack.Screen name="New scenario - Summary" component={Summary} />
         <Stack.Screen name="Notifications" component={Notifications} />
         <Stack.Screen name="AddScenario" component={AddScenario} />
-        <Stack.Screen name="BackTest" component={BackTest} />
-        <Stack.Screen 
+        {/*<Stack.Screen name="BackTest" component={BackTest} />*/}
+        <Stack.Screen
           name="CreateScenario"
           options={{
-            title: 'Create a scenario',
-          }}component={CreateScenario} />
+            title: "Create a scenario",
+          }}
+          component={CreateScenario}
+        />
         <Stack.Screen
           name="TimeOfDayCondition"
           options={{
-            title: 'Condition - Time of day',
+            title: "Condition - Time of day",
           }}
           component={TimeOfDayCondition}
         />
-        <Stack.Screen 
+        <Stack.Screen
           name="HomeCondition"
           options={{
-            title: 'Condition - Home',
+            title: "Condition - Home",
           }}
-          component={HomeCondition} />
-        <Stack.Screen 
+          component={HomeCondition}
+        />
+        <Stack.Screen
           name="LocationCondition"
           options={{
-            title: 'Condition - Location',
+            title: "Condition - Location",
           }}
-          component={LocationCondition} />
-        <Stack.Screen 
+          component={LocationCondition}
+        />
+        <Stack.Screen
           name="HighHeartRateCondition"
           options={{
-            title: 'Condition - High heart rate',
+            title: "Condition - High heart rate",
           }}
-          component={HighHeartRateCondition} />
-        <Stack.Screen 
+          component={HighHeartRateCondition}
+        />
+        <Stack.Screen
           name="HaveToTakePillsCondition"
           options={{
-            title: 'Condition - Have to take pills',
+            title: "Condition - Have to take pills",
           }}
-          component={HaveToTakePillsCondition} />
-        <Stack.Screen 
+          component={HaveToTakePillsCondition}
+        />
+        <Stack.Screen
           name="HaveToWalkCondition"
           options={{
-            title: 'Condition - Have to walk',
+            title: "Condition - Have to walk",
           }}
-          component={HaveToWalkCondition} />
-        <Stack.Screen 
+          component={HaveToWalkCondition}
+        />
+        <Stack.Screen
           name="HaveToAnswerFormCondition"
           options={{
-            title: 'Condition - Have to answer form',
+            title: "Condition - Have to answer form",
           }}
-          component={HaveToAnswerFormCondition} />
-        <Stack.Screen 
+          component={HaveToAnswerFormCondition}
+        />
+        <Stack.Screen
           name="HaveAnAppointmentCondition"
           options={{
-            title: 'Condition - Have an appointment',
+            title: "Condition - Have an appointment",
           }}
-          component={HaveAnAppointmentCondition} />
-        <Stack.Screen 
+          component={HaveAnAppointmentCondition}
+        />
+        <Stack.Screen
           name="ConnectedToHeadphonesCondition"
           options={{
-            title: 'Condition - Connected to headphones',
+            title: "Condition - Connected to headphones",
           }}
-          component={ConnectedToHeadphonesCondition} />
-        <Stack.Screen 
+          component={ConnectedToHeadphonesCondition}
+        />
+        <Stack.Screen
           name="ConnectedToSpeakerCondition"
           options={{
-            title: 'Condition - Connected to speaker',
+            title: "Condition - Connected to speaker",
           }}
-          component={ConnectedToSpeakerCondition} />
+          component={ConnectedToSpeakerCondition}
+        />
         <Stack.Screen name="WifiAction" component={WifiAction} />
         <Stack.Screen name="BluetoothAction" component={BluetoothAction} />
         <Stack.Screen name="Bluetooth" component={Bluetooth} />
         <Stack.Screen name="Calendar" component={Calendar} />
-        <Stack.Screen 
+        <Stack.Screen
           name="ExampleScenarios"
           options={{
-            title: 'Example scenarios',
+            title: "Example scenarios",
           }}
-          component={ExampleScenarios} />
+          component={ExampleScenarios}
+        />
         <Stack.Screen
           name="LightsAction"
           options={{
-            title: 'Action - Lights',
+            title: "Action - Lights",
           }}
-          component={LightsAction} />
-        <Stack.Screen 
+          component={LightsAction}
+        />
+        <Stack.Screen
           name="ShuttersAction"
           options={{
-            title: 'Action - Shutters',
+            title: "Action - Shutters",
           }}
-          component={ShuttersAction} />
-        <Stack.Screen 
+          component={ShuttersAction}
+        />
+        <Stack.Screen
           name="LaunchMusicAction"
           options={{
-            title: 'Action - Launch music',
+            title: "Action - Launch music",
           }}
-          component={LaunchMusicAction} />
-        <Stack.Screen 
+          component={LaunchMusicAction}
+        />
+        <Stack.Screen
           name="TriggerPedometerAction"
           options={{
-            title: 'Action - Trigger the pedometer',
+            title: "Action - Trigger the pedometer",
           }}
-          component={TriggerPedometerAction} />
+          component={TriggerPedometerAction}
+        />
         <Stack.Screen name="SMS" component={Sms} />
       </Stack.Navigator>
     </NavigationContainer>
