@@ -1,7 +1,9 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
+import { Alert } from "react-native";
 
 import Authentication from "./Authentication/Authentication";
 import HomeScreen from "../helpers/HomeScreen";
@@ -17,6 +19,7 @@ import Actions from "./NewScenario/Actions/Actions";
 import Conditions from "./NewScenario/Conditions/Conditions";
 import Summary from "./NewScenario/Summary/Summary";
 import Notifications from "../helpers/Notifications";
+import Form from "../helpers/Form";
 import AddScenario from "../helpers/AddScenario";
 import MailAction from "./Actions/MailAction";
 import SMSAction from "./Actions/SMSAction";
@@ -36,6 +39,8 @@ import ConnectedToHeadphonesCondition from "./Conditions/Bluetooth/ConnectedToHe
 import ConnectedToSpeakerCondition from "./Conditions/Bluetooth/ConnectedToSpeakerCondition";
 import WifiAction from "./Actions/WifiAction";
 import BluetoothAction from "./Actions/BluetoothAction";
+import FormAction from "./Actions/FormAction";
+import FormSimpleAction from "./Actions/FormSimpleAction";
 import ShuttersAction from "./Actions/ShuttersAction";
 import LaunchMusicAction from "./Actions/LaunchMusicAction";
 import TriggerPedometerAction from "./Actions/TriggerPedometerAction";
@@ -43,13 +48,54 @@ import Calendar from "../helpers/Calendar";
 import Sms from "../helpers/SMS";
 //import BackTest from "../helpers/background";
 
+import { ChangeFormActionStatus } from "../services/actions/Form/Form";
+import * as SMS from "../services/actions/SMS/SMS";
+
+
+
 const Stack = createStackNavigator();
 
 const Root = () => {
   const isAuth = useSelector((state) => state.authentication);
+  const scenarios = useSelector((state) => state.scenarios);
+  const userInfo = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
 
   return (
+
     <NavigationContainer>
+      {scenarios.scenarios.map(
+        (scenario) => scenario.actions.map(
+
+          (data) => data.status === 1 ? 
+          
+          Alert.alert(data.question, '', [
+            {
+              text: "Oui", onPress: () => {
+                ChangeFormActionStatus({ id: scenario.id, value: 0, dispatch });
+                if (data["receivers"] !== undefined) {
+                  data.receivers.map(
+                    (infos) => SMS.sendSMS(infos.phone, userInfo.user.name + " a répondu au formulaire " + data.question + " avec la réponse suivante: Oui")
+                  );
+                }
+              }
+            },
+            {
+              text: "Non", onPress: () => {
+                ChangeFormActionStatus({ id: scenario.id, value: 0, dispatch });
+                if (data["receivers"] !== undefined) {
+                  data.receivers.map(
+                    (infos) => SMS.sendSMS(infos.phone, userInfo.user.name + " a répondu au formulaire " + data.question + " avec la réponse suivante: Non")
+                  );
+                }
+              }
+            }
+          ],
+            { cancelable: false }) : null))
+
+      }
+
       <Stack.Navigator screenOptions={styles.header}>
         {isAuth ? (
           <Stack.Screen
@@ -193,6 +239,9 @@ const Root = () => {
           component={ConnectedToSpeakerCondition}
         />
         <Stack.Screen name="WifiAction" component={WifiAction} />
+        <Stack.Screen name="FormAction" component={FormAction} />
+        <Stack.Screen name="FormSimpleAction" component={FormSimpleAction} />
+        <Stack.Screen name="Form" component={Form} />
         <Stack.Screen name="BluetoothAction" component={BluetoothAction} />
         <Stack.Screen name="Bluetooth" component={Bluetooth} />
         <Stack.Screen name="Calendar" component={Calendar} />

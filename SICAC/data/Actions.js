@@ -7,42 +7,48 @@ export const actions = [
     },
     {
         id: 2,
-        Title: "Launch a form",
-        IconName: "description",
-        Action: "Form"
+        Title: "Launch a form with SMS",
+        IconName: "sms",
+        Action: "FormAction"
     },
     {
         id: 3,
+        Title: "Launch a simple form",
+        IconName: "description",
+        Action: "FormSimpleAction"
+    },
+    {
+        id: 4,
         Title: "Trigger the pedometer",
         IconName: "watch",
         Action: "TriggerPedometerAction"
     },
     {
-        id: 4,
+        id: 5,
         Title: "Alert",
         IconName: "notifications",
         Action: "NotificationAction"
     },
     {
-        id: 5,
+        id: 6,
         Title: "Sms",
         IconName: "send",
         Action: "SMSAction"
     },
     {
-        id: 6,
+        id: 7,
         Title: "Lights",
         IconName: "highlight",
         Action: "LightsAction"
     },
     {
-        id: 7,
+        id: 8,
         Title: "Mail",
         IconName: "mail",
         Action: "MailAction"
     },
     {
-        id: 8,
+        id: 9,
         Title: "Shutters",
         IconName: "reorder",
         Action: "ShuttersAction"

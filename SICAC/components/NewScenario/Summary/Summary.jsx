@@ -16,7 +16,7 @@ export default function Summary({ route, navigation }) {
   const dispatch = useDispatch();
   const scenario = useSelector((state) => state.createScenario);
   const scenarios = useSelector((state) => state.scenarios);
-
+  console.log(scenario);
   try {
     var { itemId } = route.params;
     var id = JSON.stringify(itemId);

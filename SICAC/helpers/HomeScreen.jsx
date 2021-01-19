@@ -60,9 +60,16 @@ const HomeScreen = ({ navigation }) => {
         onPress={() => navigation.navigate("CalendarSelector")}
       />
       <Button
+        title="ChangeStatus"
+        onPress={() => navigation.navigate("Form")}
+      />
+
+      <Button
         title="Background script"
         onPress={() => navigation.navigate("BackTest")}
       />
+
+
     </View>
   );
 };
