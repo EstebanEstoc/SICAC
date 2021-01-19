@@ -28,7 +28,6 @@ const CreateScenarioTabs = ({ route, navigation }) => {
   useEffect(() => {
     if(itemId !== -1){
       const SelectedScenario = scenarios.scenarios.find(item => item.id === Number(JSON.stringify(itemId)))
-      console.log(SelectedScenario)
       dispatch(addName(SelectedScenario.name));
       SelectedScenario.actions.map(action => dispatch(addAction(action)));
       SelectedScenario.conditions.map(condition => dispatch(addCondition(condition)));

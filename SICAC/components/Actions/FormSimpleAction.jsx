@@ -24,7 +24,7 @@ export default function FormSimpleAction({ navigation }) {
         <View style={styles.container}>
             <View style={styles.name}>
                 <Input
-                    label="Enter your question: "
+                    label={"The question will have only two answer : yes or no. \n\nEnter your question: "}
                     placeholder="Tap to enter your question"
                     leftIcon={{
                         type: "font-awesome-5",
