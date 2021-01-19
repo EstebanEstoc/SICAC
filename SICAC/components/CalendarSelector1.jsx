@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Picker } from "@react-native-picker/picker";
-import { View,FlatList,StyleSheet,StatusBar,Text,TouchableOpacity } from "react-native";
+import { View,FlatList,StyleSheet,StatusBar,Text } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 import { GetCalendarsNameList } from "../services/conditions/calendar/providers/GoogleCalendarRepository";
@@ -12,28 +12,33 @@ const CalendarSelector = ({ containerStyle }) => {
   );
   const dispatch = useDispatch();
   const [calendarList, setcalendarList] = useState(undefined);
-  const [selectedId, setSelectedId] = useState(null);
-
-
-  const renderItem = ({ item }) => {
-    const backgroundColor = item.id === selectedId ? "#6e3b6e" : "#f9c2ff";
-
-    return (
-      <Item
-        item={item}
-        onPress={() =>  setSelectedId(item.id)}
-        style={{ backgroundColor }}
-      />
-    );
-  };
-  
-    const Item = ({ item, onPress, style }) => (
-      <TouchableOpacity onPress={onPress} style={[styles.item, style]}>
-        <Text style={styles.title}>{item.name}</Text>
-      </TouchableOpacity>
-    );
 
   
+
+  const renderItem = ({ item }) => (
+    <Item title={item.name} />);
+  
+  const Item = ({ title }) => (
+    <View style={styles.item}>
+      <Text style={styles.title}>{title}</Text>
+    </View>
+  );
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      marginTop: StatusBar.currentHeight || 0,
+    },
+    item: {
+      backgroundColor: '#f9c2ff',
+      padding: 20,
+      marginVertical: 8,
+      marginHorizontal: 16,
+    },
+    title: {
+      fontSize: 32,
+    },
+  });
   useEffect(() => {
     GetCalendarsNameList().then((calendars) => {
       setcalendarList(calendars);
@@ -69,8 +74,6 @@ const CalendarSelector = ({ containerStyle }) => {
               data={calendarList}
               renderItem={renderItem}
               keyExtractor={item => item.id}
-              extraData={selectedId}
-              style
             />
 
     </View>
@@ -83,43 +86,5 @@ const CalendarSelector = ({ containerStyle }) => {
  
 
 };
- const mainColor = '#00BAC5'
-  const secondaryColor = '#008e96'
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
-  },
-  item: {
-    backgroundColor: '#f9c2ff',
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-  },
-  title: {
-    fontSize: 20,
-  },
-  button: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'stretch',
-    alignSelf: 'stretch',
-    margin: 12,
-    shadowOffset: {
-        width: 2,
-        height: 5,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 10,
-    elevation: 8,
-    borderRadius: 10,
-    paddingVertical: 20,
-    paddingHorizontal: 12,
-    shadowColor: mainColor,
-    borderColor: secondaryColor,
-    borderWidth: 2,
-    backgroundColor: mainColor
-}
-});
 
 export default CalendarSelector;

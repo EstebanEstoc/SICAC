@@ -1,13 +1,15 @@
-import React, { Component,useRef, useState  } from "react"
+import React, { Component,useRef, useState, useEffect  } from "react"
 
-import { Button, SafeAreaView, View, Text,StyleSheet, Alert } from "react-native"
+import { Button, SafeAreaView, View, Text,StyleSheet, Alert, TextInput } from "react-native"
 // Wizard
 import Wizard from "react-native-wizard"
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 import {toggleWizTrue} from "../reducers/configuration/configurationSlice";
 import {store} from "../store/store";
 import { useDispatch } from "react-redux";
-
+import Authentication from "./Authentication/Authentication";
+import CalendarSelector from "./CalendarSelector";
+import askPermission from "../services/Permissions";
 
 const WizardScreen = ()=>{
   const wizard = useRef()
@@ -15,8 +17,9 @@ const WizardScreen = ()=>{
   const [isLastStep, setIsLastStep] = useState()
   const [currentStep, setCurrentStep] = useState(0)
   const [gestureName, setGestureName] = React.useState('none');
+
   const dispatch = useDispatch();
- 
+  
   const onSwipe = (gestureName, gestureState) => {
     const { SWIPE_LEFT, SWIPE_RIGHT} = swipeDirections;
     setGestureName(gestureName);
@@ -40,29 +43,56 @@ const WizardScreen = ()=>{
       content: <View style={styles.container}>
         <Text style = {styles.bigBlue}>Google Authentification</Text>
         <Text style = {styles.smallBlue}>Please input your credentials</Text>
+        <Authentication>
+
+        </Authentication>
         </View>
     },
     {
-        content: <View style={styles.container}>
-          <Text style = {styles.bigBlue}>Google Calendar</Text>
-          <Text style = {styles.smallBlue}>Please choose the google calendar you want to use</Text>
+        content: <View>
+          
+          <View style={{
+      flex:0.3,
+      justifyContent: 'center',
+  }}>
+            <Text style = {styles.bigBlue}>Google Calendar</Text>
+            <Text style = {styles.smallBlue}>Please choose the google calendar you want to use</Text>
+          </View>
+          <View style={{
+      flex:0.7,
+      justifyContent: 'center',
+  }}>
+            <CalendarSelector></CalendarSelector>
+          </View>
           </View>
       },
     {
       content: <View style={styles.container}>
         <Text style = {styles.bigBlue}>Authorization approval</Text>
         <Text style = {styles.smallBlue}>Please allow access to the following information</Text>
+        <Button
+          title="Accept"
+          color="#F64644"
+          onPress={() => askPermission()}
+        />
+        <Button
+          title="Accept"
+          color="#F64644"
+          onPress={() => askPermission()}
+        />
         </View>
     },
     {
       content: <View style={styles.container}>
         <Text style = {styles.bigBlue}>Are you at home ?</Text>
         <View style={styles.fixToText}>
+  
         <Button
           title="Yes"
           color="#093E60"
           onPress={() => Alert.alert('Left button pressed')}
         />
+        
         <Button
           title="No"
           color="#F64644"
@@ -88,11 +118,21 @@ const WizardScreen = ()=>{
     {
       content: <View style={styles.container}>
       <Text style = {styles.bigBlue}>Phone number of a relative</Text>
+      <TextInput  
+          placeholder="Please Input the Number"  
+          underlineColorAndroid='transparent'  
+          style={styles.TextInputStyle}  
+        />
     </View>,
     },
     {
       content: <View style={styles.container}>
       <Text style = {styles.bigBlue}>Phone number of your general practitioner</Text>
+      <TextInput  
+          placeholder="Please Input the Number"  
+          underlineColorAndroid='transparent'  
+          style={styles.TextInputStyle}  
+        />
     </View>,
     },
     {
@@ -103,6 +143,11 @@ const WizardScreen = ()=>{
     {
       content: <View style={styles.container}>
       <Text style = {styles.bigBlue}>Heart rate threshold</Text>
+      <TextInput  
+          placeholder="Enter Your Heart rate threshold"  
+          underlineColorAndroid='transparent'  
+          style={styles.TextInputStyle}  
+        />  
     </View>,
     },
     {
@@ -200,6 +245,15 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       justifyContent: 'center',
     },
+    TextInputStyle: { 
+      margin: 30, 
+      textAlign: 'center',  
+      height: 40,  
+      borderRadius: 10,  
+      borderWidth: 2,  
+      borderColor: '#009688',  
+      marginBottom: 10  
+  } 
 });
 
 

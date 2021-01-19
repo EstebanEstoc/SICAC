@@ -1,6 +1,5 @@
 import * as GoogleCalendarAPI from './GoogleCalendarAPI'
 
-GoogleCalendarAPI.GoogleCalendarConfig()
 
 export const GetPrimaryCalendarID = async () => {
   try {

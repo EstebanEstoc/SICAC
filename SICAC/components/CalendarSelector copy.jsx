@@ -21,7 +21,8 @@ const CalendarSelector = ({ containerStyle }) => {
     return (
       <Item
         item={item}
-        onPress={() =>  setSelectedId(item.id)}
+        onPress={() => dispatch(modifyDefaultCalendarID(itemValue))
+        }
         style={{ backgroundColor }}
       />
     );

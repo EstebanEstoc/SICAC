@@ -46,6 +46,13 @@ const Root = () => {
         ) : (
           <Stack.Screen name="Wizard" component={Wizard} />  
         )}
+        
+        {/* {isAuth ? (
+          <Stack.Screen name="Home" component={Home} />
+        ) : (
+          <Stack.Screen name="Authentication" component={Authentication} />
+        )} */}
+
         <Stack.Screen name="HomeHelper" component={HomeScreen} />
         <Stack.Screen name="SunriseSunsetAPI" component={SunriseSunsetAPI} />
         <Stack.Screen
