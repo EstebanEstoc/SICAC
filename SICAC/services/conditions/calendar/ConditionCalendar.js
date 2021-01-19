@@ -51,7 +51,8 @@ export const getPillCondition = async () => {
           execute: true,
           data: {
             pillsToTake: GetEventData(pillsEvent[0], DATA_NAME.PILLS)
-          }
+          },
+          eventId: appointmentEvent[0].id
         }
       } else {
         return { execute: false }
@@ -73,7 +74,8 @@ export const haveToWalkConditon = async () => {
           execute: true,
           data: {
             duration: GetEventDuration(walkEvent[0])
-          }
+          },
+          eventId: appointmentEvent[0].id
         }
       } else {
         return {
@@ -102,7 +104,8 @@ export const haveAnAppointment = async () => {
           data: {
             where: GetEventLocation(appointmentEvent[0]),
             duration: GetEventDuration(appointmentEvent[0])
-          }
+          },
+          eventId: appointmentEvent[0].id
         }
       } else {
         return { execute: false }
@@ -122,7 +125,8 @@ export const answerForm = async () => {
       if (formEvent.length === 1) {
         return {
           execute: true,
-          data: { formId: GetEventData(formEvent[0], DATA_NAME.FORM_ID) }
+          data: { formId: GetEventData(formEvent[0], DATA_NAME.FORM_ID) },
+          eventId: appointmentEvent[0].id
         }
       } else {
         return {
@@ -145,7 +149,8 @@ export const currentEvent = async eventID => {
         data: {
           where: GetEventLocation(event),
           duration: GetEventDuration(event)
-        }
+        },
+        eventId: appointmentEvent[0].id
       }
     }
   } catch (error) {
@@ -162,7 +167,8 @@ export const in30MinutesEvent = async eventID => {
       data: {
         where: GetEventLocation(event),
         duration: GetEventDuration(event)
-      }
+      },
+      eventId: appointmentEvent[0].id
     }
   } catch (error) {
     console.log(error)
