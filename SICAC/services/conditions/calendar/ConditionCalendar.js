@@ -21,7 +21,8 @@ export const EVENTS_NAME = {
 
 export const DATA_NAME = {
   PILLS: 'Pills',
-  FORM_ID: 'FormID'
+  FORM_ID: 'FormID',
+  APPOINTMENT: 'Name'
 }
 
 export const GetEventsTitleList = async () => {
@@ -103,7 +104,8 @@ export const haveAnAppointment = async () => {
           execute: true,
           data: {
             where: GetEventLocation(appointmentEvent[0]),
-            duration: GetEventDuration(appointmentEvent[0])
+            duration: GetEventDuration(appointmentEvent[0]),
+            name: GetEventData(appointmentEvent[0], DATA_NAME.APPOINTMENT)
           },
           eventId: appointmentEvent[0].id
         }
@@ -172,5 +174,44 @@ export const in30MinutesEvent = async eventID => {
     }
   } catch (error) {
     console.log(error)
+  }
+}
+
+/**
+ *
+ * @param {Object} scenario
+ */
+export const parseCalendarInfo = (scenario, calendarReponse) => {
+  scenario.actions.forEach(action => {
+    if (action.calendar && action.calendar.length > 0) {
+      action.calendar.forEach(event => {
+        action.core =
+          action.core + getCalendarInfoString(event, calendarReponse)
+      })
+    }
+  })
+}
+
+const getCalendarInfoString = (event, calendarResponse) => {
+  switch (event) {
+    case 'Have to walk':
+      return `You have to walk for ${calendarResponse.data.duration} hours. `
+    case 'Have an appointment':
+      return `You have an appointement in 30 minutes at ${calendarResponse.data.where} with ${calendarResponse.data.name} for ${calendarResponse.data.duration} hours. `
+    case 'Have to take pills':
+      let response = 'You have to take the following pills:'
+      calendarResponse.data.pillsToTake.forEach((pill, index) => {
+        if (index !== 0) {
+          response = ', ' + response + pill.dosage + ' of ' + pill.name
+        } else if (index === 0) {
+          response = response + pill.dosage + ' of ' + pill.name
+        }
+      })
+      response + '. '
+      return reponse
+    case 'Have to answer a form':
+      return ''
+    default:
+      return ''
   }
 }
