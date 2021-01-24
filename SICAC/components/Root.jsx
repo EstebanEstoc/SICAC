@@ -10,6 +10,8 @@ import HomeScreen from "../helpers/HomeScreen";
 import Home from "./Home";
 import CreateScenario from "./CreateScenario/CreateScenarioTabs";
 import ExampleScenarios from "./ExampleScenarios";
+import Help from "./Help";
+
 
 import SunriseSunsetAPI from "../helpers/SunriseSunsetAPI";
 import ScenarioList from "./ScenarioList/ScenarioList";
@@ -245,6 +247,7 @@ const Root = () => {
         <Stack.Screen name="BluetoothAction" component={BluetoothAction} />
         <Stack.Screen name="Bluetooth" component={Bluetooth} />
         <Stack.Screen name="Calendar" component={Calendar} />
+        <Stack.Screen name="Help" component={Help} />
         <Stack.Screen
           name="ExampleScenarios"
           options={{
