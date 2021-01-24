@@ -84,9 +84,7 @@ export const EventIsCurrent = event => {
 export const EventIsIn60Minutes = event => {
   const eventDates = GetEventDates(event)
   const current = new Date()
-  return (
-    eventDates.start - current > 3.5e6 && eventDates.start - current < 3.7e6
-  )
+  return eventDates.start - current > 35e5 && eventDates.start - current < 37e5
 }
 
 export const GetEventLocation = event => {
