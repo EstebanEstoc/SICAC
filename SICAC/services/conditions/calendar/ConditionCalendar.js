@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
 import {
   EventIsCurrent,
-  EventIsIn30Minutes,
+  EventIsIn60Minutes,
   GetEventData,
   GetEventDuration,
   GetEventLocation,
@@ -97,7 +97,7 @@ export const haveAnAppointment = async () => {
     )
     if (appointmentEvents) {
       const appointmentEvent = appointmentEvents.filter(event =>
-        EventIsIn30Minutes(event)
+        EventIsIn60Minutes(event)
       )
       if (appointmentEvent.length === 1) {
         return {
@@ -160,12 +160,12 @@ export const currentEvent = async eventID => {
   }
 }
 
-export const in30MinutesEvent = async eventID => {
+export const in60MinutesEvent = async eventID => {
   try {
     const CALENDAR_ID = store.getState().configuration.defaultCalendarID
     const event = await GetEventByID(eventID, CALENDAR_ID)
     return {
-      execute: EventIsIn30Minutes(event),
+      execute: EventIsIn60Minutes(event),
       data: {
         where: GetEventLocation(event),
         duration: GetEventDuration(event)
