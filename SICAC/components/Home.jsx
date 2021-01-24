@@ -62,6 +62,21 @@ const Home = ({ navigation }) => {
 
       <TouchableOpacity
         onPress={() => {
+          navigation.navigate("Help");
+        }}
+        style={styles.button}
+      >
+        <Icon
+          name="info-circle"
+          size={30}
+          color="white"
+          style={styles.buttonIcon}
+        />
+        <Text style={styles.buttonText}>Help</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={() => {
           navigation.navigate("HomeHelper");
         }}
         style={styles.button}
