@@ -13,7 +13,7 @@ import { exampleScenarios } from "../data/Scenarios";
 const ExampleScenarios = ({ navigation }) => {
   const dispatch = useDispatch();
   const scenarios = useSelector((state) => state.scenarios);
-  const scenarios = useSelector((state) => state.configuration);
+  const configuration = useSelector((state) => state.configuration);
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollView}>
