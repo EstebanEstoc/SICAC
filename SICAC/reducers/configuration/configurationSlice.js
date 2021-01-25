@@ -5,24 +5,27 @@ const initialState = {
   relativesNumbers: [],
   doctorNumber: '',
   smartWatch: '',
-  cardiacThreshold: 180,
+  cardiacThreshold: '180',
   defaultCalendarID: '',
-  wizardState:false,
+  wizardState: false
 }
 
 const configurationSlice = createSlice({
   name: 'config',
   initialState,
   reducers: {
-
     /**
      *
      * @param {Object} state
      *
      */
 
-    toggleWizTrue: (state) => {state.wizardState = true},
-    toggleWizFalse: (state) => {state.wizardState = false},
+    toggleWizTrue: state => {
+      state.wizardState = true
+    },
+    toggleWizFalse: state => {
+      state.wizardState = false
+    },
 
     /**
      *
@@ -127,7 +130,6 @@ export const {
   clearConfig,
   toggleWizTrue,
   toggleWizFalse
-
 } = configurationSlice.actions
 
 export default configurationSlice.reducer

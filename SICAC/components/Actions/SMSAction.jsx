@@ -62,7 +62,7 @@ const SMSAction = ({ navigation }) => {
                 type: "SendSMS",
                 name: "Send SMS to " + selectedItems,
                 options: { to: selectedContacts, core: core },
-                calendar,
+                calendar: calendar.current,
               })
             );
             navigation.navigate("CreateScenario");

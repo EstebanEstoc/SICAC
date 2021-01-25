@@ -54,7 +54,7 @@ export const getPillCondition = async () => {
             pillsToTake: GetEventData(pillsEvent[0], DATA_NAME.PILLS)
           },
           name: 'Have to take pills',
-          eventId: appointmentEvent[0].id
+          eventId: pillsEvent[0].id
         }
       } else {
         return { execute: false }
@@ -78,7 +78,7 @@ export const haveToWalkConditon = async () => {
             duration: GetEventDuration(walkEvent[0])
           },
           name: 'Have to walk',
-          eventId: appointmentEvent[0].id
+          eventId: walkEvent[0].id
         }
       } else {
         return {
@@ -132,7 +132,7 @@ export const answerForm = async () => {
           execute: true,
           data: { formId: GetEventData(formEvent[0], DATA_NAME.FORM_ID) },
           name: 'Have to answer a form',
-          eventId: appointmentEvent[0].id
+          eventId: formEvent[0].id
         }
       } else {
         return {
@@ -156,7 +156,7 @@ export const currentEvent = async eventID => {
           where: GetEventLocation(event),
           duration: GetEventDuration(event)
         },
-        eventId: appointmentEvent[0].id
+        eventId: event[0].id
       }
     }
   } catch (error) {
@@ -174,7 +174,7 @@ export const in60MinutesEvent = async eventID => {
         where: GetEventLocation(event),
         duration: GetEventDuration(event)
       },
-      eventId: appointmentEvent[0].id
+      eventId: event[0].id
     }
   } catch (error) {
     console.log(error)
@@ -185,19 +185,19 @@ export const in60MinutesEvent = async eventID => {
  *
  * @param {Object} scenario
  */
-export const parseCalendarInfo = (scenario, calendarReponse) => {
+export const parseCalendarInfo = (scenario, calendarResponse) => {
   scenario.actions.forEach(action => {
     if (action.calendar && action.calendar.length > 0) {
       action.calendar.forEach(event => {
-        action.core =
-          action.core + getCalendarInfoString(event, calendarReponse)
+        action.options.core =
+          action.options.core + getCalendarInfoString(event, calendarResponse)
       })
     }
   })
 }
 
 export const IsAlreadyTriggered = (eventId, triggeredIds) => {
-  for (const id in triggeredIds) {
+  for (const id of triggeredIds) {
     if (eventId === id) {
       return true
     }
@@ -221,7 +221,7 @@ const getCalendarInfoString = (event, calendarResponse) => {
         }
       })
       response + '. '
-      return reponse
+      return response
     case 'Have to answer a form':
       return ''
     default:

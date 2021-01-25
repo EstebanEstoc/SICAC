@@ -10,6 +10,7 @@ import { GoogleConfigure } from "../services/authentication/providers/GoogleSign
 import styles from "./styles";
 import { persistor } from "../store/store";
 import askPermissions from "../services/Permissions";
+import { clearTiggeredID } from "../reducers/calendar/triggeredCalendarSlice";
 
 const HomeScreen = ({ navigation }) => {
   const userInfo = useSelector((state) => state.user);
@@ -72,9 +73,14 @@ const HomeScreen = ({ navigation }) => {
         }}
       />
 
-      <Button
+      {/*<Button
         title="Background script"
         onPress={() => navigation.navigate("BackTest")}
+      />*/}
+
+      <Button
+        title="Reset Calendar"
+        onPress={() => dispatch(clearTiggeredID())}
       />
     </View>
   );

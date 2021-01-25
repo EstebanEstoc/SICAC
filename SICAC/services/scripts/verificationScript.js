@@ -8,29 +8,33 @@ import { sendSMS } from '../actions/SMS/SMS'
 
 const verificationScript = async () => {
   const scenarios = store.getState().scenarios
-  scenarios.scenarios.forEach(scenario => {
+  for (const scenario of scenarios.scenarios) {
     if (scenario.active) {
       const verifiedConditions = []
       const calendarResult = []
-      scenario.conditions.forEach(async condition => {
+      for (const condition of scenario.conditions) {
         const result = await verifyCondition(condition)
-        if (result.name && result.name.startsWith('Have to')) {
-          verifiedConditions.push(result.execute)
-          if (result.execute) {
+        if (result.execute) {
+          if (result.name && result.name.startsWith('Have to')) {
             if (
               !CalendarConditions.IsAlreadyTriggered(
                 result.eventId,
-                store.getState().triggeredCalendar
+                store.getState().triggeredCalendar.triggeredCalendarID
               )
             ) {
+              verifiedConditions.push(result.execute)
               store.dispatch(addTriggeredID(result.eventId))
               calendarResult.push({ data: result.data, name: result.name })
+            } else {
+              verifiedConditions.push(false)
             }
           }
-        } else {
+        } else if (typeof result.execute === 'undefined') {
           verifiedConditions.push(result)
+        } else {
+          verifiedConditions.push(result.execute)
         }
-      })
+      }
       if (verifiedConditions.every(value => value)) {
         if (calendarResult.length > 0) {
           calendarResult.forEach(result => {
@@ -42,7 +46,7 @@ const verificationScript = async () => {
         })
       }
     }
-  })
+  }
 }
 
 const verifyCondition = async condition => {
@@ -101,7 +105,7 @@ const runAction = (action, scenarioId) => {
       console.log('Sending Mail')
       break
     case 'SendNotif':
-      schedulePushNotification(action.options.title, action.options.subject)
+      schedulePushNotification(action.options.title, action.options.core)
       break
     case 'OpenShutters':
       console.log('Opening Shutters')

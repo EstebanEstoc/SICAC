@@ -8,10 +8,18 @@ const triggeredCalendarSlice = createSlice({
   name: 'triggeredCalendar',
   initialState,
   reducers: {
-    addTriggeredID: (state, action) => state.push(action.payload)
+    addTriggeredID: (state, action) => {
+      state.triggeredCalendarID.push(action.payload)
+    },
+    clearTiggeredID: state => {
+      state.triggeredCalendarID = []
+    }
   }
 })
 
-export const { addTriggeredID } = triggeredCalendarSlice.actions
+export const {
+  addTriggeredID,
+  clearTiggeredID
+} = triggeredCalendarSlice.actions
 
 export default triggeredCalendarSlice.reducer

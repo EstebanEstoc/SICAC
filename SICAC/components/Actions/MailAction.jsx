@@ -44,7 +44,7 @@ const MailAction = ({ navigation }) => {
                 type: "SendMail",
                 name: "Send mail : " + subject,
                 options: { to: emails, subject: subject, core: core },
-                calendar,
+                calendar: calendar.current,
               })
             );
             navigation.navigate("CreateScenario");

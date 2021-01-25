@@ -42,7 +42,7 @@ const NotificationAction = ({ navigation }) => {
                 type: "SendNotif",
                 name: "Send notification : " + title,
                 options: { core: subject, title: title },
-                calendar,
+                calendar: calendar.current,
               })
             );
             navigation.navigate("CreateScenario");
