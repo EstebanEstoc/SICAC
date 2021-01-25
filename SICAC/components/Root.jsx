@@ -9,6 +9,7 @@ import Authentication from "./Authentication/Authentication";
 import HomeScreen from "../helpers/HomeScreen";
 import Home from "./Home";
 import CreateScenario from "./CreateScenario/CreateScenarioTabs";
+import Profile from "./Profile";
 import ExampleScenarios from "./ExampleScenarios";
 
 import SunriseSunsetAPI from "../helpers/SunriseSunsetAPI";
@@ -47,6 +48,7 @@ import TriggerPedometerAction from "./Actions/TriggerPedometerAction";
 import Calendar from "../helpers/Calendar";
 import Sms from "../helpers/SMS";
 //import BackTest from "../helpers/background";
+import CalendarSelector from "./CalendarSelector";
 
 import { ChangeFormActionStatus } from "../services/actions/Form/Form";
 import * as SMS from "../services/actions/SMS/SMS";
@@ -245,6 +247,14 @@ const Root = () => {
         <Stack.Screen name="BluetoothAction" component={BluetoothAction} />
         <Stack.Screen name="Bluetooth" component={Bluetooth} />
         <Stack.Screen name="Calendar" component={Calendar} />
+        <Stack.Screen name="CalendarSelector" component={CalendarSelector} />
+        <Stack.Screen
+          name="Profile"
+          options={{
+            title: "My profile",
+          }}
+          component={Profile}
+        />        
         <Stack.Screen
           name="ExampleScenarios"
           options={{

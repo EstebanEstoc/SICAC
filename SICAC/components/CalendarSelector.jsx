@@ -25,6 +25,7 @@ const CalendarSelector = ({ containerStyle }) => {
         <Picker
           selectedValue={calendarID}
           style={{ height: "100%", width: "100%" }}
+          itemStyle={{ backgroundColor: "white" }}
           onValueChange={(itemValue, itemIndex) =>
             dispatch(modifyDefaultCalendarID(itemValue))
           }
