@@ -3,13 +3,17 @@ import { View } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import SectionedMultiSelect from "react-native-sectioned-multi-select";
 import * as ContactRetriver from "/services/actions/SMS/Contacts";
-import { modifyDoctoreNumber } from "../../reducers/configuration/configurationSlice";
+import { setRelativesNumbers } from "../../reducers/configuration/configurationSlice";
 import { useDispatch } from "react-redux";
 
-const DoctorSelector = () => {
+const Selector = () => {
   const [contacts, setcontacts] = useState([]);
   const [selectedItems, setselectedItems] = useState([]);
   const dispatch = useDispatch();
+
+  const onSelectedItemObjectsChange = (selectedItemObjects) => {
+    dispatch(setRelativesNumbers(selectedItemObjects));
+  };
 
   useEffect(() => {
     ContactRetriver.getContacts().then((contactsList) => {
@@ -21,16 +25,11 @@ const DoctorSelector = () => {
     setselectedItems(selectedItems);
   };
 
-  const onSelectedItemObjectsChange = (selectedItemObjects) => {
-    dispatch(modifyDoctoreNumber(selectedItemObjects[0].phone));
-  };
-
   return (
     <View>
       <SectionedMultiSelect
         styles={selectContacts}
         items={contacts}
-        single={true}
         IconRenderer={Icon}
         uniqueKey="id"
         subKey="children"
@@ -52,4 +51,4 @@ const selectContacts = {
   },
 };
 
-export default DoctorSelector;
+export default Selector;
