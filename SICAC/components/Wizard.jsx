@@ -8,8 +8,12 @@ import {toggleWizTrue} from "../reducers/configuration/configurationSlice";
 import {store} from "../store/store";
 import { useDispatch } from "react-redux";
 import Authentication from "./Authentication/Authentication";
-import CalendarSelector from "./CalendarSelector";
+import CalendarSelector from "./Wizard/CalendarSelector";
 import askPermission from "../services/Permissions";
+import Selector from "./Wizard/TestSelector";
+import SmartWatchSelector from "./Wizard/SmartWatchSelector";
+
+import DoctorSelector from "./Wizard/DoctorSelector";
 
 const WizardScreen = ()=>{
   const wizard = useRef()
@@ -90,13 +94,13 @@ const WizardScreen = ()=>{
         <Button
           title="Yes"
           color="#093E60"
-          onPress={() => Alert.alert('Left button pressed')}
+          onPress={() => console.log("button pressed")}
         />
         
         <Button
           title="No"
           color="#F64644"
-          onPress={() => Alert.alert('Right button pressed')}
+          onPress={() => console.log("button pressed")}
         />
         </View>
         </View>,
@@ -118,27 +122,33 @@ const WizardScreen = ()=>{
     {
       content: <View style={styles.container}>
       <Text style = {styles.bigBlue}>Phone number of a relative</Text>
-      <TextInput  
-          placeholder="Please Input the Number"  
-          underlineColorAndroid='transparent'  
-          style={styles.TextInputStyle}  
-        />
+      <Selector></Selector>
+     
     </View>,
     },
     {
       content: <View style={styles.container}>
       <Text style = {styles.bigBlue}>Phone number of your general practitioner</Text>
-      <TextInput  
-          placeholder="Please Input the Number"  
-          underlineColorAndroid='transparent'  
-          style={styles.TextInputStyle}  
-        />
+      <DoctorSelector></DoctorSelector>
+     
     </View>,
     },
     {
-      content: <View style={styles.container}>
-      <Text style = {styles.bigBlue}>Which of these devices is your smartwatch ?</Text>
-    </View>,
+      content: <View>
+          
+      <View style={{
+  flex:0.3,
+  justifyContent: 'center',
+}}>
+        <Text style = {styles.bigBlue}>Which of theses devices is your smartwatch ?</Text>
+      </View>
+      <View style={{
+  flex:0.7,
+  justifyContent: 'center',
+}}>
+        <SmartWatchSelector></SmartWatchSelector>
+      </View>
+      </View>
     },
     {
       content: <View style={styles.container}>

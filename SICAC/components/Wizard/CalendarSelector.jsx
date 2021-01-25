@@ -3,8 +3,8 @@ import { Picker } from "@react-native-picker/picker";
 import { View,FlatList,StyleSheet,StatusBar,Text,TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
-import { GetCalendarsNameList } from "../services/conditions/calendar/providers/GoogleCalendarRepository";
-import { modifyDefaultCalendarID } from "../reducers/configuration/configurationSlice";
+import { GetCalendarsNameList } from "../../services/conditions/calendar/providers/GoogleCalendarRepository";
+import { modifyDefaultCalendarID } from "../../reducers/configuration/configurationSlice";
 
 const CalendarSelector = ({ containerStyle }) => {
   const calendarID = useSelector(
@@ -16,13 +16,12 @@ const CalendarSelector = ({ containerStyle }) => {
 
 
   const renderItem = ({ item }) => {
-    const backgroundColor = item.id === selectedId ? "#6e3b6e" : "#f9c2ff";
+    const backgroundColor = item.id === selectedId ? '#008e96' :'#00BAC5' ;
 
     return (
       <Item
         item={item}
-        onPress={() => dispatch(modifyDefaultCalendarID(itemValue))
-        }
+        onPress={() =>  setSelectedId(item.id)}
         style={{ backgroundColor }}
       />
     );
@@ -30,7 +29,7 @@ const CalendarSelector = ({ containerStyle }) => {
   
     const Item = ({ item, onPress, style }) => (
       <TouchableOpacity onPress={onPress} style={[styles.item, style]}>
-        <Text style={styles.title}>{item.name}</Text>
+        <Text style={styles.buttonText}>{item.name}</Text>
       </TouchableOpacity>
     );
 
@@ -92,14 +91,46 @@ const styles = StyleSheet.create({
     marginTop: StatusBar.currentHeight || 0,
   },
   item: {
+    justifyContent: 'center',
     backgroundColor: '#f9c2ff',
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
+
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
+  
+    margin: 12,
+    shadowOffset: {
+        width: 2,
+        height: 5,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 10,
+    elevation: 8,
+    borderRadius: 10,
+    paddingVertical: 20,
+    paddingHorizontal: 12,
+    shadowColor: '#00BAC5',
+    borderColor: '#008e96',
+    borderWidth: 2,
+    backgroundColor: '#00BAC5'
+
   },
   title: {
     fontSize: 20,
   },
+  buttonText: {
+    textTransform: 'uppercase',
+    fontSize: 20,
+    color: "white",
+    fontWeight: "bold",
+    alignSelf: "center",
+    justifyContent: 'center',
+
+    
+},
   button: {
     flexDirection: 'row',
     justifyContent: 'center',

@@ -3,17 +3,42 @@ import { Picker } from "@react-native-picker/picker";
 import { View,FlatList,StyleSheet,StatusBar,Text,TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
-import { GetCalendarsNameList } from "../services/conditions/calendar/providers/GoogleCalendarRepository";
-import { modifyDefaultCalendarID } from "../reducers/configuration/configurationSlice";
+import { GetCalendarsNameList } from "../../services/conditions/calendar/providers/GoogleCalendarRepository";
+import { modifyDefaultCalendarID } from "../../reducers/configuration/configurationSlice";
 
-const CalendarSelector = ({ containerStyle }) => {
-  const calendarID = useSelector(
-    (state) => state.configuration.defaultCalendarID
-  );
+const SmartWatchSelector = ({ containerStyle }) => {
+  
   const dispatch = useDispatch();
-  const [calendarList, setcalendarList] = useState(undefined);
   const [selectedId, setSelectedId] = useState(null);
 
+  const items = [
+    // this is the parent or 'item'
+        {
+          name: 'Apple Watch SE',
+          id: 10,
+        },
+        {
+          name: 'Samsung Galaxy 3',
+          id: 17,
+        },
+        {
+          name: 'Apple Watch 6',
+          id: 13,
+        },
+        {
+          name: 'Fitbit Versa 3',
+          id: 14,
+        },
+        {
+          name: 'Fossil Sport',
+          id: 15,
+        },
+        {
+          name: 'Honor Magic Watch 2',
+          id: 16,
+        },
+  
+  ];
 
   const renderItem = ({ item }) => {
     const backgroundColor = item.id === selectedId ? '#008e96' :'#00BAC5' ;
@@ -34,39 +59,12 @@ const CalendarSelector = ({ containerStyle }) => {
     );
 
   
-  useEffect(() => {
-    GetCalendarsNameList().then((calendars) => {
-      setcalendarList(calendars);
-      console.log(calendarList);
-    });
-
-
-
-
-  }, []);
 
   return (
     <View style={containerStyle}>
-      {/* {calendarList && (
-        <Picker
-          selectedValue={calendarID}
-          style={{ height: "100%", width: "100%" }}
-          onValueChange={(itemValue, itemIndex) =>
-            dispatch(modifyDefaultCalendarID(itemValue))
-          }
-        >
-          {calendarList.map((item, key) => (
-            <Picker.Item label={item.name} key={key} value={item.id} />
-          ))}
-        </Picker>
-        
-
-
-
-      )} */}
 
       <FlatList
-              data={calendarList}
+              data={items}
               renderItem={renderItem}
               keyExtractor={item => item.id}
               extraData={selectedId}
@@ -154,4 +152,4 @@ const styles = StyleSheet.create({
 }
 });
 
-export default CalendarSelector;
+export default SmartWatchSelector;
