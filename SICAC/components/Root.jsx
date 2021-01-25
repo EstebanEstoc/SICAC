@@ -47,6 +47,7 @@ import LaunchMusicAction from "./Actions/LaunchMusicAction";
 import TriggerPedometerAction from "./Actions/TriggerPedometerAction";
 import Calendar from "../helpers/Calendar";
 import Sms from "../helpers/SMS";
+import Wizard from "./Wizard";
 import BackgroundJob from "react-native-background-job";
 //import BackTest from "../helpers/background";
 
@@ -69,6 +70,7 @@ const Stack = createStackNavigator();
 
 const Root = () => {
   const isAuth = useSelector((state) => state.authentication);
+  const isFirstLaunch = useSelector((state) => state.configuration.wizardState);
   const scenarios = useSelector((state) => state.scenarios);
   const userInfo = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -140,7 +142,7 @@ const Root = () => {
       )}
 
       <Stack.Navigator screenOptions={styles.header}>
-        {isAuth ? (
+        {isFirstLaunch && isAuth ? (
           <>
             <Stack.Screen
               name="Home"
@@ -328,13 +330,7 @@ const Root = () => {
             <Stack.Screen name="SMS" component={Sms} />
           </>
         ) : (
-          <Stack.Screen
-            name="Authentication"
-            options={{
-              title: "Google authentication",
-            }}
-            component={Authentication}
-          />
+          <Stack.Screen name="Wizard" component={Wizard} />
         )}
       </Stack.Navigator>
     </NavigationContainer>
