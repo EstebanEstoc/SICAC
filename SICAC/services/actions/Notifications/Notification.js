@@ -1,7 +1,6 @@
 import * as Notifications from 'expo-notifications'
-import { PermissionsAndroid } from 'react-native'
 
-export const schedulePushNotification = async () => {
+export const schedulePushNotification = async (title, subject) => {
   Notifications.setNotificationHandler({
     handleNotification: async () => ({
       shouldShowAlert: true,
@@ -12,9 +11,8 @@ export const schedulePushNotification = async () => {
 
   await Notifications.scheduleNotificationAsync({
     content: {
-      title: "You've got mail! 📬",
-      body: 'Here is the notification body',
-      data: { data: 'goes here' }
+      title: title,
+      body: subject
     },
     trigger: null
   })

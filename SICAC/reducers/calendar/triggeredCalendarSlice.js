@@ -12,6 +12,6 @@ const triggeredCalendarSlice = createSlice({
   }
 })
 
-export const {} = triggeredCalendarSlice.actions
+export const { addTriggeredID } = triggeredCalendarSlice.actions
 
 export default triggeredCalendarSlice.reducer
