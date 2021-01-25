@@ -142,8 +142,7 @@ const Root = () => {
       )}
 
       <Stack.Navigator screenOptions={styles.header}>
-        {isFirstLaunch ? (
-          {isAuth ? (
+        {isFirstLaunch && isAuth ? (
           <>
             <Stack.Screen
               name="Home"
@@ -330,9 +329,8 @@ const Root = () => {
             />
             <Stack.Screen name="SMS" component={Sms} />
           </>
-        )}
         ) : (
-          <Stack.Screen name="Wizard" component={Wizard} />  
+          <Stack.Screen name="Wizard" component={Wizard} />
         )}
       </Stack.Navigator>
     </NavigationContainer>
