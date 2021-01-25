@@ -2,29 +2,33 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { StyleSheet, View } from "react-native";
 import { ConditionButton } from "../Buttons";
-import { addCondition } from "../../reducers/scenarios/createScenarioSlice";
+import { addAction } from "../../reducers/scenarios/createScenarioSlice";
 
-const HomeCondition = ({ navigation }) => {
+const ShuttersAction = ({ navigation }) => {
   const scenario = useSelector((state) => state.createScenario);
   const dispatch = useDispatch();
 
   return (
     <View style={styles.container}>
       <ConditionButton
-        title="At home"
+        title="Open the shutters"
         size="sm"
-        icon={{ name: "home" }}
+        icon={{ name: "arrow-up" }}
         onPress={() => {
-          dispatch(addCondition({ type: "AtHome", name: "At home" }));
+          dispatch(
+            addAction({ type: "OpenShutters", name: "Open the shutters" })
+          );
           navigation.navigate("CreateScenario");
         }}
       />
       <ConditionButton
-        title="Away from home"
+        title="Close the shutters"
         size="sm"
-        icon={{ name: "plane" }}
+        icon={{ name: "arrow-down" }}
         onPress={() => {
-          dispatch(addCondition({ type: "AwayHome", name: "Away from home" }));
+          dispatch(
+            addAction({ type: "CloseShutters", name: "Close the shutters" })
+          );
           navigation.navigate("CreateScenario");
         }}
       />
@@ -40,4 +44,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeCondition;
+export default ShuttersAction;

@@ -2,29 +2,22 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { StyleSheet, View } from "react-native";
 import { ConditionButton } from "../Buttons";
-import { addCondition } from "../../reducers/scenarios/createScenarioSlice";
+import { addAction } from "../../reducers/scenarios/createScenarioSlice";
 
-const HomeCondition = ({ navigation }) => {
+const TriggerPedometerAction = ({ navigation }) => {
   const scenario = useSelector((state) => state.createScenario);
   const dispatch = useDispatch();
 
   return (
     <View style={styles.container}>
       <ConditionButton
-        title="At home"
+        title="Trigger the pedometer"
         size="sm"
-        icon={{ name: "home" }}
+        icon={{ name: "play-circle" }}
         onPress={() => {
-          dispatch(addCondition({ type: "AtHome", name: "At home" }));
-          navigation.navigate("CreateScenario");
-        }}
-      />
-      <ConditionButton
-        title="Away from home"
-        size="sm"
-        icon={{ name: "plane" }}
-        onPress={() => {
-          dispatch(addCondition({ type: "AwayHome", name: "Away from home" }));
+          dispatch(
+            addAction({ type: "Pedometer", name: "Trigger the pedometer" })
+          );
           navigation.navigate("CreateScenario");
         }}
       />
@@ -40,4 +33,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeCondition;
+export default TriggerPedometerAction;

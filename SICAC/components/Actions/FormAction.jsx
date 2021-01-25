@@ -1,21 +1,17 @@
 import React, { useState, useLayoutEffect, useEffect, useRef } from "react";
-import {
-  TouchableOpacity,
-  Text,
-  View,
-  StyleSheet,
-  TextInput,
-} from "react-native";
-import { useDispatch } from "react-redux";
+import { View, Text } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import SectionedMultiSelect from "react-native-sectioned-multi-select";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-
+import { useDispatch } from "react-redux";
+import { Input } from "react-native-elements";
+import { StyleSheet } from "react-native";
 import { addAction } from "../../reducers/scenarios/createScenarioSlice";
+import { Button } from "react-native";
+import SectionedMultiSelect from "react-native-sectioned-multi-select";
 import * as ContactRetriver from "../../services/actions/SMS/Contacts";
-import ChipParam from "../ChipParam";
 
-const SMSAction = ({ navigation }) => {
+export default function FormAction({ navigation }) {
+  const [question, setquestion] = useState("");
+
   const [core, setcore] = useState("");
   const [selectedItems, setselectedItems] = useState([]);
   const [selectedContacts, setselectedContacts] = useState([]);
@@ -31,52 +27,34 @@ const SMSAction = ({ navigation }) => {
     setselectedContacts(selectedItemObjects);
   };
 
+  const onChangeQuestion = (question) => {
+    setquestion(question);
+  };
+
   useEffect(() => {
     ContactRetriver.getContacts().then((contactsList) => {
       setcontacts(contactsList);
     });
   }, []);
 
-  const chipAction = (stringToAdd) => {
-    setcore((old) => `${old} ${stringToAdd}`);
-  };
-
-  const chipActionCalendar = (addCalendarResult, CalendarName) => {
-    const calendarIndex = calendar.current.indexOf(CalendarName);
-    if (addCalendarResult) {
-      if (calendarIndex === -1) {
-        calendar.current.push(CalendarName);
-      }
-    } else {
-      calendar.current.splice(calendarIndex, 1);
-    }
-  };
-
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerRight: () => (
-        <TouchableOpacity
-          onPress={() => {
-            dispatch(
-              addAction({
-                type: "SendSMS",
-                name: "Send SMS to " + selectedItems,
-                options: { to: selectedContacts, core: core },
-                calendar,
-              })
-            );
-            navigation.navigate("CreateScenario");
-          }}
-          style={styles.saveButtonContainer}
-        >
-          <Text style={styles.saveButtonText}>Save</Text>
-        </TouchableOpacity>
-      ),
-    });
-  });
-
   return (
-    <KeyboardAwareScrollView style={styles.container}>
+    <View style={styles.container}>
+      <View style={styles.name}>
+        <Input
+          label={
+            "The question will have only two answer : yes or no. \n\nEnter your question: "
+          }
+          placeholder="Tap to enter your question"
+          leftIcon={{
+            type: "font-awesome-5",
+            name: "pen-fancy",
+            size: 18,
+          }}
+          style={styles.textInput2}
+          defaultValue={""}
+          onChangeText={(QuestionInput) => onChangeQuestion(QuestionInput)}
+        />
+      </View>
       <View style={styles.containerHeader}>
         <View style={styles.form}>
           <View style={styles.prefixContainer}>
@@ -100,33 +78,56 @@ const SMSAction = ({ navigation }) => {
             </View>
           </View>
         </View>
+        <View style={styles.name}>
+          <Button
+            title="Submit question"
+            onPress={() =>
+              question != "" && selectedContacts[0] != undefined
+                ? dispatch(
+                    addAction({
+                      type: "FormSMS",
+                      name:
+                        "Form\nQuestion: " +
+                        question +
+                        "\n Send to: " +
+                        selectedContacts.map((info) => " " + info.name),
+                      question: question,
+                      status: 0,
+                      receivers: selectedContacts,
+                    })
+                  ) && navigation.navigate("CreateScenario")
+                : alert(
+                    "Please enter a question and select at least one contact"
+                  )
+            }
+          />
+        </View>
       </View>
-      <ChipParam
-        containerStyle={{ flex: 1 }}
-        chipAction={chipAction}
-        chipActionCalendar={chipActionCalendar}
-      />
-      <View style={styles.containerCore}>
-        <TextInput
-          multiline
-          placeholder="Type the sms that will be sent..."
-          underlineColorAndroid="transparent"
-          onChangeText={(input) => setcore(input)}
-          style={styles.coreInput}
-          value={core}
-        />
-      </View>
-    </KeyboardAwareScrollView>
+    </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#E8E7E5",
+  name: {
+    flexDirection: "row",
+    margin: 20,
+    marginBottom: 0,
+    alignItems: "center",
+    justifyContent: "space-around",
   },
+  container: {
+    flex: 1,
+  },
+  inputsContainer: {
+    margin: 20,
+    flexDirection: "column",
+    flex: 1,
+    paddingRight: 20,
+    opacity: 1,
+  },
+
   containerHeader: {
     flex: 1,
-    backgroundColor: "#093E60",
     alignItems: "center",
   },
   containerCore: {
@@ -184,5 +185,3 @@ const selectContacts = {
     backgroundColor: "#083E60",
   },
 };
-
-export default SMSAction;

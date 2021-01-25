@@ -1,14 +1,11 @@
-import { smsPermission } from './actions/SMS/SMS'
-import { contactsPermission } from './actions/SMS/Contacts'
-import { notificationPermissions } from './actions/Notifications/Notification'
+import { PermissionsAndroid } from 'react-native'
 
-const askPermissions = () => {
-  smsPermission()
-    .then(contactsPermission())
-    .then(notificationPermissions())
-    .catch(error => {
-      alert(error)
-    })
+
+const askPermissions = async () => {
+  return await PermissionsAndroid.requestMultiple([
+    PermissionsAndroid.PERMISSIONS.READ_CONTACTS,
+    PermissionsAndroid.PERMISSIONS.SEND_SMS
+  ])
 }
 
 export default askPermissions

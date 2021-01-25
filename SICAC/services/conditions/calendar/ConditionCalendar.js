@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
 import {
   EventIsCurrent,
-  EventIsIn30Minutes,
+  EventIsIn60Minutes,
   GetEventData,
   GetEventDuration,
   GetEventLocation,
@@ -21,7 +21,8 @@ export const EVENTS_NAME = {
 
 export const DATA_NAME = {
   PILLS: 'Pills',
-  FORM_ID: 'FormID'
+  FORM_ID: 'FormID',
+  APPOINTMENT: 'Name'
 }
 
 export const GetEventsTitleList = async () => {
@@ -49,7 +50,11 @@ export const getPillCondition = async () => {
       if (pillsEvent.length === 1) {
         return {
           execute: true,
-          pillsToTake: GetEventData(pillsEvent[0], DATA_NAME.PILLS)
+          data: {
+            pillsToTake: GetEventData(pillsEvent[0], DATA_NAME.PILLS)
+          },
+          name: 'Have to take pills',
+          eventId: appointmentEvent[0].id
         }
       } else {
         return { execute: false }
@@ -69,7 +74,11 @@ export const haveToWalkConditon = async () => {
       if (walkEvent.length === 1) {
         return {
           execute: true,
-          duration: GetEventDuration(walkEvent[0])
+          data: {
+            duration: GetEventDuration(walkEvent[0])
+          },
+          name: 'Have to walk',
+          eventId: appointmentEvent[0].id
         }
       } else {
         return {
@@ -90,13 +99,18 @@ export const haveAnAppointment = async () => {
     )
     if (appointmentEvents) {
       const appointmentEvent = appointmentEvents.filter(event =>
-        EventIsIn30Minutes(event)
+        EventIsIn60Minutes(event)
       )
       if (appointmentEvent.length === 1) {
         return {
           execute: true,
-          where: GetEventLocation(appointmentEvent[0]),
-          duration: GetEventDuration(appointmentEvent[0])
+          data: {
+            where: GetEventLocation(appointmentEvent[0]),
+            duration: GetEventDuration(appointmentEvent[0]),
+            name: GetEventData(appointmentEvent[0], DATA_NAME.APPOINTMENT)
+          },
+          name: 'Have an appointment',
+          eventId: appointmentEvent[0].id
         }
       } else {
         return { execute: false }
@@ -116,7 +130,9 @@ export const answerForm = async () => {
       if (formEvent.length === 1) {
         return {
           execute: true,
-          formId: GetEventData(formEvent[0], DATA_NAME.FORM_ID)
+          data: { formId: GetEventData(formEvent[0], DATA_NAME.FORM_ID) },
+          name: 'Have to answer a form',
+          eventId: appointmentEvent[0].id
         }
       } else {
         return {
@@ -136,8 +152,11 @@ export const currentEvent = async eventID => {
     if (event) {
       return {
         execute: EventIsCurrent(event),
-        where: GetEventLocation(event),
-        duration: GetEventDuration(event)
+        data: {
+          where: GetEventLocation(event),
+          duration: GetEventDuration(event)
+        },
+        eventId: appointmentEvent[0].id
       }
     }
   } catch (error) {
@@ -145,16 +164,67 @@ export const currentEvent = async eventID => {
   }
 }
 
-export const in30MinutesEvent = async eventID => {
+export const in60MinutesEvent = async eventID => {
   try {
     const CALENDAR_ID = store.getState().configuration.defaultCalendarID
     const event = await GetEventByID(eventID, CALENDAR_ID)
     return {
-      execute: EventIsIn30Minutes(event),
-      where: GetEventLocation(event),
-      duration: GetEventDuration(event)
+      execute: EventIsIn60Minutes(event),
+      data: {
+        where: GetEventLocation(event),
+        duration: GetEventDuration(event)
+      },
+      eventId: appointmentEvent[0].id
     }
   } catch (error) {
     console.log(error)
+  }
+}
+
+/**
+ *
+ * @param {Object} scenario
+ */
+export const parseCalendarInfo = (scenario, calendarReponse) => {
+  scenario.actions.forEach(action => {
+    if (action.calendar && action.calendar.length > 0) {
+      action.calendar.forEach(event => {
+        action.core =
+          action.core + getCalendarInfoString(event, calendarReponse)
+      })
+    }
+  })
+}
+
+export const IsAlreadyTriggered = (eventId, triggeredIds) => {
+  for (const id in triggeredIds) {
+    if (eventId === id) {
+      return true
+    }
+  }
+  return false
+}
+
+const getCalendarInfoString = (event, calendarResponse) => {
+  switch (event) {
+    case 'Have to walk':
+      return `You have to walk for ${calendarResponse.data.duration} hours. `
+    case 'Have an appointment':
+      return `You have an appointement in 30 minutes at ${calendarResponse.data.where} with ${calendarResponse.data.name} for ${calendarResponse.data.duration} hours. `
+    case 'Have to take pills':
+      let response = 'You have to take the following pills:'
+      calendarResponse.data.pillsToTake.forEach((pill, index) => {
+        if (index !== 0) {
+          response = ', ' + response + pill.dosage + ' of ' + pill.name
+        } else if (index === 0) {
+          response = response + pill.dosage + ' of ' + pill.name
+        }
+      })
+      response + '. '
+      return reponse
+    case 'Have to answer a form':
+      return ''
+    default:
+      return ''
   }
 }

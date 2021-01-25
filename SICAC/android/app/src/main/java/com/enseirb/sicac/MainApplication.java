@@ -6,6 +6,7 @@ import android.net.Uri;
 
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.pilloxa.backgroundjob.BackgroundJobPackage;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import com.facebook.react.ReactInstanceManager;

@@ -4,46 +4,15 @@ import { StyleSheet, View, ScrollView } from "react-native";
 
 import { Button } from 'react-native-elements';
 import { actions } from '../data/Actions'
-import Dialog from "react-native-dialog";
 
 
 
 const ActionType = ({ navigation }) => {
 
-    const [visible, setVisible] = useState(false);
 
-    const showDialog = () => {
-        setVisible(true);
-    };
-
-    const handleCancel = () => {
-        setVisible(false);
-    };
-
-    const handleAccept = () => {
-        setVisible(false);
-    };
-
-
-    const doNothind = () => {
-        // Required in onPress
-    };
 
     return (
         <ScrollView contentContainerStyle={{ paddingBottom: 60 }}>
-
-            <View style={styles.container}>
-                {/* <Button title="Show dialog" onPress={showDialog} /> */}
-                <Dialog.Container visible={visible}>
-                    <Dialog.Title>Form question</Dialog.Title>
-                    <Dialog.Input label="Question" placeholder="Click to edit your question" wrapperStyle={styles.inputStyle} onChangeText={(value) => console.log(value)}>
-                    </Dialog.Input>
-                    <Dialog.Button label="Yes" disabled={true} onPress={doNothind} />
-                    <Dialog.Button label="No" disabled={true} onPress={doNothind} />
-                    <Dialog.Button label="Cancel" onPress={handleCancel} />
-                    <Dialog.Button label="Accept" onPress={handleAccept} />
-                </Dialog.Container>
-            </View>
 
             <View style={styles.containerMain}>
                 {
@@ -52,7 +21,7 @@ const ActionType = ({ navigation }) => {
                         return (
                             <Button key={item.id} title={item.Title} titleStyle={{ color: 'black' }}
                                 type="outline" icon={{ name: item.IconName, size: 40 }}
-                                buttonStyle={styles.buttonStyle} onPress={() => item.Action !== "Form" ? navigation.navigate(item.Action) : showDialog()} />
+                                buttonStyle={styles.buttonStyle} onPress={() => navigation.navigate(item.Action)} />
                         )
                     }).reduce(function (r, element, index) {
                         index % 2 === 0 && r.push([]);

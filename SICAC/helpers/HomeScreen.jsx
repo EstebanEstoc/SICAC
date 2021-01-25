@@ -9,6 +9,7 @@ import { clearUserInfo } from "../reducers/authentication/userSlice";
 import { GoogleConfigure } from "../services/authentication/providers/GoogleSignIn";
 import styles from "./styles";
 import { persistor } from "../store/store";
+import askPermissions from "../services/Permissions";
 
 const HomeScreen = ({ navigation }) => {
   const userInfo = useSelector((state) => state.user);
@@ -58,6 +59,22 @@ const HomeScreen = ({ navigation }) => {
       <Button
         title="CalendarSelector"
         onPress={() => navigation.navigate("CalendarSelector")}
+      />
+      <Button
+        title="ChangeStatus"
+        onPress={() => navigation.navigate("Form")}
+      />
+
+      <Button
+        title="Permission"
+        onPress={async () => {
+          console.log(await askPermissions());
+        }}
+      />
+
+      <Button
+        title="Background script"
+        onPress={() => navigation.navigate("BackTest")}
       />
     </View>
   );

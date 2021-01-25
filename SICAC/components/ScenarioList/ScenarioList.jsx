@@ -35,7 +35,6 @@ export default function ScenarioList({ navigation }) {
   const [currentIndex, setCurrentIndex] = React.useState(0);
   const dispatch = useDispatch()
   const scenarios = useSelector((state) => state.scenarios);
-  console.log(scenarios)
   const ref = React.useRef();
   const headers = ['Enabled', 'Disabled'];
 
