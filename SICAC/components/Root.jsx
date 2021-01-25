@@ -56,7 +56,13 @@ import script from "../services/scripts/verificationScript";
 
 BackgroundJob.register({
   jobKey: "verificationScript",
-  job: script,
+  job: () => {
+    try {
+      script();
+    } catch (error) {
+      console.log(error);
+    }
+  },
 });
 
 const Stack = createStackNavigator();

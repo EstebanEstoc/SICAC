@@ -10,26 +10,34 @@ const TimeOfDayCondition = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <ConditionButton title="Daytime" size="sm" icon={{ name: "sun-o" }}
+      <ConditionButton
+        title="Daytime"
+        size="sm"
+        icon={{ name: "sun-o" }}
         onPress={() => {
-          dispatch(addCondition({ name: "Daytime" }));
+          dispatch(addCondition({ type: "DayTime", name: "Daytime" }));
           navigation.navigate("CreateScenario");
-        }} />
-      <ConditionButton title="Nighttime" size="sm" icon={{ name: "moon-o" }}
+        }}
+      />
+      <ConditionButton
+        title="Nighttime"
+        size="sm"
+        icon={{ name: "moon-o" }}
         onPress={() => {
-          dispatch(addCondition({ name: "Nighttime" }));
+          dispatch(addCondition({ type: "NightTime", name: "Nighttime" }));
           navigation.navigate("CreateScenario");
-        }} />
+        }}
+      />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    padding: 16
-  }
+    justifyContent: "center",
+    padding: 16,
+  },
 });
 
 export default TimeOfDayCondition;

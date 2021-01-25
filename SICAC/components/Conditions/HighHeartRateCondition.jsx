@@ -22,7 +22,10 @@ const HighHeartRateCondition = ({ navigation }) => {
         icon={{ name: "heartbeat" }}
         onPress={() => {
           dispatch(
-            addCondition({ name: "High heart rate (> " + heartRate + " BPM)" })
+            addCondition({
+              type: "HeartRate",
+              name: "High heart rate (> " + heartRate + " BPM)",
+            })
           );
           navigation.navigate("CreateScenario");
         }}

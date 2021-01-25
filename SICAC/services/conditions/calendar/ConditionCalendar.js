@@ -53,6 +53,7 @@ export const getPillCondition = async () => {
           data: {
             pillsToTake: GetEventData(pillsEvent[0], DATA_NAME.PILLS)
           },
+          name: 'Have to take pills',
           eventId: appointmentEvent[0].id
         }
       } else {
@@ -76,6 +77,7 @@ export const haveToWalkConditon = async () => {
           data: {
             duration: GetEventDuration(walkEvent[0])
           },
+          name: 'Have to walk',
           eventId: appointmentEvent[0].id
         }
       } else {
@@ -107,6 +109,7 @@ export const haveAnAppointment = async () => {
             duration: GetEventDuration(appointmentEvent[0]),
             name: GetEventData(appointmentEvent[0], DATA_NAME.APPOINTMENT)
           },
+          name: 'Have an appointment',
           eventId: appointmentEvent[0].id
         }
       } else {
@@ -128,6 +131,7 @@ export const answerForm = async () => {
         return {
           execute: true,
           data: { formId: GetEventData(formEvent[0], DATA_NAME.FORM_ID) },
+          name: 'Have to answer a form',
           eventId: appointmentEvent[0].id
         }
       } else {
@@ -190,6 +194,15 @@ export const parseCalendarInfo = (scenario, calendarReponse) => {
       })
     }
   })
+}
+
+export const IsAlreadyTriggered = (eventId, triggeredIds) => {
+  for (const id in triggeredIds) {
+    if (eventId === id) {
+      return true
+    }
+  }
+  return false
 }
 
 const getCalendarInfoString = (event, calendarResponse) => {

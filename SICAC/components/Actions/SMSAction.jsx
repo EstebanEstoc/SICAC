@@ -59,6 +59,7 @@ const SMSAction = ({ navigation }) => {
           onPress={() => {
             dispatch(
               addAction({
+                type: "SendSMS",
                 name: "Send SMS to " + selectedItems,
                 options: { to: selectedContacts, core: core },
                 calendar,

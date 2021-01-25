@@ -75,7 +75,7 @@ const Home = ({ navigation }) => {
         <Text style={styles.buttonText}>Help</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity
+      {/*<TouchableOpacity
         onPress={() => {
           navigation.navigate("HomeHelper");
         }}
@@ -83,7 +83,7 @@ const Home = ({ navigation }) => {
       >
         <Icon name="home" size={30} color="white" style={styles.buttonIcon} />
         <Text style={styles.buttonText}>Debug button (demo)</Text>
-      </TouchableOpacity>
+      </TouchableOpacity>*/}
     </View>
   );
 };

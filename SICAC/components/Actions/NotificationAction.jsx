@@ -13,6 +13,7 @@ import ChipParam from "../ChipParam";
 
 const NotificationAction = ({ navigation }) => {
   const [subject, setsubject] = useState("");
+  const [title, settitle] = useState("");
   const dispatch = useDispatch();
   const calendar = useRef([]);
 
@@ -38,8 +39,9 @@ const NotificationAction = ({ navigation }) => {
           onPress={() => {
             dispatch(
               addAction({
-                name: "Send notification : " + subject,
-                options: { core: subject },
+                type: "SendNotif",
+                name: "Send notification : " + title,
+                options: { core: subject, title: title },
                 calendar,
               })
             );
@@ -56,6 +58,16 @@ const NotificationAction = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <KeyboardAwareScrollView>
+        <View style={styles.prefixContainerTitle}>
+          <Text style={styles.prefix}>Title:</Text>
+          <TextInput
+            placeholder="Type the notification title"
+            underlineColorAndroid="transparent"
+            onChangeText={(input) => settitle(input)}
+            style={styles.titleInput}
+            value={title}
+          />
+        </View>
         <ChipParam
           containerStyle={{ flex: 1 }}
           chipAction={chipAction}
@@ -89,13 +101,24 @@ const styles = StyleSheet.create({
     backgroundColor: "#E8E7E5",
     flexDirection: "column",
     paddingTop: 30,
-    marginTop: 50,
+    marginTop: 20,
+    marginHorizontal: 10,
+  },
+  prefixContainerTitle: {
+    borderRadius: 50,
+    backgroundColor: "#E8E7E5",
+    flexDirection: "row",
+    marginTop: 20,
+    alignItems: "center",
     marginHorizontal: 10,
   },
   prefix: {
     paddingLeft: 20,
     fontSize: 18,
     color: "#7C7F80",
+  },
+  titleInput: {
+    fontSize: 18,
   },
   subjectInput: {
     fontSize: 18,
