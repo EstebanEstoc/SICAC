@@ -51,7 +51,6 @@ import Sms from "../helpers/SMS";
 import Wizard from "./Wizard";
 import BackgroundJob from "react-native-background-job";
 //import BackTest from "../helpers/background";
-import CalendarSelector from "./CalendarSelector";
 
 import { ChangeFormActionStatus } from "../services/actions/Form/Form";
 import * as SMS from "../services/actions/SMS/SMS";
