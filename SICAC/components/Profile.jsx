@@ -6,7 +6,7 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 import { Picker } from "@react-native-picker/picker";
 import SectionedMultiSelect from "react-native-sectioned-multi-select";
 
-import { modifyHouseWifi, setRelativesNumbers, modifyDoctoreNumber, modifySmarWatch, modifyDefaultCalendarID, modifyCardiacThreshold } from "../reducers/configuration/configrationSlice";
+import { modifyHouseWifi, setRelativesNumbers, modifyDoctoreNumber, modifySmarWatch, modifyDefaultCalendarID, modifyCardiacThreshold } from "../reducers/configuration/configurationSlice";
 import * as ContactRetriver from "/services/actions/SMS/Contacts";
 import { GetCalendarsNameList } from "../services/conditions/calendar/providers/GoogleCalendarRepository";
 
