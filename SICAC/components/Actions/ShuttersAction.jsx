@@ -4,33 +4,44 @@ import { StyleSheet, View } from "react-native";
 import { ConditionButton } from "../Buttons";
 import { addAction } from "../../reducers/scenarios/createScenarioSlice";
 
-
 const ShuttersAction = ({ navigation }) => {
   const scenario = useSelector((state) => state.createScenario);
   const dispatch = useDispatch();
 
   return (
     <View style={styles.container}>
-      <ConditionButton title="Open the shutters" size="sm" icon={{ name: "arrow-up" }}
+      <ConditionButton
+        title="Open the shutters"
+        size="sm"
+        icon={{ name: "arrow-up" }}
         onPress={() => {
-            dispatch(addAction({ name: "Open the shutters" }));
-            navigation.navigate("CreateScenario");
-          }} />
-      <ConditionButton title="Close the shutters" size="sm" icon={{ name: "arrow-down" }}
+          dispatch(
+            addAction({ type: "OpenShutters", name: "Open the shutters" })
+          );
+          navigation.navigate("CreateScenario");
+        }}
+      />
+      <ConditionButton
+        title="Close the shutters"
+        size="sm"
+        icon={{ name: "arrow-down" }}
         onPress={() => {
-            dispatch(addAction({ name: "Close the shutters" }));
-            navigation.navigate("CreateScenario");
-          }} />
+          dispatch(
+            addAction({ type: "CloseShutters", name: "Close the shutters" })
+          );
+          navigation.navigate("CreateScenario");
+        }}
+      />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    padding: 16
-  }
+    justifyContent: "center",
+    padding: 16,
+  },
 });
 
 export default ShuttersAction;

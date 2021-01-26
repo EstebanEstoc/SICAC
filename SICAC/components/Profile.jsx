@@ -34,6 +34,10 @@ const Profile = ({ navigation }) => {
 
     const smartWatches = [
         {
+            name: "Choose a smartwatch...",
+            id: "0",
+        },
+        {
             name: "Apple Watch SE",
             id: "10",
         },

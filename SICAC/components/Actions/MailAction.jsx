@@ -41,9 +41,10 @@ const MailAction = ({ navigation }) => {
           onPress={() => {
             dispatch(
               addAction({
+                type: "SendMail",
                 name: "Send mail : " + subject,
                 options: { to: emails, subject: subject, core: core },
-                calendar,
+                calendar: calendar.current,
               })
             );
             navigation.navigate("CreateScenario");

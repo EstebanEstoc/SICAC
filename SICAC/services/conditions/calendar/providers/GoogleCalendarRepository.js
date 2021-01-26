@@ -81,10 +81,10 @@ export const EventIsCurrent = event => {
   return eventDates.start - new Date() <= 0 && eventDates.end - new Date() >= 0
 }
 
-export const EventIsIn30Minutes = event => {
+export const EventIsIn60Minutes = event => {
   const eventDates = GetEventDates(event)
   const current = new Date()
-  return eventDates.start - current > 17e5 && eventDates.start - current < 19e5
+  return eventDates.start - current > 35e5 && eventDates.start - current < 37e5
 }
 
 export const GetEventLocation = event => {
@@ -94,13 +94,4 @@ export const GetEventLocation = event => {
 export const GetEventData = (event, queryDataName) => {
   const data = JSON.parse(event.description)
   return data[queryDataName]
-}
-
-export const IsAlreadyTriggered = (event, triggeredIds) => {
-  for (const id in triggeredIds) {
-    if (event.if === id) {
-      return true
-    }
-  }
-  return false
 }
