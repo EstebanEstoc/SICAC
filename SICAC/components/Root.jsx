@@ -9,6 +9,7 @@ import Authentication from "./Authentication/Authentication";
 import HomeScreen from "../helpers/HomeScreen";
 import Home from "./Home";
 import CreateScenario from "./CreateScenario/CreateScenarioTabs";
+import Profile from "./Profile";
 import ExampleScenarios from "./ExampleScenarios";
 import Help from "./Help";
 
@@ -299,6 +300,13 @@ const Root = () => {
               }}
               component={ExampleScenarios}
             />
+            <Stack.Screen
+          name="Profile"
+          options={{
+            title: "My profile",
+          }}
+          component={Profile}
+        /> 
             <Stack.Screen
               name="LightsAction"
               options={{

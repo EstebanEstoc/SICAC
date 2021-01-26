@@ -37,7 +37,7 @@ const Home = ({ navigation }) => {
 
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate("");
+          navigation.navigate("Profile");
         }}
         style={styles.button}
       >
