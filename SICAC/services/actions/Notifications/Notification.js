@@ -8,7 +8,7 @@ export const schedulePushNotification = async (title, subject) => {
       shouldSetBadge: false
     })
   })
-
+  console.log(subject)
   await Notifications.scheduleNotificationAsync({
     content: {
       title: title,

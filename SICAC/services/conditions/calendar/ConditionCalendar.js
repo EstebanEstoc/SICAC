@@ -215,9 +215,9 @@ const getCalendarInfoString = (event, calendarResponse) => {
       let response = 'You have to take the following pills:'
       calendarResponse.data.pillsToTake.forEach((pill, index) => {
         if (index !== 0) {
-          response = ', ' + response + pill.dosage + ' of ' + pill.name
+          response = response + ', ' + pill.dosage + ' of ' + pill.name
         } else if (index === 0) {
-          response = response + pill.dosage + ' of ' + pill.name
+          response = response + ' ' + pill.dosage + ' of ' + pill.name
         }
       })
       response + '. '
